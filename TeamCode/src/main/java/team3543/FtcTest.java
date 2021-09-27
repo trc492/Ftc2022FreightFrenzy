@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package teamcode;
+package team3543;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -176,8 +176,7 @@ public class FtcTest extends FtcTeleOp
                 if (!Robot.Preferences.visionOnly)
                 {
                     testCommand = new CmdPurePursuitDrive(
-                        robot.driveBase, robot.xPosPidCoeff, robot.yPosPidCoeff, robot.turnPidCoeff, robot.velPidCoeff,
-                        RobotInfo.ROBOT_MAX_VELOCITY, RobotInfo.ROBOT_MAX_ACCELERATION);
+                        robot.driveBase, robot.xPosPidCoeff, robot.yPosPidCoeff, robot.turnPidCoeff, robot.velPidCoeff);
                 }
                 break;
         }

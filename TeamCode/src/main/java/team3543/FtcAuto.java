@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package teamcode;
+package team3543;
 
 import android.annotation.SuppressLint;
 
@@ -166,8 +166,7 @@ public class FtcAuto extends FtcOpMode
                 if (!Robot.Preferences.visionOnly)
                 {
                     autoCommand = new CmdPurePursuitDrive(
-                        robot.driveBase, robot.xPosPidCoeff, robot.yPosPidCoeff, robot.turnPidCoeff, robot.velPidCoeff,
-                        RobotInfo.ROBOT_MAX_VELOCITY, RobotInfo.ROBOT_MAX_ACCELERATION);
+                        robot.driveBase, robot.xPosPidCoeff, robot.yPosPidCoeff, robot.turnPidCoeff, robot.velPidCoeff);
                 }
                 break;
 
