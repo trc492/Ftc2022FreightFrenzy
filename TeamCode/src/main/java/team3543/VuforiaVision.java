@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Titan Robotics Club (http://www.titanrobotics.com)
+ * Copyright (c) 2021 Titan Robotics Club (http://www.titanrobotics.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,67 +39,34 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.
 
 /**
  * This class implements Vuforia Vision for the game season. It creates and initializes all the vision target info
- * as well as providing info for the robot, phone camera and the field. It also provides methods to get the
- * location of the robot and detected targets.
+ * as well as providing info for the robot, camera and the field. It also provides methods to get the location of the
+ * robot and detected targets.
  */
 public class VuforiaVision
 {
-    public static final double HALF_FIELD_INCHES = 72.0f;
-    public static final double QUAD_FIELD_INCHES = 36.0f;
-
     private static final int IMAGE_WIDTH = 1280;    //in pixels
     private static final int IMAGE_HEIGHT = 720;    //in pixels
     private static final int FRAME_QUEUE_CAPACITY = 2;
 
-    private static final String skystoneTargetName = "Stone Target";
-    private static final String blueBridgeBackTargetName = "Blue Rear Bridge";
-    private static final String redBridgeBackTargetName = "Red Rear Bridge";
-    private static final String redBridgeFrontTargetName = "Red Front Bridge";
-    private static final String blueBridgeFrontTargetName = "Blue Front Bridge";
-    private static final String red1TargetName = "Red Perimeter 1";
-    private static final String red2TargetName = "Red Perimeter 2";
-    private static final String front1TargetName = "Front Perimeter 1";
-    private static final String front2TargetName = "Front Perimeter 2";
-    private static final String blue1TargetName = "Blue Perimeter 1";
-    private static final String blue2TargetName = "Blue Perimeter 2";
-    private static final String back1TargetName = "Rear Perimeter 1";
-    private static final String back2TargetName = "Rear Perimeter 2";
+    private static final String blueStorageName = "Blue Storage";
+    private static final String blueAllianceWallName = "Blue Alliance Wall";
+    private static final String redStorageName = "Red Storage";
+    private static final String redAllianceWallName = "Red Alliance Wall";
     private static final TrcHashMap<String, TrcRevBlinkin.LEDPattern> targetLEDPatternMap =
         new TrcHashMap<String, TrcRevBlinkin.LEDPattern>()
-            .add(skystoneTargetName, TrcRevBlinkin.LEDPattern.SolidGreen)
-            .add(blueBridgeBackTargetName, TrcRevBlinkin.LEDPattern.SolidViolet)
-            .add(redBridgeBackTargetName, TrcRevBlinkin.LEDPattern.SolidAqua)
-            .add(redBridgeFrontTargetName, TrcRevBlinkin.LEDPattern.SolidYellow)
-            .add(blueBridgeFrontTargetName, TrcRevBlinkin.LEDPattern.SolidOrange)
-            .add(red1TargetName, TrcRevBlinkin.LEDPattern.SolidRed)
-            .add(red2TargetName, TrcRevBlinkin.LEDPattern.FixedStrobeRed)
-            .add(front1TargetName, TrcRevBlinkin.LEDPattern.SolidGold)
-            .add(front2TargetName, TrcRevBlinkin.LEDPattern.FixedStrobeGold)
-            .add(blue1TargetName, TrcRevBlinkin.LEDPattern.SolidBlue)
-            .add(blue2TargetName, TrcRevBlinkin.LEDPattern.FixedStrobeBlue)
-            .add(back1TargetName, TrcRevBlinkin.LEDPattern.SolidWhite)
-            .add(back2TargetName, TrcRevBlinkin.LEDPattern.FixedStrobeWhite);
+            .add(blueStorageName, TrcRevBlinkin.LEDPattern.SolidBlue)
+            .add(blueAllianceWallName, TrcRevBlinkin.LEDPattern.FixedStrobeBlue)
+            .add(redStorageName, TrcRevBlinkin.LEDPattern.SolidRed)
+            .add(redAllianceWallName, TrcRevBlinkin.LEDPattern.FixedStrobeRed);
     //
     // Since ImageTarget trackables use mm to specify their dimensions, we must use mm for all the physical dimension.
     // We will define some constants and conversions here.
     //
-
     // Height of the center of the target image above the floor.
     private static final float mmTargetHeight = 6.0f * (float)TrcUtil.MM_PER_INCH;
-
-    // Constant for Stone Target.
-    private static final float stoneZ = 2.0f * (float)TrcUtil.MM_PER_INCH;
-
-    // Constants for the center support targets.
-    private static final float bridgeZ = 6.42f * (float)TrcUtil.MM_PER_INCH;
-    private static final float bridgeY = 23.0f * (float)TrcUtil.MM_PER_INCH;
-    private static final float bridgeX = 5.18f * (float)TrcUtil.MM_PER_INCH;
-    private static final float bridgeRotY = 59.0f;  // Units are degrees
-    private static final float bridgeRotZ = 180.0f;
-
-    // Constants for perimeter targets
-    private static final float halfField = (float)(HALF_FIELD_INCHES * TrcUtil.MM_PER_INCH);
-    private static final float quadField = (float)(QUAD_FIELD_INCHES * TrcUtil.MM_PER_INCH);
+    private static final float halfField = (float)(72.0 * TrcUtil.MM_PER_INCH);
+    private static final float halfTile = (float)(12.0 * TrcUtil.MM_PER_INCH);
+    private static final float oneAndHalfTile = (float)(36.0 * TrcUtil.MM_PER_INCH);
 
     private final Robot robot;
     private final FtcVuforia vuforia;
@@ -111,17 +78,16 @@ public class VuforiaVision
      *
      * @param robot specifies the robot object.
      * @param vuforia specifies the FtcVuforia object.
-     * @param phoneLocation specifies the phone location.
+     * @param cameraLocation specifies the camera location.
      */
-    public VuforiaVision(Robot robot, FtcVuforia vuforia, OpenGLMatrix phoneLocation)
+    public VuforiaVision(Robot robot, FtcVuforia vuforia, OpenGLMatrix cameraLocation)
     {
         this.robot = robot;
         this.vuforia = vuforia;
         vuforia.configVideoSource(IMAGE_WIDTH, IMAGE_HEIGHT, FRAME_QUEUE_CAPACITY);
-
         /*
          * In order for localization to work, we need to tell the system where each target is on the field, and where
-         * the phone resides on the robot.  These specifications are in the form of <em>transformation matrices.</em>
+         * the camera resides on the robot.  These specifications are in the form of <em>transformation matrices.</em>
          * Transformation matrices are a central, important concept in the math here involved in localization.
          * See <a href="https://en.wikipedia.org/wiki/Transformation_matrix">Transformation Matrix</a>
          * for detailed information. Commonly, you'll encounter transformation matrices as instances
@@ -136,85 +102,30 @@ public class VuforiaVision
          * Before being transformed, each target image is conceptually located at the origin of the field's
          *  coordinate system (the center of the field), facing up.
          */
-
-        // Set the position of the Stone Target.  Since it's not fixed in position, assume it's at the field origin.
-        // Rotated it to to face forward, and raised it to sit on the ground correctly.
-        // This can be used for generic target-centric approach algorithms
-        OpenGLMatrix stoneTargetLocation = OpenGLMatrix
-            .translation(0, 0, stoneZ)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 0));
-
-        //Set the position of the bridge support targets with relation to origin (center of field)
-        OpenGLMatrix blueFrontBridgeLocation = OpenGLMatrix
-            .translation(-bridgeX, bridgeY, bridgeZ)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 0, bridgeRotY, bridgeRotZ));
-
-        OpenGLMatrix blueRearBridgeLocation = OpenGLMatrix
-            .translation(-bridgeX, bridgeY, bridgeZ)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 0, -bridgeRotY, bridgeRotZ));
-
-        OpenGLMatrix redFrontBridgeLocation = OpenGLMatrix
-            .translation(-bridgeX, -bridgeY, bridgeZ)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 0, -bridgeRotY, 0));
-
-        OpenGLMatrix redRearBridgeLocation = OpenGLMatrix
-            .translation(bridgeX, -bridgeY, bridgeZ)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 0, bridgeRotY, 0));
-
-        //Set the position of the perimeter targets with relation to origin (center of field)
-        OpenGLMatrix redPerimeter1Location = OpenGLMatrix
-            .translation(quadField, -halfField, mmTargetHeight)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 180));
-
-        OpenGLMatrix redPerimeter2Location = OpenGLMatrix
-            .translation(-quadField, -halfField, mmTargetHeight)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 180));
-
-        OpenGLMatrix frontPerimeter1Location = OpenGLMatrix
-            .translation(-halfField, -quadField, mmTargetHeight)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0 , 90));
-
-        OpenGLMatrix frontPerimeter2Location = OpenGLMatrix
-            .translation(-halfField, quadField, mmTargetHeight)
+        OpenGLMatrix blueStorageLocation = OpenGLMatrix
+            .translation(-halfField, oneAndHalfTile, mmTargetHeight)
             .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 90));
-
-        OpenGLMatrix bluePerimeter1Location = OpenGLMatrix
-            .translation(-quadField, halfField, mmTargetHeight)
+        OpenGLMatrix blueAllianceWallLocation = OpenGLMatrix
+            .translation(halfTile, halfField, mmTargetHeight)
             .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 0));
-
-        OpenGLMatrix bluePerimeter2Location = OpenGLMatrix
-            .translation(quadField, halfField, mmTargetHeight)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 0));
-
-        OpenGLMatrix rearPerimeter1Location = OpenGLMatrix
-            .translation(halfField, quadField, mmTargetHeight)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0 , -90));
-
-        OpenGLMatrix rearPerimeter2Location = OpenGLMatrix
-            .translation(halfField, -quadField, mmTargetHeight)
-            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, -90));
-
+        OpenGLMatrix redStorageLocation = OpenGLMatrix
+            .translation(-halfField, -oneAndHalfTile, mmTargetHeight)
+            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 90));
+        OpenGLMatrix redAllianceWallLocation = OpenGLMatrix
+            .translation(halfTile, -halfField, mmTargetHeight)
+            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 180));
         //
         // Create and initialize all image targets.
         //
         FtcVuforia.TargetInfo[] imageTargetsInfo =
         {
-            new FtcVuforia.TargetInfo(0, skystoneTargetName, false, stoneTargetLocation),
-            new FtcVuforia.TargetInfo(1, blueBridgeBackTargetName, false, blueRearBridgeLocation),
-            new FtcVuforia.TargetInfo(2, redBridgeBackTargetName, false, redRearBridgeLocation),
-            new FtcVuforia.TargetInfo(3, redBridgeFrontTargetName, false, redFrontBridgeLocation),
-            new FtcVuforia.TargetInfo(4, blueBridgeFrontTargetName, false, blueFrontBridgeLocation),
-            new FtcVuforia.TargetInfo(5, red1TargetName, false, redPerimeter1Location),
-            new FtcVuforia.TargetInfo(6, red2TargetName, false, redPerimeter2Location),
-            new FtcVuforia.TargetInfo(7, front1TargetName, false, frontPerimeter1Location),
-            new FtcVuforia.TargetInfo(8, front2TargetName, false, frontPerimeter2Location),
-            new FtcVuforia.TargetInfo(9, blue1TargetName, false, bluePerimeter1Location),
-            new FtcVuforia.TargetInfo(10, blue2TargetName, false, bluePerimeter2Location),
-            new FtcVuforia.TargetInfo(11, back1TargetName, false, rearPerimeter1Location),
-            new FtcVuforia.TargetInfo(12, back2TargetName, false, rearPerimeter2Location)
+            new FtcVuforia.TargetInfo(0, blueStorageName, false, blueStorageLocation),
+            new FtcVuforia.TargetInfo(1, blueAllianceWallName, false, blueAllianceWallLocation),
+            new FtcVuforia.TargetInfo(2, redStorageName, false, redStorageLocation),
+            new FtcVuforia.TargetInfo(3, redAllianceWallName, false, redAllianceWallLocation)
         };
 
-        vuforia.addTargetList(RobotInfo.TRACKABLE_IMAGES_FILE, imageTargetsInfo, phoneLocation);
+        vuforia.addTargetList(RobotInfo.TRACKABLE_IMAGES_FILE, imageTargetsInfo, cameraLocation);
         imageTargets = new VuforiaTrackable[imageTargetsInfo.length];
         for (int i = 0; i < imageTargets.length; i++)
         {

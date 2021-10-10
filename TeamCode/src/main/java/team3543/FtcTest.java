@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Titan Robotics Club (http://www.titanrobotics.com)
+ * Copyright (c) 2021 Titan Robotics Club (http://www.titanrobotics.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@ import TrcFtcLib.ftclib.FtcValueMenu;
 /**
  * This class contains the Test Mode program.
  */
-@TeleOp(name="FtcTest", group="FtcTest")
+@TeleOp(name="FtcTest", group="Ftc3543")
 public class FtcTest extends FtcTeleOp
 {
     private static final String moduleName = "FtcTest";
@@ -90,7 +90,7 @@ public class FtcTest extends FtcTeleOp
 
     /**
      * This method is called to initialize the robot. In FTC, this is called when the "Init" button on the Driver
-     * Station phone is pressed.
+     * Station is pressed.
      */
     @Override
     public void initRobot()
@@ -199,9 +199,10 @@ public class FtcTest extends FtcTeleOp
     public void startMode(TrcRobot.RunMode prevMode, TrcRobot.RunMode nextMode)
     {
         super.startMode(prevMode, nextMode);
+
         if (test == Test.SENSORS_TEST || test == Test.SUBSYSTEMS_TEST)
         {
-            robot.setFlashLightOn(true, true);
+            robot.setFlashLightOn(true);
         }
         else if (test == Test.PURE_PURSUIT_DRIVE)
         {
@@ -232,7 +233,7 @@ public class FtcTest extends FtcTeleOp
 
         if (test == Test.SENSORS_TEST || test == Test.SUBSYSTEMS_TEST)
         {
-            robot.setFlashLightOn(false, false);
+            robot.setFlashLightOn(false);
         }
 
         super.stopMode(prevMode, nextMode);
@@ -539,52 +540,18 @@ public class FtcTest extends FtcTeleOp
 
     private void doVisionTest()
     {
-//        TrcPose2D skystonePose = robot.getSkyStonePose();
-//
-//        if (skystonePose != null)
-//        {
-//            robot.dashboard.displayPrintf(
-//                12, "%s: x=%.1f, y=%.1f, angle=%.1f",
-//                robot.targetFinder, skystonePose.x, skystonePose.y, skystonePose.angle);
-//        }
-//        else
-//        {
-//            robot.dashboard.displayPrintf(12, "SkyStone not found!");
-//        }
-//
-//        if (robot.vuforiaVision != null)
-//        {
-//            TrcPose2D robotPose = robot.getRobotPose(null, false);
-//            robot.dashboard.displayPrintf(
-//                13, "RobotLocation %s: %s", robot.vuforiaVision.getLastSeenImageName(), robotPose);
-//        }
-//
-//        if (robot.tensorFlowVision != null)
-//        {
-//            TensorFlowVision.TargetInfo[] targetsInfo;
-//
-//            targetsInfo = robot.tensorFlowVision.getDetectedTargetsInfo(null);
-//            if (targetsInfo != null)
-//            {
-//                StringBuilder skystoneLine = new StringBuilder();
-//                StringBuilder stoneLine = new StringBuilder();
-//
-//                for (int i = 0; i < targetsInfo.length; i++)
-//                {
-//                    if (targetsInfo[i].label.equals(TensorFlowVision.LABEL_SKYSTONE))
-//                    {
-//                        skystoneLine.append(String.format(Locale.US, " %d: %s", i, targetsInfo[i]));
-//                    }
-//                    else if (targetsInfo[i].label.equals(TensorFlowVision.LABEL_STONE))
-//                    {
-//                        stoneLine.append(String.format(Locale.US, " %d: %s", i, targetsInfo[i]));
-//                    }
-//                }
-//
-//                robot.dashboard.displayPrintf(14, skystoneLine.toString());
-//                robot.dashboard.displayPrintf(15, stoneLine.toString());
-//            }
-//        }
+        if (robot.tensorFlowVision != null)
+        {
+            TensorFlowVision.TargetInfo[] targetInfo = robot.tensorFlowVision.getDetectedTargetsInfo(null);
+            if (targetInfo != null && targetInfo.length > 0)
+            {
+                for (int i = 0; i < targetInfo.length; i++)
+                {
+                    robot.dashboard.displayPrintf(
+                        12 + i, "%s", targetInfo[i]);
+                }
+            }
+        }
     }   //doVisionTest
 
     private boolean shouldDoTeleOp()

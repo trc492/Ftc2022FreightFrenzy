@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Titan Robotics Club (http://www.titanrobotics.com)
+ * Copyright (c) 2021 Titan Robotics Club (http://www.titanrobotics.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ import TrcFtcLib.ftclib.FtcValueMenu;
 /**
  * This class contains the Autonomous Mode program.
  */
-@Autonomous(name="FtcAutonomous", group="FtcAuto")
+@Autonomous(name="FtcAutonomous", group="Ftc3543")
 public class FtcAuto extends FtcOpMode
 {
     public enum MatchType
@@ -133,7 +133,7 @@ public class FtcAuto extends FtcOpMode
 
     /**
      * This method is called to initialize the robot. In FTC, this is called when the "Init" button on the Driver
-     * Station phone is pressed.
+     * Station is pressed.
      */
     @SuppressLint("SdCardPath")
     @Override
@@ -150,15 +150,15 @@ public class FtcAuto extends FtcOpMode
             robot.globalTracer.openTraceLog("/sdcard/FIRST/tracelog", filePrefix);
         }
         //
-        // Initializing robot objects.
+        // Create and initialize robot object.
         //
         robot = new Robot(TrcRobot.getRunMode());
         //
-        // Choice menus.
+        // Create and run choice menus.
         //
         doAutoChoicesMenus();
         //
-        // Strategies.
+        // Create autonomous command according to chosen strategy.
         //
         switch (autoChoices.strategy)
         {
@@ -201,9 +201,8 @@ public class FtcAuto extends FtcOpMode
 
     /**
      * This method is called when the competition mode is about to start. In FTC, this is called when the "Play"
-     * button on the Driver Station phone is pressed. Typically, you put code that will prepare the robot for
-     * start of competition here such as resetting the encoders/sensors and enabling some sensors to start
-     * sampling.
+     * button on the Driver Station is pressed. Typically, you put code that will prepare the robot for start of
+     * competition here such as resetting the encoders/sensors and enabling some sensors to start sampling.
      *
      * @param prevMode specifies the previous RunMode it is coming from (always null for FTC).
      * @param nextMode specifies the next RunMode it is going into.
@@ -211,6 +210,8 @@ public class FtcAuto extends FtcOpMode
     @Override
     public void startMode(TrcRobot.RunMode prevMode, TrcRobot.RunMode nextMode)
     {
+        robot.dashboard.clearDisplay();
+
         if (Robot.Preferences.useTraceLog)
         {
             robot.globalTracer.setTraceLogEnabled(true);
@@ -221,7 +222,9 @@ public class FtcAuto extends FtcOpMode
             robot.globalTracer.logInfo(moduleName, "MatchInfo", "%s", matchInfo);
         }
         robot.globalTracer.logInfo(moduleName, "AutoChoices", "%s", autoChoices);
-
+        //
+        // Tell robot object opmode is about to start so it can do the necessary start initialization for the mode.
+        //
         robot.startMode(nextMode);
 
         if (robot.battery != null)
@@ -231,11 +234,12 @@ public class FtcAuto extends FtcOpMode
 
         if (autoChoices.strategy == AutoStrategy.PURE_PURSUIT_DRIVE)
         {
+            //
+            // PurePursuitDrive requires start initialization to provide a drive path.
+            //
             ((CmdPurePursuitDrive)autoCommand).start(
                 robot.driveBase.getFieldPosition(), true, RobotInfo.PURE_PURSUIT_PATH);
         }
-
-        robot.dashboard.clearDisplay();
     }   //startMode
 
     /**
@@ -248,11 +252,16 @@ public class FtcAuto extends FtcOpMode
     @Override
     public void stopMode(TrcRobot.RunMode prevMode, TrcRobot.RunMode nextMode)
     {
+        //
+        // Opmode is about to stop, cancel autonomous command in progress if any.
+        //
         if (autoCommand != null)
         {
             autoCommand.cancel();
         }
-
+        //
+        // Tell robot object opmode is about to stop so it can do the necessary cleanup for the mode.
+        //
         robot.stopMode(prevMode);
 
         if (robot.battery != null)

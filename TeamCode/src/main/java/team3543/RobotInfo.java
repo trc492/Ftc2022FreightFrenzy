@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Titan Robotics Club (http://www.titanrobotics.com)
+ * Copyright (c) 2021 Titan Robotics Club (http://www.titanrobotics.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,14 +24,18 @@ package team3543;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-
 import TrcCommonLib.trclib.TrcPose2D;
-
-import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
 
 public class RobotInfo
 {
+    //
+    // Hardware names.
+    //
+    static final String IMU_NAME                                = "imu";
+    static final String LEFT_FRONT_WHEEL_NAME                   = "lfWheel";
+    static final String RIGHT_FRONT_WHEEL_NAME                  = "rfWheel";
+    static final String LEFT_BACK_WHEEL_NAME                    = "lbWheel";
+    static final String RIGHT_BACK_WHEEL_NAME                   = "rbWheel";
     //
     // DriveBase subsystem.
     //
@@ -98,16 +102,12 @@ public class RobotInfo
     //
     // Vision subsystem.
     //
-    static final VuforiaLocalizer.CameraDirection CAMERA_DIR    = BACK;
-    static final VuforiaLocalizer.Parameters.CameraMonitorFeedback CAMERA_MONITOR_FEEDBACK =
-        VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
-    static final String TRACKABLE_IMAGES_FILE                   = "Skystone";
-    static final boolean PHONE_IS_PORTRAIT                      = false;
+    static final String TRACKABLE_IMAGES_FILE                   = "FreightFrenzy";
     static final double ROBOT_LENGTH                            = 18.0; //Robot length in inches
     static final double ROBOT_WIDTH                             = 18.0; //Robot width in inches
-    static final double PHONE_FRONT_OFFSET                      = 5.5;  //Phone offset from front of robot in inches
-    static final double PHONE_HEIGHT_OFFSET                     = 5.75; //Phone offset from floor in inches
-    static final double PHONE_LEFT_OFFSET                       = 11.0; //Phone offset from left of robot in inches
+    static final double CAMERA_FRONT_OFFSET                     = 5.5;  //Camera offset from front of robot in inches
+    static final double CAMERA_HEIGHT_OFFSET                    = 5.75; //Camera offset from floor in inches
+    static final double CAMERA_LEFT_OFFSET                      = 11.0; //Camera offset from left of robot in inches
 
     static final double HOMOGRAPHY_CAMERA_TOPLEFT_X             = 0.0;
     static final double HOMOGRAPHY_CAMERA_TOPLEFT_Y             = 360.0;

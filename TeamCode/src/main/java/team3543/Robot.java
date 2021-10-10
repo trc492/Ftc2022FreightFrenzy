@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Titan Robotics Club (http://www.titanrobotics.com)
+ * Copyright (c) 2021 Titan Robotics Club (http://www.titanrobotics.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,8 @@
 
 package team3543;
 
-import android.speech.tts.TextToSpeech;
-
 import org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -43,7 +42,6 @@ import TrcCommonLib.trclib.TrcRevBlinkin;
 import TrcCommonLib.trclib.TrcRobot;
 import TrcCommonLib.trclib.TrcServo;
 import TrcCommonLib.trclib.TrcUtil;
-import TrcFtcLib.ftclib.FtcAndroidTone;
 import TrcFtcLib.ftclib.FtcBNO055Imu;
 import TrcFtcLib.ftclib.FtcDashboard;
 import TrcFtcLib.ftclib.FtcOpMode;
@@ -56,7 +54,6 @@ import TrcFtcLib.ftclib.FtcVuforia;
 import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.YZX;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
-import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
 
 /**
  * This class creates the robot object that consists of sensors, indicators, drive base and all the subsystems.
@@ -71,31 +68,28 @@ public class Robot
         static boolean visionOnly = false;
         static boolean initSubsystems = true;
         static boolean useExternalOdometry = false;
-        static boolean hasElevator = true;
-        static boolean hasBlinkin = true;
-        static boolean useVuforia = true;
-        static boolean useTensorFlow = false;
+        static boolean hasElevator = false;
+        static boolean hasBlinkin = false;
+        static boolean useVuforia = false;
+        static boolean useTensorFlow = true;
         static boolean showVuforiaView = false;
-        static boolean showTensorFlowView = false;
-        static boolean usePhoneFlashLight = true;
-        static boolean useBlinkinFlashLight = true;
+        static boolean showTensorFlowView = true;
+        static boolean useBlinkinFlashLight = false;
         static boolean useTraceLog = true;
-        static boolean useSpeech = true;
         static boolean useBatteryMonitor = false;
         static boolean useLoopPerformanceMonitor = true;
         static boolean useVelocityControl = false;
     }   //class Preferences
 
-    private static class PhoneParameters
+    private static class CameraParameters
     {
-        static VuforiaLocalizer.CameraDirection cameraDir = RobotInfo.CAMERA_DIR;
+        static double cameraFrontOffset = RobotInfo.CAMERA_FRONT_OFFSET;
+        static double cameraLeftOffset = RobotInfo.CAMERA_LEFT_OFFSET;
+        static double cameraHeightOffset = RobotInfo.CAMERA_HEIGHT_OFFSET;
+        static boolean extendedTracking = false;
         static VuforiaLocalizer.Parameters.CameraMonitorFeedback cameraMonitorFeedback =
-            RobotInfo.CAMERA_MONITOR_FEEDBACK;
-        static boolean phoneIsPortrait = RobotInfo.PHONE_IS_PORTRAIT;
-        static double phoneFrontOffset = RobotInfo.PHONE_FRONT_OFFSET;
-        static double phoneLeftOffset = RobotInfo.PHONE_LEFT_OFFSET;
-        static double phoneHeightOffset = RobotInfo.PHONE_HEIGHT_OFFSET;
-    }   //class PhoneParameters
+            VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
+    }   //class CameraParameters
 
     public enum DriveMode
     {
@@ -110,8 +104,6 @@ public class Robot
     public FtcOpMode opMode;
     public FtcDashboard dashboard;
     public TrcDbgTrace globalTracer;
-    public FtcAndroidTone androidTone;
-    public TextToSpeech textToSpeech;
     //
     // Vision subsystems.
     //
@@ -172,24 +164,23 @@ public class Robot
             ((FtcRobotControllerActivity)opMode.hardwareMap.appContext)
                 .findViewById(com.qualcomm.ftcrobotcontroller.R.id.textOpMode));
         globalTracer = TrcDbgTrace.getGlobalTracer();
-        androidTone = new FtcAndroidTone("AndroidTone");
-        if (Preferences.useSpeech)
-        {
-            textToSpeech = FtcOpMode.getInstance().getTextToSpeech();
-            speak("Init starting", "initStart");
-        }
         //
         // Initialize vision subsystems.
         //
         if (Preferences.useVuforia || Preferences.useTensorFlow)
         {
-            final String VUFORIA_LICENSE_KEY = "Your_Own_Vuforia_Key";
-            int cameraViewId = !Preferences.showVuforiaView? -1:
+            final String VUFORIA_LICENSE_KEY =
+                "ARbBwjf/////AAABmZijKPKUWEY+uNSzCuTOUFgm7Gr5irDO55gtIOjsOXmhLzLEILJp45qdPrwMfoBV2Yh7F+Wh8iEjnSA" +
+                "NnnRKiJNHy1T9Pr2uufETE40YJth10Twv0sTNSEqxDPhg2t4PJXwRImMaEsTE53fmcm08jT9qMso2+1h9eNk2b4x6DVKgBt" +
+                "Tv5wocDs949Gkh6lRt5rAxATYYO9esmyKyfyzfFLMMpfq7/uvQQrSibNBqa13hJRmmHoM2v0Gfk8TCTTfP044/XsOm54u8k" +
+                "dv0HfeMBC91uQ/NvWHVV5XCh8pZAzmL5sry1YwG8FSRNVlSAZ1zN/m6jAe98q6IxpwQxP0da/TpJoqDI7x4RGjOs1Areunf";
+            int cameraViewId = !Preferences.showVuforiaView ? -1 :
                 opMode.hardwareMap.appContext.getResources().getIdentifier(
                     "cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
 
             vuforia = new FtcVuforia(
-                VUFORIA_LICENSE_KEY, cameraViewId, PhoneParameters.cameraDir, PhoneParameters.cameraMonitorFeedback);
+                VUFORIA_LICENSE_KEY, cameraViewId, opMode.hardwareMap.get(WebcamName.class, "Webcam 1"),
+                CameraParameters.extendedTracking, CameraParameters.cameraMonitorFeedback);
 
             if (runMode == TrcRobot.RunMode.AUTO_MODE || runMode == TrcRobot.RunMode.TEST_MODE)
             {
@@ -234,7 +225,7 @@ public class Robot
             {
                 blinkin = new FtcRevBlinkin("blinkin");
             }
-            imu = new FtcBNO055Imu("imu");
+            imu = new FtcBNO055Imu(RobotInfo.IMU_NAME);
             gyro = imu.gyro;
             //
             // Initialize DriveBase.
@@ -260,15 +251,10 @@ public class Robot
                             RobotInfo.ELEVATOR_STALL_MIN_POWER, RobotInfo.ELEVATOR_STALL_TIMEOUT,
                             RobotInfo.ELEVATOR_RESET_TIMEOUT);
                     elevator = new FtcMotorActuator("elevator", elevatorParams);
-                    elevator.setBeep(androidTone);
                     elevator.zeroCalibrate();
                 }
             }
         }
-        //
-        // Tell the driver initialization is complete.
-        //
-        speak("Init complete!", "initDone");
     }   //Robot
 
     /**
@@ -331,8 +317,11 @@ public class Robot
         //
         // Print all performance counters if there are any.
         //
-        gyro.printElapsedTime(globalTracer);
-        gyro.setElapsedTimerEnabled(false);
+        if (gyro != null)
+        {
+            gyro.printElapsedTime(globalTracer);
+            gyro.setElapsedTimerEnabled(false);
+        }
         TrcDigitalInput.printElapsedTime(globalTracer);
         TrcDigitalInput.setElapsedTimerEnabled(false);
         TrcMotor.printElapsedTime(globalTracer);
@@ -372,43 +361,15 @@ public class Robot
         {
             gyro.setEnabled(false);
         }
-        //
-        // Shut down text to speech.
-        //
-        if (textToSpeech != null)
-        {
-            textToSpeech.stop();
-            textToSpeech.shutdown();
-        }
     }   //stopMode
-
-    /**
-     * This method uses TextToSpeech to speak the given sentence.
-     *
-     * @param sentence specifies the sentence to be spoken.
-     * @param utteranceId specifies the unique identifier for the request.
-     */
-    public void speak(String sentence, String utteranceId)
-    {
-        if (textToSpeech != null)
-        {
-            textToSpeech.speak(sentence, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
-        }
-    }   //speak
 
     /**
      * This method turns the flashlight ON or OFF for the vision subsystem.
      *
-     * @param phoneFlashOn specifies true to turn on the phone flashlight, false to turn off.
      * @param blinkinFlashOn specifies true to turn on the Blinkin LED, false to turn off.
      */
-    public void setFlashLightOn(boolean phoneFlashOn, boolean blinkinFlashOn)
+    public void setFlashLightOn(boolean blinkinFlashOn)
     {
-        if (vuforia != null && Preferences.usePhoneFlashLight)
-        {
-            vuforia.setFlashlightEnabled(phoneFlashOn);
-        }
-
         if (blinkin != null && Preferences.useBlinkinFlashLight)
         {
             blinkin.setPattern(
@@ -416,73 +377,39 @@ public class Robot
         }
     }   //setFlashLightOn
 
-    /**
-     * This method initializes Vuforia for the vision subsystem.
-     */
     private void initVuforia()
     {
-        float phoneXRotate;
-        float phoneYRotate;
-        float phoneZRotate = 0.0f;
         /*
-         * Create a transformation matrix describing where the phone is on the robot.
+         * Create a transformation matrix describing where the camera is on the robot.
          *
-         * The coordinate frame for the robot looks the same as the field.
-         * The robot's "forward" direction is facing out along X axis, with the LEFT side facing out along the
-         * Y axis. Z is UP on the robot.  This equates to a bearing angle of Zero degrees.
+         * Info:  The coordinate frame for the robot looks the same as the field.
+         * The robot's "forward" direction is facing out along X axis, with the LEFT side facing out along the Y axis.
+         * Z is UP on the robot.  This equates to a bearing angle of Zero degrees.
          *
-         * The phone starts out lying flat, with the screen facing Up and with the physical top of the phone
-         * pointing to the LEFT side of the Robot.  It's very important when you test this code that the top
-         * of the camera is pointing to the left side of the  robot.  The rotation angles don't work if you flip
-         * the phone.
+         * For a WebCam, the default starting orientation of the camera is looking UP (pointing in the Z direction),
+         * with the wide (horizontal) axis of the camera aligned with the X axis, and
+         * the Narrow (vertical) axis of the camera aligned with the Y axis
          *
-         * If using the back (High Res) camera:
-         * We need to rotate the camera around it's long axis to bring the back camera forward.
-         * This requires a negative 90 degree rotation on the Y axis
+         * But, this example assumes that the camera is actually facing forward out the front of the robot.
+         * So, the "default" camera position requires two rotations to get it oriented correctly.
+         * 1) First it must be rotated +90 degrees around the X axis to get it horizontal (its now facing out the right side of the robot)
+         * 2) Next it must be be rotated +90 degrees (counter-clockwise) around the Z axis to face forward.
          *
-         * If using the Front (Low Res) camera
-         * We need to rotate the camera around it's long axis to bring the FRONT camera forward.
-         * This requires a Positive 90 degree rotation on the Y axis
-         *
-         * Next, translate the camera lens to where it is on the robot.
-         * In this example, it is centered (left to right), but 110 mm forward of the middle of the robot, and
-         * 200 mm above ground level.
+         * Finally the camera can be translated to its actual mounting position on the robot.
+         *      In this example, it is centered on the robot (left-to-right and front-to-back), and 6 inches above ground level.
          */
         final int CAMERA_FORWARD_DISPLACEMENT =
-            (int)((RobotInfo.ROBOT_LENGTH/2.0 - PhoneParameters.phoneFrontOffset)* TrcUtil.MM_PER_INCH);
+            (int)((RobotInfo.ROBOT_LENGTH/2.0 - CameraParameters.cameraFrontOffset)* TrcUtil.MM_PER_INCH);
         final int CAMERA_VERTICAL_DISPLACEMENT =
-            (int)(PhoneParameters.phoneHeightOffset*TrcUtil.MM_PER_INCH);
+            (int)(CameraParameters.cameraHeightOffset*TrcUtil.MM_PER_INCH);
         final int CAMERA_LEFT_DISPLACEMENT =
-            (int)((RobotInfo.ROBOT_WIDTH/2.0 - PhoneParameters.phoneLeftOffset)*TrcUtil.MM_PER_INCH);
-        //
-        // Create a transformation matrix describing where the phone is on the robot.
-        //
-        // NOTE !!!!  It's very important that you turn OFF your phone's Auto-Screen-Rotation option.
-        // Lock it into Portrait for these numbers to work.
-        //
-        // Info:  The coordinate frame for the robot looks the same as the field.
-        // The robot's "forward" direction is facing out along X axis, with the LEFT side facing out along the Y axis.
-        // Z is UP on the robot.  This equates to a bearing angle of Zero degrees.
-        //
-        // The phone starts out lying flat, with the screen facing Up and with the physical top of the phone
-        // pointing to the LEFT side of the Robot.
-        // The two examples below assume that the camera is facing forward out the front of the robot.
+            (int)((RobotInfo.ROBOT_WIDTH/2.0 - CameraParameters.cameraLeftOffset)*TrcUtil.MM_PER_INCH);
 
-        // We need to rotate the camera around it's long axis to bring the correct camera forward.
-        phoneYRotate = PhoneParameters.cameraDir == BACK ? -90.0f : 90.0f;
-
-        // Rotate the phone vertical about the X axis if it's in portrait mode
-        phoneXRotate = PhoneParameters.phoneIsPortrait ? 90.0f : 0.0f;
-
-        // Next, translate the camera lens to where it is on the robot.
-        // In this example, it is centered (left to right), but forward of the middle of the robot, and above ground level.
-
-        OpenGLMatrix robotFromCamera = OpenGLMatrix
+        OpenGLMatrix cameraLocationOnRobot = OpenGLMatrix
             .translation(CAMERA_FORWARD_DISPLACEMENT, CAMERA_LEFT_DISPLACEMENT, CAMERA_VERTICAL_DISPLACEMENT)
-            .multiplied(Orientation.getRotationMatrix(
-                EXTRINSIC, YZX, DEGREES, phoneYRotate, phoneZRotate, phoneXRotate));
+            .multiplied(Orientation.getRotationMatrix(EXTRINSIC, YZX, DEGREES, 90, 90, 0));
 
-        vuforiaVision = new VuforiaVision(this, vuforia, robotFromCamera);
+        vuforiaVision = new VuforiaVision(this, vuforia, cameraLocationOnRobot);
     }   //initVuforia
 
     /**
@@ -499,11 +426,11 @@ public class Robot
 
         System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
 
-        int tfodMonitorViewId = !showTensorFlowView ?-1 :
+        int tfodMonitorViewId = !showTensorFlowView ? -1 :
             opMode.hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
         tensorFlowVision = new TensorFlowVision(vuforia, tfodMonitorViewId, cameraRect, worldRect, globalTracer);
-        tensorFlowVision.setEnabled(true, Preferences.usePhoneFlashLight);
+        tensorFlowVision.setEnabled(true, Preferences.useBlinkinFlashLight);
         globalTracer.traceInfo(funcName, "Enabling TensorFlow.");
     } //initTensorFlow
 
@@ -512,10 +439,10 @@ public class Robot
      */
     private void initDriveBase()
     {
-        leftFrontWheel = new FtcDcMotor("lfWheel");
-        rightFrontWheel = new FtcDcMotor("rfWheel");
-        leftBackWheel = new FtcDcMotor("lbWheel");
-        rightBackWheel = new FtcDcMotor("rbWheel");
+        leftFrontWheel = new FtcDcMotor(RobotInfo.LEFT_FRONT_WHEEL_NAME);
+        rightFrontWheel = new FtcDcMotor(RobotInfo.RIGHT_FRONT_WHEEL_NAME);
+        leftBackWheel = new FtcDcMotor(RobotInfo.LEFT_BACK_WHEEL_NAME);
+        rightBackWheel = new FtcDcMotor(RobotInfo.RIGHT_BACK_WHEEL_NAME);
 
         leftFrontWheel.motor.setMode(RobotInfo.DRIVE_MOTOR_MODE);
         rightFrontWheel.motor.setMode(RobotInfo.DRIVE_MOTOR_MODE);
@@ -585,7 +512,6 @@ public class Robot
         pidDrive = new TrcPidDrive("pidDrive", driveBase, encoderXPidCtrl, encoderYPidCtrl, gyroPidCtrl);
         pidDrive.setAbsoluteTargetModeEnabled(true);
         pidDrive.setStallTimeout(RobotInfo.PIDDRIVE_STALL_TIMEOUT);
-        pidDrive.setBeep(androidTone);
         pidDrive.setMsgTracer(globalTracer);
     }   //initDriveBase
 

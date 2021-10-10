@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Titan Robotics Club (http://www.titanrobotics.com)
+ * Copyright (c) 2021 Titan Robotics Club (http://www.titanrobotics.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,12 +44,11 @@ import TrcFtcLib.ftclib.FtcVuforia;
  */
 public class TensorFlowVision
 {
-    private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
+    private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
     private static final float TFOD_MIN_CONFIDENCE = 0.5f;
-    private static final double ASPECT_RATIO_TOLERANCE_LOWER = 1.5;
-    private static final double ASPECT_RATIO_TOLERANCE_UPPER = 2.5;
-    public static final String LABEL_STONE = "Stone";
-    public static final String LABEL_SKYSTONE = "Skystone";
+    private static final double ASPECT_RATIO_TOLERANCE_LOWER = 0.7;
+    private static final double ASPECT_RATIO_TOLERANCE_UPPER = 1.2;
+    public static final String[] LABELS = {"Ball", "Cube", "Duck", "Marker"};
 
     /**
      * This class stores the info for a detected target.
@@ -112,8 +111,10 @@ public class TensorFlowVision
             tfodMonitorViewId == -1?
                 new TFObjectDetector.Parameters() : new TFObjectDetector.Parameters(tfodMonitorViewId);
         tfodParameters.minResultConfidence = TFOD_MIN_CONFIDENCE;
+        tfodParameters.isModelTensorFlow2 = true;
+        tfodParameters.inputSize = 320;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia.getLocalizer());
-        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_STONE, LABEL_SKYSTONE);
+        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABELS);
 
         homographyMapper = new TrcHomographyMapper(cameraRect, worldRect);
     }   //TensorFlowVision
@@ -135,6 +136,7 @@ public class TensorFlowVision
         if (enabled)
         {
             tfod.activate();
+            tfod.setZoom(1.0, 16.0/9.0);
         }
         else
         {
@@ -161,31 +163,29 @@ public class TensorFlowVision
         vuforia.setFlashlightEnabled(enabled);
     }   //setLightEnabled
 
-    /**
-     * This method is called to sort the targets in ascending X order.
-     * Note: Phone is in landscape mode, so top is really left.
-     *
-     * @param a specifies first target.
-     * @param b specifes the second target.
-     * @return negative value if first target is on the left of the second target, positive if on the right.
-     */
-    private int compareTargetX(Recognition a, Recognition b)
-    {
-        return (int)(a.getTop() - b.getTop());
-    }   //compareTargetX
-
-    /**
-     * This method is called to sort the targets in descending Y order.
-     * Note: Phone is in landscape mode, so right is really top.
-     *
-     * @param a specifies the first target.
-     * @param b specifies the second target
-     * @return negative if first target below the second target, positive if above.
-     */
-    private int compareTargetY(Recognition a, Recognition b)
-    {
-        return (int)(a.getRight() - b.getRight());
-    }   //compareTargetY
+//    /**
+//     * This method is called to sort the targets in ascending X order.
+//     *
+//     * @param a specifies first target.
+//     * @param b specifes the second target.
+//     * @return negative value if first target is on the left of the second target, positive if on the right.
+//     */
+//    private int compareTargetX(Recognition a, Recognition b)
+//    {
+//        return (int)(a.getTop() - b.getTop());
+//    }   //compareTargetX
+//
+//    /**
+//     * This method is called to sort the targets in descending Y order.
+//     *
+//     * @param a specifies the first target.
+//     * @param b specifies the second target
+//     * @return negative if first target below the second target, positive if above.
+//     */
+//    private int compareTargetY(Recognition a, Recognition b)
+//    {
+//        return (int)(a.getRight() - b.getRight());
+//    }   //compareTargetY
 
     /**
      * This method returns an array list of detected targets. If a target label is given, only detected targets with
@@ -210,7 +210,7 @@ public class TensorFlowVision
             {
                 Recognition object = updatedRecognitions.get(i);
                 boolean foundIt = label == null || label.equals(object.getLabel());
-                double aspectRatio = object.getHeight()/object.getWidth();
+                double aspectRatio = object.getWidth()/object.getHeight();
                 boolean rejected = false;
 
                 if (foundIt)
@@ -230,24 +230,24 @@ public class TensorFlowVision
                     tracer.traceInfo(
                         funcName,
                         "[%d] TensorFlow.%s:x=%.0f,y=%.0f,w=%.0f,h=%.0f,aspectRatio=%.1f,foundIt=%s,rejected=%s",
-                        i, object.getLabel(), object.getTop(), object.getImageWidth() - object.getRight(),
-                        object.getHeight(), object.getWidth(), aspectRatio, foundIt, rejected);
+                        i, object.getLabel(), object.getLeft(), object.getTop(), object.getWidth(), object.getHeight(),
+                        aspectRatio, foundIt, rejected);
                 }
             }
-            //
-            // Sort the list in ascending X order so that the left most target will be first.
-            //
-            if (targets.size() > 1)
-            {
-                Collections.sort(targets, this::compareTargetX);
-            }
-            else if (targets.size() == 0)
+            if (targets.size() == 0)
             {
                 //
                 // No target found.
                 //
                 targets = null;
             }
+//            else if (targets.size() > 1)
+//            {
+//                //
+//                // Sort the list in ascending X order so that the left most target will be first.
+//                //
+//                Collections.sort(targets, this::compareTargetX);
+//            }
         }
 
         return targets;
@@ -262,25 +262,15 @@ public class TensorFlowVision
     public TargetInfo getTargetInfo(Recognition target)
     {
         final String funcName = "getTargetInfo";
-        //
-        // The phone is set to portrait mode but mounted in counter-clockwise landscape orientation. This means the
-        // camera top in portrait mode is actually left in the actual phone orientation.
-        //  phone orientation x = camera top
-        //  pbone orientation y = camera imageWidth - camera right
-        //  phone orientation width = camera height
-        //  phone orientation height = camera width
-        //
         double imageWidth = target.getImageWidth();
         double imageHeight = target.getImageHeight();
         Rect targetRect = new Rect(
-            (int)target.getTop(), (int)(imageWidth - target.getRight()), (int)target.getHeight(), (int)target.getWidth());
-//        Point targetBottomCenter = homographyMapper.mapPoint(
-//            new Point(targetRect.x + targetRect.width/2, targetRect.y + targetRect.height));
+            (int)target.getLeft(), (int)target.getTop(), (int)target.getWidth(), (int)target.getHeight());
         Point targetBottomCenter = new Point(
-            targetRect.x + targetRect.width/2.0 - imageHeight/2.0, targetRect.y + targetRect.height - imageWidth/2.0);
+            targetRect.x + targetRect.width/2.0 - imageWidth/2.0, targetRect.y + targetRect.height - imageHeight/2.0);
         TargetInfo targetInfo = new TargetInfo(
             target.getLabel(), targetRect, target.estimateAngleToObject(AngleUnit.DEGREES),
-            target.getConfidence(), target.getImageHeight(), target.getImageWidth(), targetBottomCenter);
+            target.getConfidence(), target.getImageWidth(), target.getImageHeight(), targetBottomCenter);
 
         if (tracer != null)
         {
