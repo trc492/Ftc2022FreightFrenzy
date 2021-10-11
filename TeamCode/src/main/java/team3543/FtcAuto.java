@@ -70,28 +70,51 @@ public class FtcAuto extends FtcOpMode
         }   //toString
     }   //class MatchInfo
 
+    public enum AutoStrategy
+    {
+        DO_AUTONOMOUS,
+        PURE_PURSUIT_DRIVE,
+        PID_DRIVE,
+        TIMED_DRIVE,
+        DO_NOTHING
+    }   //enum AutoStrategy
+
     public enum Alliance
     {
         RED_ALLIANCE,
         BLUE_ALLIANCE
     }   //enum Alliance
 
-    public enum AutoStrategy
+    public enum StartPos
     {
-        PURE_PURSUIT_DRIVE,
-        PID_DRIVE,
-        TIMED_DRIVE,
-        DO_NOTHING
-    }   //AutoStrategy
+        CLOSE_TO_HUB,
+        FAR_FROM_HUB
+    }   //enum StartPos
+
+    public enum Carousel
+    {
+        DO_CAROUSEL,
+        NO_CAROUSEL
+    }   //enum Carousel
+
+    public enum Parking
+    {
+        NO_PARKING,
+        STORAGE_PARKING,
+        WAREHOUSE_PARKING,
+    }   //enum Parking
 
     /**
      * This class stores the autonomous menu choices.
      */
     public class AutoChoices
     {
+        AutoStrategy strategy = AutoStrategy.DO_NOTHING;
         Alliance alliance = Alliance.RED_ALLIANCE;
         double startDelay = 0.0;
-        AutoStrategy strategy = AutoStrategy.DO_NOTHING;
+        StartPos startPos = StartPos.CLOSE_TO_HUB;
+        Carousel doCarousel = Carousel.NO_CAROUSEL;
+        Parking parking = Parking.NO_PARKING;
         double xTarget = 0.0;
         double yTarget = 0.0;
         double turnTarget = 0.0;
@@ -103,15 +126,18 @@ public class FtcAuto extends FtcOpMode
         {
             return String.format(
                 Locale.US,
+                "strategy=\"%s\" " +
                 "alliance=\"%s\" " +
                 "startDelay=%.0f " +
-                "strategy=\"%s\" " +
+                "startPos=\"%s\" " +
+                "doCarousel=\"%s\" " +
+                "parking=\"%s\" " +
                 "xTarget=%.1f " +
                 "yTarget=%.1f " +
                 "turnTarget=%.0f " +
                 "driveTime=%.0f " +
                 "drivePower=%.1f",
-                alliance, startDelay, strategy,
+                strategy, alliance, startDelay, startPos, doCarousel, parking,
                 xTarget, yTarget, turnTarget, driveTime, drivePower);
         }   //toString
     }   //class AutoChoices
@@ -140,6 +166,10 @@ public class FtcAuto extends FtcOpMode
     public void initRobot()
     {
         //
+        // Create and initialize robot object.
+        //
+        robot = new Robot(TrcRobot.getRunMode());
+        //
         // Open trace log.
         //
         if (Robot.Preferences.useTraceLog)
@@ -150,10 +180,6 @@ public class FtcAuto extends FtcOpMode
             robot.globalTracer.openTraceLog("/sdcard/FIRST/tracelog", filePrefix);
         }
         //
-        // Create and initialize robot object.
-        //
-        robot = new Robot(TrcRobot.getRunMode());
-        //
         // Create and run choice menus.
         //
         doAutoChoicesMenus();
@@ -162,6 +188,13 @@ public class FtcAuto extends FtcOpMode
         //
         switch (autoChoices.strategy)
         {
+            case DO_AUTONOMOUS:
+                if (!Robot.Preferences.visionOnly)
+                {
+//                    autoCommand = new CmdAuto();
+                }
+                break;
+
             case PURE_PURSUIT_DRIVE:
                 if (!Robot.Preferences.visionOnly)
                 {
@@ -367,10 +400,14 @@ public class FtcAuto extends FtcOpMode
         //
         // Construct menus.
         //
-        FtcChoiceMenu<Alliance> allianceMenu = new FtcChoiceMenu<>("Alliance:", null);
+        FtcChoiceMenu<AutoStrategy> strategyMenu = new FtcChoiceMenu<>("Auto Strategies:", null);
+        FtcChoiceMenu<Alliance> allianceMenu = new FtcChoiceMenu<>("Alliance:", strategyMenu);
         FtcValueMenu startDelayMenu = new FtcValueMenu(
             "Start delay time:", allianceMenu, 0.0, 30.0, 1.0, 0.0, " %.0f sec");
-        FtcChoiceMenu<AutoStrategy> strategyMenu = new FtcChoiceMenu<>("Auto Strategies:", startDelayMenu);
+        FtcChoiceMenu<StartPos>startPosMenu=new FtcChoiceMenu<>("Start Position:", startDelayMenu);
+        FtcChoiceMenu<Carousel>carouselMenu=new FtcChoiceMenu<>("Carousel:", startPosMenu);
+        FtcChoiceMenu<Parking>parkingMenu=new FtcChoiceMenu<>("Parking:", carouselMenu);
+
         FtcValueMenu xTargetMenu = new FtcValueMenu(
             "xTarget:", strategyMenu, -12.0, 12.0, 0.5, 4.0, " %.1f ft");
         FtcValueMenu yTargetMenu = new FtcValueMenu(
@@ -382,7 +419,7 @@ public class FtcAuto extends FtcOpMode
         FtcValueMenu drivePowerMenu = new FtcValueMenu(
             "Drive power:", strategyMenu, -1.0, 1.0, 0.1, 0.5, " %.1f");
 
-        startDelayMenu.setChildMenu(strategyMenu);
+        startDelayMenu.setChildMenu(startPosMenu);
         xTargetMenu.setChildMenu(yTargetMenu);
         yTargetMenu.setChildMenu(turnTargetMenu);
         turnTargetMenu.setChildMenu(drivePowerMenu);
@@ -390,23 +427,37 @@ public class FtcAuto extends FtcOpMode
         //
         // Populate choice menus.
         //
-        allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, true, startDelayMenu);
-        allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, false, startDelayMenu);
-
+        strategyMenu.addChoice("Do Autonomous", AutoStrategy.DO_AUTONOMOUS, true, allianceMenu);
         strategyMenu.addChoice("Pure Pursuit Drive", AutoStrategy.PURE_PURSUIT_DRIVE, false);
         strategyMenu.addChoice("PID Drive", AutoStrategy.PID_DRIVE, false, xTargetMenu);
         strategyMenu.addChoice("Timed Drive", AutoStrategy.TIMED_DRIVE, false, driveTimeMenu);
         strategyMenu.addChoice("Do nothing", AutoStrategy.DO_NOTHING, true);
+
+        allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, true, startDelayMenu);
+        allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, false, startDelayMenu);
+
+        startPosMenu.addChoice("Close to Hub", StartPos.CLOSE_TO_HUB, true, carouselMenu);
+        startPosMenu.addChoice("Far from Hub", StartPos.FAR_FROM_HUB, false, carouselMenu);
+
+        carouselMenu.addChoice("Do Carousel", Carousel.DO_CAROUSEL, true, parkingMenu);
+        carouselMenu.addChoice("No Carousel", Carousel.NO_CAROUSEL, false, parkingMenu);
+
+        parkingMenu.addChoice("No Parking", Parking.NO_PARKING, false);
+        parkingMenu.addChoice("Storage Parking", Parking.STORAGE_PARKING, false);
+        parkingMenu.addChoice("Warehouse Parking", Parking.WAREHOUSE_PARKING, true);
         //
         // Traverse menus.
         //
-        FtcMenu.walkMenuTree(allianceMenu);
+        FtcMenu.walkMenuTree(strategyMenu);
         //
         // Fetch choices.
         //
+        autoChoices.strategy = strategyMenu.getCurrentChoiceObject();
         autoChoices.alliance = allianceMenu.getCurrentChoiceObject();
         autoChoices.startDelay = startDelayMenu.getCurrentValue();
-        autoChoices.strategy = strategyMenu.getCurrentChoiceObject();
+        autoChoices.startPos = startPosMenu.getCurrentChoiceObject();
+        autoChoices.doCarousel = carouselMenu.getCurrentChoiceObject();
+        autoChoices.parking = parkingMenu.getCurrentChoiceObject();
         autoChoices.xTarget = xTargetMenu.getCurrentValue();
         autoChoices.yTarget = yTargetMenu.getCurrentValue();
         autoChoices.turnTarget = turnTargetMenu.getCurrentValue();
