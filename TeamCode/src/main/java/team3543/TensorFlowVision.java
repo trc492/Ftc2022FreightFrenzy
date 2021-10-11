@@ -30,7 +30,6 @@ import org.opencv.core.Point;
 import org.opencv.core.Rect;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
