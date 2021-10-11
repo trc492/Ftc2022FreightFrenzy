@@ -121,9 +121,9 @@ public class RobotInfo
     // Vision subsystem.
     //
     static final String TRACKABLE_IMAGES_FILE                   = "FreightFrenzy";
-    static final double CAMERA_FRONT_OFFSET                     = 5.5;  //Camera offset from front of robot in inches
-    static final double CAMERA_HEIGHT_OFFSET                    = 5.75; //Camera offset from floor in inches
-    static final double CAMERA_LEFT_OFFSET                      = 11.0; //Camera offset from left of robot in inches
+    static final double CAMERA_FRONT_OFFSET                     = 5.0;  //Camera offset from front of robot in inches
+    static final double CAMERA_HEIGHT_OFFSET                    = 12.0; //Camera offset from floor in inches
+    static final double CAMERA_LEFT_OFFSET                      = 8.5; //Camera offset from left of robot in inches
 
     static final double HOMOGRAPHY_CAMERA_TOPLEFT_X             = 0.0;
     static final double HOMOGRAPHY_CAMERA_TOPLEFT_Y             = 360.0;

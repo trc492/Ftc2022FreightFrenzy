@@ -283,10 +283,16 @@ public class VuforiaVision
         // The returned RobotPose have the X axis pointing from the audience side to the back of the field,
         // the Y axis pointing from the red alliance to the blue alliance and the direction of the Y axis
         // is zero degree and increases in the clockwise direction.
+        // Vuforia's orientation is such that facing the negative side of the X axis is 0 degree, clockwise gives
+        // you negative angle and anti-clockwise gives you positive angle.
+        // Robot's orientation is such that facing the positive side of the Y axis is 0 degree, clockwise gives you
+        // positive angle and anti-clockwise gives you negative angle.
+        // In order to translate Vuforia's orientation to the robot's orientation, we first negate the vuforia angle
+        // to make rotation agree with the robot's rotation. Then we subtract 90 degrees from the angle.
         //
         return (translation == null || orientation == null)? null:
             new TrcPose2D(translation.get(0)/TrcUtil.MM_PER_INCH, translation.get(1)/TrcUtil.MM_PER_INCH,
-                          -orientation.thirdAngle + 90.0);
+                          -orientation.thirdAngle - 90.0);
     }   //getRobotPose
 
 }   //class VuforiaVision
