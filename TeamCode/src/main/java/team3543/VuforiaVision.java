@@ -64,9 +64,10 @@ public class VuforiaVision
     //
     // Height of the center of the target image above the floor.
     private static final float mmTargetHeight = 6.0f * (float)TrcUtil.MM_PER_INCH;
-    private static final float halfField = (float)(72.0 * TrcUtil.MM_PER_INCH);
-    private static final float halfTile = (float)(12.0 * TrcUtil.MM_PER_INCH);
-    private static final float oneAndHalfTile = (float)(36.0 * TrcUtil.MM_PER_INCH);
+    private static final float halfField = (float)(70.5 * TrcUtil.MM_PER_INCH);
+    private static final float fullTile = (float)(23.75 * TrcUtil.MM_PER_INCH);
+    private static final float halfTile = (float)(fullTile/2.0);
+    private static final float oneAndHalfTile = (float)(fullTile*1.5);
 
     private final Robot robot;
     private final FtcVuforia vuforia;
