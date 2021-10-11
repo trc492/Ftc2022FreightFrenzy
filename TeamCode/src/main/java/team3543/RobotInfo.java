@@ -37,6 +37,24 @@ public class RobotInfo
     static final String LEFT_BACK_WHEEL_NAME                    = "lbWheel";
     static final String RIGHT_BACK_WHEEL_NAME                   = "rbWheel";
     //
+    // Robot base odometry.
+    //
+    static final double ROBOT_LENGTH                            = 18.0;
+    static final double ROBOT_WIDTH                             = 18.0;
+    static final double QUAD_FIELD_INCHES                       = 36.0;
+    static final double HALF_FIELD_INCHES                       = 72.0;
+    static final double STARTPOS_FROM_FIELDCENTER_Y             = HALF_FIELD_INCHES - ROBOT_LENGTH/2.0;
+    static final double STARTPOS_FROM_FIELDCENTER_X1            = QUAD_FIELD_INCHES;
+    static final double STARTPOS_FROM_FIELDCENTER_X2            = 12.0;
+    static final TrcPose2D STARTPOS_RED_1                       =
+        new TrcPose2D(-STARTPOS_FROM_FIELDCENTER_X1, -STARTPOS_FROM_FIELDCENTER_Y, 0.0);
+    static final TrcPose2D STARTPOS_RED_2                       =
+        new TrcPose2D(STARTPOS_FROM_FIELDCENTER_X2, -STARTPOS_FROM_FIELDCENTER_Y, 0.0);
+    static final TrcPose2D STARTPOS_BLUE_1                      =
+        new TrcPose2D(-STARTPOS_FROM_FIELDCENTER_X1, STARTPOS_FROM_FIELDCENTER_Y, 180.0);
+    static final TrcPose2D STARTPOS_BLUE_2                      =
+        new TrcPose2D(STARTPOS_FROM_FIELDCENTER_X2, STARTPOS_FROM_FIELDCENTER_Y, 180.0);
+    //
     // DriveBase subsystem.
     //
     static final DcMotor.RunMode DRIVE_MOTOR_MODE               = DcMotor.RunMode.RUN_WITHOUT_ENCODER;
@@ -103,8 +121,6 @@ public class RobotInfo
     // Vision subsystem.
     //
     static final String TRACKABLE_IMAGES_FILE                   = "FreightFrenzy";
-    static final double ROBOT_LENGTH                            = 18.0; //Robot length in inches
-    static final double ROBOT_WIDTH                             = 18.0; //Robot width in inches
     static final double CAMERA_FRONT_OFFSET                     = 5.5;  //Camera offset from front of robot in inches
     static final double CAMERA_HEIGHT_OFFSET                    = 5.75; //Camera offset from floor in inches
     static final double CAMERA_LEFT_OFFSET                      = 11.0; //Camera offset from left of robot in inches

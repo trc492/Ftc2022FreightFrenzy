@@ -138,8 +138,6 @@ public class Robot
     public TrcPidController.PidCoefficients turnPidCoeff = null;
     public TrcPidController.PidCoefficients velPidCoeff = null;
 
-//    public TrcPose2D fieldOrigin = null;
-
     public TrcPidController.PidCoefficients tunePidCoeff = new TrcPidController.PidCoefficients();
     //
     // Subsystems.

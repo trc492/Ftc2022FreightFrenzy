@@ -540,6 +540,13 @@ public class FtcTest extends FtcTeleOp
 
     private void doVisionTest()
     {
+        if (robot.vuforiaVision != null)
+        {
+            TrcPose2D robotPose = robot.vuforiaVision.getRobotPose(null, false);
+            robot.dashboard.displayPrintf(12, "RobotLocation %s: %s",
+                                          robot.vuforiaVision.getLastSeenImageName(), robotPose);
+        }
+
         if (robot.tensorFlowVision != null)
         {
             TensorFlowVision.TargetInfo[] targetInfo = robot.tensorFlowVision.getDetectedTargetsInfo(null);

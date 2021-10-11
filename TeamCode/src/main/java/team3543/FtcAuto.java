@@ -87,8 +87,8 @@ public class FtcAuto extends FtcOpMode
 
     public enum StartPos
     {
-        CLOSE_TO_HUB,
-        FAR_FROM_HUB
+        CLOSE_TO_CAROUSEL,
+        FAR_FROM_CAROUSEL
     }   //enum StartPos
 
     public enum Carousel
@@ -112,7 +112,7 @@ public class FtcAuto extends FtcOpMode
         AutoStrategy strategy = AutoStrategy.DO_NOTHING;
         Alliance alliance = Alliance.RED_ALLIANCE;
         double startDelay = 0.0;
-        StartPos startPos = StartPos.CLOSE_TO_HUB;
+        StartPos startPos = StartPos.CLOSE_TO_CAROUSEL;
         Carousel doCarousel = Carousel.NO_CAROUSEL;
         Parking parking = Parking.NO_PARKING;
         double xTarget = 0.0;
@@ -183,6 +183,15 @@ public class FtcAuto extends FtcOpMode
         // Create and run choice menus.
         //
         doAutoChoicesMenus();
+
+        robot.driveBase.setFieldPosition(
+            autoChoices.alliance == Alliance.RED_ALLIANCE && autoChoices.startPos == StartPos.CLOSE_TO_CAROUSEL?
+                RobotInfo.STARTPOS_RED_1:
+            autoChoices.alliance == Alliance.RED_ALLIANCE && autoChoices.startPos == StartPos.FAR_FROM_CAROUSEL?
+                RobotInfo.STARTPOS_RED_2:
+            autoChoices.alliance == Alliance.BLUE_ALLIANCE && autoChoices.startPos == StartPos.CLOSE_TO_CAROUSEL?
+                RobotInfo.STARTPOS_BLUE_1: RobotInfo.STARTPOS_BLUE_2);
+
         //
         // Create autonomous command according to chosen strategy.
         //
@@ -436,8 +445,8 @@ public class FtcAuto extends FtcOpMode
         allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, true, startDelayMenu);
         allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, false, startDelayMenu);
 
-        startPosMenu.addChoice("Close to Hub", StartPos.CLOSE_TO_HUB, true, carouselMenu);
-        startPosMenu.addChoice("Far from Hub", StartPos.FAR_FROM_HUB, false, carouselMenu);
+        startPosMenu.addChoice("Close to Carousel", StartPos.CLOSE_TO_CAROUSEL, true, carouselMenu);
+        startPosMenu.addChoice("Far from Carousel", StartPos.FAR_FROM_CAROUSEL, false, carouselMenu);
 
         carouselMenu.addChoice("Do Carousel", Carousel.DO_CAROUSEL, true, parkingMenu);
         carouselMenu.addChoice("No Carousel", Carousel.NO_CAROUSEL, false, parkingMenu);
