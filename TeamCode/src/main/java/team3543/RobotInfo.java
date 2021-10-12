@@ -58,8 +58,8 @@ public class RobotInfo
     // DriveBase subsystem.
     //
     static final DcMotor.RunMode DRIVE_MOTOR_MODE               = DcMotor.RunMode.RUN_WITHOUT_ENCODER;
-    static final boolean LEFT_WHEEL_INVERTED                    = false;
-    static final boolean RIGHT_WHEEL_INVERTED                   = true;
+    static final boolean LEFT_WHEEL_INVERTED                    = true;
+    static final boolean RIGHT_WHEEL_INVERTED                   = false;
     static final boolean DRIVE_WHEEL_BRAKE_MODE                 = true;
     static final double TURN_POWER_LIMIT                        = 0.5;
     static final double SLOW_DRIVE_POWER_SCALE                  = 0.5;
