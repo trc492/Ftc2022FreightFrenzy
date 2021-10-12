@@ -71,8 +71,8 @@ public class Robot
         static boolean hasElevator = false;
         static boolean hasBlinkin = false;
         static boolean useVuforia = false;
-        static boolean useTensorFlow = true;
         static boolean showVuforiaView = false;
+        static boolean useTensorFlow = true;
         static boolean showTensorFlowView = true;
         static boolean useBlinkinFlashLight = false;
         static boolean useTraceLog = true;
