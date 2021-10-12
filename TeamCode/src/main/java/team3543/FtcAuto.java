@@ -57,7 +57,7 @@ public class FtcAuto extends FtcOpMode
     /**
      * This class stores the match info.
      */
-    public class MatchInfo
+    public static class MatchInfo
     {
         Date matchDate;
         MatchType matchType;
@@ -107,7 +107,7 @@ public class FtcAuto extends FtcOpMode
     /**
      * This class stores the autonomous menu choices.
      */
-    public class AutoChoices
+    public static class AutoChoices
     {
         AutoStrategy strategy = AutoStrategy.DO_NOTHING;
         Alliance alliance = Alliance.RED_ALLIANCE;
@@ -200,7 +200,7 @@ public class FtcAuto extends FtcOpMode
             case DO_AUTONOMOUS:
                 if (!Robot.Preferences.visionOnly)
                 {
-//                    autoCommand = new CmdAuto();
+                    autoCommand = new CmdAuto(robot, autoChoices);
                 }
                 break;
 

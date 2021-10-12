@@ -23,25 +23,25 @@ SOFTWARE.
 <Robot type="FirstInspires-FTC" name="Robot3543_2022">
     <LynxUsbDevice name="Control Hub Portal" serialNumber="(embedded)" parentModuleAddress="173">
         <LynxModule name="Control Hub" port="173">
-            <RevRobotics40HDHexMotor name="rbWheel" port="0" />
-            <RevRobotics40HDHexMotor name="rfWheel" port="1" />
-            <RevRobotics40HDHexMotor name="lfWheel" port="2" />
-            <RevRobotics40HDHexMotor name="lbWheel" port="3" />
+            <goBILDA5202SeriesMotor name="lfWheel" port="0" />
+            <goBILDA5202SeriesMotor name="lbWheel" port="1" />
+            <goBILDA5202SeriesMotor name="rfWheel" port="2" />
+            <goBILDA5202SeriesMotor name="rbWheel" port="3" />
             <RevBlinkinLedDriver name="blinkin" port="5" />
             <LynxEmbeddedIMU name="imu" port="0" bus="0" />
         </LynxModule>
-        <LynxModule name="Expansion Hub 3" port="3">
-            <RevRobotics40HDHexMotor name="elevatorMotor" port="0" />
-            <DigitalDevice name="elevatorLowerLimit" port="0" />
-            <DigitalDevice name="elevatorUpperLimit" port="1" />
-            <Servo name="backFoundationLatchServo" port="0" />
-            <Servo name="elbowServo" port="1" />
-            <Servo name="grabberServo" port="2" />
-            <Servo name="capstoneDeployerServo" port="3" />
-            <Servo name="leftFoundationLatchServo" port="4" />
-            <Servo name="rightFoundationLatchServo" port="5" />
-            <LynxEmbeddedIMU name="imu 1" port="0" bus="0" />
-        </LynxModule>
+<!--        <LynxModule name="Expansion Hub 3" port="3">-->
+<!--            <RevRobotics40HDHexMotor name="elevatorMotor" port="0" />-->
+<!--            <DigitalDevice name="elevatorLowerLimit" port="0" />-->
+<!--            <DigitalDevice name="elevatorUpperLimit" port="1" />-->
+<!--            <Servo name="backFoundationLatchServo" port="0" />-->
+<!--            <Servo name="elbowServo" port="1" />-->
+<!--            <Servo name="grabberServo" port="2" />-->
+<!--            <Servo name="capstoneDeployerServo" port="3" />-->
+<!--            <Servo name="leftFoundationLatchServo" port="4" />-->
+<!--            <Servo name="rightFoundationLatchServo" port="5" />-->
+<!--            <LynxEmbeddedIMU name="imu 1" port="0" bus="0" />-->
+<!--        </LynxModule>-->
     </LynxUsbDevice>
-    <Webcam name="Webcam 1" serialNumber="B580F950" />
+    <Webcam name="Webcam 1" serialNumber="A8784D40" />
 </Robot>

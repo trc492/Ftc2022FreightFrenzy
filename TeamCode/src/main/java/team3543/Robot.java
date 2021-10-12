@@ -38,6 +38,7 @@ import TrcCommonLib.trclib.TrcMecanumDriveBase;
 import TrcCommonLib.trclib.TrcMotor;
 import TrcCommonLib.trclib.TrcPidController;
 import TrcCommonLib.trclib.TrcPidDrive;
+import TrcCommonLib.trclib.TrcPose2D;
 import TrcCommonLib.trclib.TrcRevBlinkin;
 import TrcCommonLib.trclib.TrcRobot;
 import TrcCommonLib.trclib.TrcServo;
@@ -54,6 +55,8 @@ import TrcFtcLib.ftclib.FtcVuforia;
 import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.YZX;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
+
+import java.util.Locale;
 
 /**
  * This class creates the robot object that consists of sensors, indicators, drive base and all the subsystems.
@@ -76,7 +79,7 @@ public class Robot
         static boolean showTensorFlowView = true;
         static boolean useBlinkinFlashLight = false;
         static boolean useTraceLog = true;
-        static boolean useBatteryMonitor = false;
+        static boolean useBatteryMonitor = true;
         static boolean useLoopPerformanceMonitor = true;
         static boolean useVelocityControl = false;
     }   //class Preferences
@@ -512,5 +515,44 @@ public class Robot
         pidDrive.setStallTimeout(RobotInfo.PIDDRIVE_STALL_TIMEOUT);
         pidDrive.setMsgTracer(globalTracer);
     }   //initDriveBase
+
+    public void traceStateInfo(Object state)
+    {
+        if (driveBase != null)
+        {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append(String.format(Locale.US, "tag=\">>>>>\" state=\"%s\"", state));
+            if (pidDrive.isActive())
+            {
+                TrcPose2D robotPose = driveBase.getFieldPosition();
+                TrcPose2D targetPose = pidDrive.getAbsoluteTargetPose();
+
+                if (encoderXPidCtrl != null)
+                {
+                    msg.append(String.format(Locale.US, " xPos=%6.2f xTarget=%6.2f", robotPose.x, targetPose.x));
+                }
+
+                if (encoderYPidCtrl != null)
+                {
+                    msg.append(String.format(Locale.US, " yPos=%6.2f yTarget=%6.2f", robotPose.y, targetPose.y));
+                }
+
+                if (gyroPidCtrl != null)
+                {
+                    msg.append(String.format(Locale.US, " heading=%6.2f headingTarget=%6.2f",
+                                             robotPose.angle, targetPose.angle));
+                }
+            }
+
+            if (battery != null)
+            {
+                msg.append(String.format(Locale.US,
+                                         " volt=\"%5.2fV(%5.2fV)\"", battery.getVoltage(), battery.getLowestVoltage()));
+            }
+
+            globalTracer.logEvent("Ftc3543", "StateInfo", "%s", msg);
+        }
+    }   //traceStateInfo
 
 }   //class Robot
