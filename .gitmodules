@@ -1,8 +1,8 @@
-[submodule "Trc492Lib/src/main/java/TrcCommonLib"]
-	path = Trc492Lib/src/main/java/TrcCommonLib
+[submodule "TeamCode/src/main/java/TrcCommonLib"]
+	path = TeamCode/src/main/java/TrcCommonLib
 	url = https://github.com/trc492/TrcCommonLib
-[submodule "Trc492Lib/src/main/java/TrcFtcLib"]
-	path = Trc492Lib/src/main/java/TrcFtcLib
+[submodule "TeamCode/src/main/java/TrcFtcLib"]
+	path = TeamCode/src/main/java/TrcFtcLib
 	url = https://github.com/trc492/TrcFtcLib
 [submodule "OpenCVLib310"]
 	path = OpenCVLib310
