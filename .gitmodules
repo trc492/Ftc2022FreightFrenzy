@@ -7,3 +7,6 @@
 [submodule "OpenCVLib310"]
 	path = OpenCVLib310
 	url = https://github.com/trc492/OpenCVLib310
+[submodule "TeamCode/src/main/java/Ftc2022FreightFrenzy_3543"]
+	path = TeamCode/src/main/java/Ftc2022FreightFrenzy_3543
+	url = https://github.com/trc492/Ftc2022FreightFrenzy_3543
