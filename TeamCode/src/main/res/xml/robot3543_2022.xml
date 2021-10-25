@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <!--
-Copyright (c) 2022 Titan Robotics Club (http://www.titanrobotics.com)
+Copyright (c) 2021 Titan Robotics Club (http://www.titanrobotics.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,22 @@ SOFTWARE.
 <Robot type="FirstInspires-FTC" name="Robot3543_2022">
     <LynxUsbDevice name="Control Hub Portal" serialNumber="(embedded)" parentModuleAddress="173">
         <LynxModule name="Control Hub" port="173">
-            <goBILDA5202SeriesMotor name="lfWheel" port="0" />
-            <goBILDA5202SeriesMotor name="lbWheel" port="1" />
-            <goBILDA5202SeriesMotor name="rfWheel" port="2" />
-            <goBILDA5202SeriesMotor name="rbWheel" port="3" />
+            <goBILDA5202SeriesMotor name="rbWheel" port="0" />
+            <goBILDA5202SeriesMotor name="rfWheel" port="1" />
+            <RevRoboticsCoreHexMotor name="intake" port="2" />
+            <goBILDA5202SeriesMotor name="arm" port="3" />
+            <DigitalDevice name="armLowerLimit" port="0" />
+            <DigitalDevice name="armUpperLimit" port="1" />
             <RevBlinkinLedDriver name="blinkin" port="5" />
             <LynxEmbeddedIMU name="imu" port="0" bus="0" />
         </LynxModule>
-<!--        <LynxModule name="Expansion Hub 3" port="3">-->
-<!--            <RevRobotics40HDHexMotor name="elevatorMotor" port="0" />-->
-<!--            <DigitalDevice name="elevatorLowerLimit" port="0" />-->
-<!--            <DigitalDevice name="elevatorUpperLimit" port="1" />-->
-<!--            <Servo name="backFoundationLatchServo" port="0" />-->
-<!--            <Servo name="elbowServo" port="1" />-->
-<!--            <Servo name="grabberServo" port="2" />-->
-<!--            <Servo name="capstoneDeployerServo" port="3" />-->
-<!--            <Servo name="leftFoundationLatchServo" port="4" />-->
-<!--            <Servo name="rightFoundationLatchServo" port="5" />-->
+        <LynxModule name="Expansion Hub 3" port="3">
+            <goBILDA5202SeriesMotor name="spinner" port="1" />
+            <goBILDA5202SeriesMotor name="lfWheel" port="2" />
+            <goBILDA5202SeriesMotor name="lbWheel" port="3" />
+            <Servo name="wrist" port="0" />
 <!--            <LynxEmbeddedIMU name="imu 1" port="0" bus="0" />-->
-<!--        </LynxModule>-->
+        </LynxModule>
     </LynxUsbDevice>
     <Webcam name="Webcam 1" serialNumber="A8784D40" />
 </Robot>
