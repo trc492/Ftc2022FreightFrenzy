@@ -25,18 +25,18 @@ SOFTWARE.
         <LynxModule name="Control Hub" port="173">
             <goBILDA5202SeriesMotor name="rbWheel" port="0" />
             <goBILDA5202SeriesMotor name="rfWheel" port="1" />
-            <RevRoboticsCoreHexMotor name="intake" port="2" />
-            <goBILDA5202SeriesMotor name="arm" port="3" />
+            <RevRoboticsCoreHexMotor name="intakeMotor" port="2" />
+            <goBILDA5202SeriesMotor name="armMotor" port="3" />
             <DigitalDevice name="armLowerLimit" port="0" />
             <DigitalDevice name="armUpperLimit" port="1" />
             <RevBlinkinLedDriver name="blinkin" port="5" />
             <LynxEmbeddedIMU name="imu" port="0" bus="0" />
         </LynxModule>
         <LynxModule name="Expansion Hub 3" port="3">
-            <goBILDA5202SeriesMotor name="spinner" port="1" />
+            <goBILDA5202SeriesMotor name="spinnerMotor" port="1" />
             <goBILDA5202SeriesMotor name="lfWheel" port="2" />
             <goBILDA5202SeriesMotor name="lbWheel" port="3" />
-            <Servo name="wrist" port="0" />
+            <Servo name="wristServo" port="0" />
 <!--            <LynxEmbeddedIMU name="imu 1" port="0" bus="0" />-->
         </LynxModule>
     </LynxUsbDevice>
