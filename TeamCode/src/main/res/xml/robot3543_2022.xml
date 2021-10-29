@@ -25,8 +25,8 @@ SOFTWARE.
         <LynxModule name="Control Hub" port="173">
             <goBILDA5202SeriesMotor name="rbWheel" port="0" />
             <goBILDA5202SeriesMotor name="rfWheel" port="1" />
-            <RevRoboticsCoreHexMotor name="intakeMotor" port="2" />
-            <goBILDA5202SeriesMotor name="armMotor" port="3" />
+            <goBILDA5202SeriesMotor name="armMotor" port="2" />
+            <RevRoboticsCoreHexMotor name="intakeMotor" port="3" />
             <DigitalDevice name="armLowerLimit" port="0" />
             <DigitalDevice name="armUpperLimit" port="1" />
             <RevBlinkinLedDriver name="blinkin" port="5" />
