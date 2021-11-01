@@ -29,6 +29,8 @@ SOFTWARE.
             <RevRoboticsCoreHexMotor name="intakeMotor" port="3" />
             <DigitalDevice name="armLowerLimit" port="0" />
             <DigitalDevice name="armUpperLimit" port="1" />
+            <Servo name="yRightOdwServo" port="0" />
+            <Servo name="xOdwServo" port="1" />
             <RevBlinkinLedDriver name="blinkin" port="5" />
             <LynxEmbeddedIMU name="imu" port="0" bus="0" />
         </LynxModule>
@@ -36,7 +38,7 @@ SOFTWARE.
             <goBILDA5202SeriesMotor name="spinnerMotor" port="1" />
             <goBILDA5202SeriesMotor name="lfWheel" port="2" />
             <goBILDA5202SeriesMotor name="lbWheel" port="3" />
-            <Servo name="wristServo" port="0" />
+            <Servo name="yLeftOdwServo" port="0" />
 <!--            <LynxEmbeddedIMU name="imu 1" port="0" bus="0" />-->
         </LynxModule>
     </LynxUsbDevice>
