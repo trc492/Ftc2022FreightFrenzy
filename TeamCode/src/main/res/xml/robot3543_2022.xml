@@ -39,6 +39,7 @@ SOFTWARE.
             <goBILDA5202SeriesMotor name="lfWheel" port="2" />
             <goBILDA5202SeriesMotor name="lbWheel" port="3" />
             <Servo name="yLeftOdwServo" port="0" />
+            <Servo name="pickupHookServo" port="1" />
 <!--            <LynxEmbeddedIMU name="imu 1" port="0" bus="0" />-->
         </LynxModule>
     </LynxUsbDevice>
