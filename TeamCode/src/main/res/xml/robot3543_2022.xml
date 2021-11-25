@@ -32,6 +32,7 @@ SOFTWARE.
             <Servo name="yRightOdwServo" port="0" />
             <Servo name="xOdwServo" port="1" />
             <LynxEmbeddedIMU name="imu" port="0" bus="0" />
+            <RevColorSensorV3 name="IntakeSensor" port="0" bus="1"/>
         </LynxModule>
         <LynxModule name="Expansion Hub 3" port="3">
             <goBILDA5202SeriesMotor name="spinnerMotor" port="1" />
