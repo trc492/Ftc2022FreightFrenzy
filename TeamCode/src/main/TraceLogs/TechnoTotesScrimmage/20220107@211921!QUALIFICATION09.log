@@ -1,0 +1,740 @@
+globalTracer.FtcAuto_Info: ***** Starting autonomous *****
+globalTracer.FtcAuto_Info: <Info name="MatchInfo" date="Fri Jan 07 21:19:16 PST 2022" type="QUALIFICATION" number=1 />
+globalTracer.FtcAuto_Info: <Info name="AutoChoices" startDelay=0 alliance="RED_ALLIANCE" strategy="AUTO_NEAR_CAROUSEL" freightDelivery="true" duckDelivery="false" doCarousel="true" parking="STORAGE_PARKING" xTarget=4.0 yTarget=4.0 turnTarget=90 driveTime=5 drivePower=0.5 />
+globalTracer.CmdAutoNearCarousel_Info: Duck found at position 2
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.148" pose="(x=-35.2,y=-62.0,angle=0.0)" />
+globalTracer.printPidInfo_Info: [0.149734] purePursuitDrive.xPosPid: Target= -59.4, Input= -35.2, dT=0.000171, CurrErr= -24.1, ErrRate=   0.0, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.150722] purePursuitDrive.yPosPid: Target= -49.9, Input= -62.0, dT=0.000175, CurrErr=  12.1, ErrRate=   0.0, Output= 0.485(-1.000/ 1.000)
+globalTracer.triggerEvent_Info: TrcMotor encoder reset! motor=arm.motor,pos=96.00
+globalTracer.printPidInfo_Info: [0.151789] purePursuitDrive.turnPid: Target=   0.0, Input=   0.0, dT=0.000164, CurrErr=  -0.0, ErrRate=   0.0, Output=-0.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.152703] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.traceStateInfo_Info: <Event name="StateInfo" time="0.161" tag=">>>>>" state="DRIVE_TO_CAROUSEL" RobotPose=(x=-35.2,y=-62.0,angle=0.0) TargetPose=(x=-59.4,y=-49.9,angle=0.0) vel=(x=0.0,y=0.0,angle=0.0) Path=TrcPath(degrees=true, [TrcWaypoint(pose=(x=0.0,y=0.0,angle=0.0),vel=0.00), TrcWaypoint(pose=(x=-24.1,y=12.1,angle=0.0),vel=0.00)]) volt="10.75V(12.45V)" />
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.184" pose="(x=-35.2,y=-62.0,angle=0.0)" />
+globalTracer.printPidInfo_Info: [0.185429] purePursuitDrive.xPosPid: Target= -59.4, Input= -35.2, dT=0.047388, CurrErr= -24.1, ErrRate=   0.0, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.186280] purePursuitDrive.yPosPid: Target= -49.9, Input= -62.0, dT=0.047394, CurrErr=  12.1, ErrRate=   0.0, Output= 0.485(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.186977] purePursuitDrive.turnPid: Target=   0.0, Input=   0.0, dT=0.047395, CurrErr=  -0.0, ErrRate=   0.0, Output=-0.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.187851] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.214" pose="(x=-35.4,y=-61.8,angle=0.0)" />
+globalTracer.printPidInfo_Info: [0.215199] purePursuitDrive.xPosPid: Target= -59.4, Input= -35.2, dT=0.040555, CurrErr= -24.1, ErrRate=  -0.0, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.216099] purePursuitDrive.yPosPid: Target= -49.9, Input= -62.0, dT=0.040559, CurrErr=  12.1, ErrRate=  -0.0, Output= 0.485(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.216793] purePursuitDrive.turnPid: Target=   0.0, Input=   0.0, dT=0.040563, CurrErr=  -0.0, ErrRate=   0.0, Output=-0.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.217623] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.248" pose="(x=-35.4,y=-61.8,angle=0.0)" />
+globalTracer.printPidInfo_Info: [0.248756] purePursuitDrive.xPosPid: Target= -59.2, Input= -35.4, dT=0.027021, CurrErr= -23.9, ErrRate=   9.7, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.249469] purePursuitDrive.yPosPid: Target= -50.1, Input= -61.8, dT=0.027021, CurrErr=  11.7, ErrRate= -15.5, Output= 0.391(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.250116] purePursuitDrive.turnPid: Target=   0.0, Input=   0.0, dT=0.027019, CurrErr=  -0.0, ErrRate=   0.0, Output=-0.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.250866] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.290" pose="(x=-35.6,y=-61.8,angle=-0.2)" />
+globalTracer.printPidInfo_Info: [0.290946] purePursuitDrive.xPosPid: Target= -59.1, Input= -35.6, dT=0.034364, CurrErr= -23.5, ErrRate=  10.6, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.291620] purePursuitDrive.yPosPid: Target= -49.8, Input= -61.8, dT=0.034368, CurrErr=  12.0, ErrRate=   9.9, Output= 0.531(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.292237] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.2, dT=0.034368, CurrErr=   0.2, ErrRate=   6.2, Output= 0.003(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.292897] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.346" pose="(x=-36.4,y=-61.3,angle=0.1)" />
+globalTracer.printPidInfo_Info: [0.346761] purePursuitDrive.xPosPid: Target= -59.3, Input= -35.6, dT=0.042896, CurrErr= -23.7, ErrRate=  -5.2, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.347723] purePursuitDrive.yPosPid: Target= -49.8, Input= -61.8, dT=0.042883, CurrErr=  12.0, ErrRate=  -0.5, Output= 0.479(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.348575] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.2, dT=0.042883, CurrErr=   0.2, ErrRate=   0.0, Output= 0.003(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.349256] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.382" pose="(x=-36.4,y=-61.3,angle=0.1)" />
+globalTracer.printPidInfo_Info: [0.383044] purePursuitDrive.xPosPid: Target= -58.6, Input= -36.4, dT=0.053386, CurrErr= -22.2, ErrRate=  28.6, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.386344] purePursuitDrive.yPosPid: Target= -50.4, Input= -61.3, dT=0.053393, CurrErr=  10.9, ErrRate= -20.9, Output= 0.332(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.387037] purePursuitDrive.turnPid: Target=   0.0, Input=   0.1, dT=0.053393, CurrErr=  -0.1, ErrRate=  -4.9, Output=-0.001(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.389988] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.425" pose="(x=-37.2,y=-60.7,angle=0.2)" />
+globalTracer.printPidInfo_Info: [0.425341] purePursuitDrive.xPosPid: Target= -58.6, Input= -37.2, dT=0.040512, CurrErr= -21.4, ErrRate=  18.8, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.426144] purePursuitDrive.yPosPid: Target= -50.5, Input= -60.7, dT=0.040518, CurrErr=  10.2, ErrRate= -17.5, Output= 0.320(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.426904] purePursuitDrive.turnPid: Target=   0.0, Input=   0.2, dT=0.040521, CurrErr=  -0.2, ErrRate=  -4.4, Output=-0.003(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.427663] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.457" pose="(x=-38.8,y=-60.0,angle=0.6)" />
+globalTracer.printPidInfo_Info: [0.457300] purePursuitDrive.xPosPid: Target= -59.4, Input= -38.8, dT=0.039523, CurrErr= -20.6, ErrRate=  20.9, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.458125] purePursuitDrive.yPosPid: Target= -50.0, Input= -60.0, dT=0.039545, CurrErr=  10.0, ErrRate=  -4.4, Output= 0.379(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.458906] purePursuitDrive.turnPid: Target=   0.0, Input=   0.6, dT=0.039546, CurrErr=  -0.6, ErrRate=  -9.6, Output=-0.008(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.459635] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.497" pose="(x=-39.6,y=-59.5,angle=0.5)" />
+globalTracer.printPidInfo_Info: [0.497571] purePursuitDrive.xPosPid: Target= -59.5, Input= -38.8, dT=0.034161, CurrErr= -20.7, ErrRate=  -1.8, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.498267] purePursuitDrive.yPosPid: Target= -50.1, Input= -60.0, dT=0.034128, CurrErr=   9.9, ErrRate=  -3.8, Output= 0.377(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.498943] purePursuitDrive.turnPid: Target=   0.0, Input=   0.6, dT=0.034123, CurrErr=  -0.6, ErrRate=   0.0, Output=-0.008(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.499561] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.540" pose="(x=-40.6,y=-59.0,angle=0.4)" />
+globalTracer.printPidInfo_Info: [0.541222] purePursuitDrive.xPosPid: Target= -58.6, Input= -39.6, dT=0.040896, CurrErr= -19.0, ErrRate=  40.2, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.541944] purePursuitDrive.yPosPid: Target= -50.5, Input= -59.5, dT=0.040900, CurrErr=   8.9, ErrRate= -23.2, Output= 0.242(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.542896] purePursuitDrive.turnPid: Target=   0.0, Input=   0.5, dT=0.040901, CurrErr=  -0.5, ErrRate=   2.8, Output=-0.007(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.543780] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.619" pose="(x=-41.9,y=-58.1,angle=0.3)" />
+globalTracer.printPidInfo_Info: [0.619979] purePursuitDrive.xPosPid: Target= -58.5, Input= -40.6, dT=0.072958, CurrErr= -17.9, ErrRate=  15.0, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.620702] purePursuitDrive.yPosPid: Target= -50.5, Input= -59.0, dT=0.072963, CurrErr=   8.5, ErrRate=  -6.6, Output= 0.306(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.621483] purePursuitDrive.turnPid: Target=   0.0, Input=   0.4, dT=0.072963, CurrErr=  -0.4, ErrRate=   1.4, Output=-0.005(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.622213] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.694" pose="(x=-41.9,y=-58.1,angle=0.3)" />
+globalTracer.printPidInfo_Info: [0.695115] purePursuitDrive.xPosPid: Target= -58.1, Input= -41.9, dT=0.051287, CurrErr= -16.2, ErrRate=  33.6, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.695778] purePursuitDrive.yPosPid: Target= -50.8, Input= -58.1, dT=0.051282, CurrErr=   7.3, ErrRate= -21.8, Output= 0.185(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.696478] purePursuitDrive.turnPid: Target=   0.0, Input=   0.3, dT=0.051283, CurrErr=  -0.3, ErrRate=   2.2, Output=-0.004(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.697256] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.756" pose="(x=-43.9,y=-57.3,angle=-0.0)" />
+globalTracer.printPidInfo_Info: [0.756542] purePursuitDrive.xPosPid: Target= -57.3, Input= -43.9, dT=0.083760, CurrErr= -13.4, ErrRate=  33.8, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.757297] purePursuitDrive.yPosPid: Target= -50.7, Input= -57.3, dT=0.083755, CurrErr=   6.6, ErrRate=  -9.0, Output= 0.219(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.758094] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.0, dT=0.083755, CurrErr=   0.0, ErrRate=   3.6, Output= 0.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.758848] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.800" pose="(x=-48.1,y=-55.7,angle=-0.3)" />
+globalTracer.printPidInfo_Info: [0.800493] purePursuitDrive.xPosPid: Target= -59.4, Input= -48.1, dT=0.051856, CurrErr= -11.3, ErrRate=  40.0, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.801651] purePursuitDrive.yPosPid: Target= -49.9, Input= -55.7, dT=0.051879, CurrErr=   5.9, ErrRate= -14.3, Output= 0.163(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.802680] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.3, dT=0.051882, CurrErr=   0.3, ErrRate=   5.1, Output= 0.004(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.804837] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.838" pose="(x=-48.1,y=-55.7,angle=-0.3)" />
+globalTracer.printPidInfo_Info: [0.839123] purePursuitDrive.xPosPid: Target= -59.3, Input= -48.1, dT=0.043744, CurrErr= -11.3, ErrRate=   0.6, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.839909] purePursuitDrive.yPosPid: Target= -49.8, Input= -55.7, dT=0.043730, CurrErr=   5.9, ErrRate=   1.2, Output= 0.242(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.840862] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.3, dT=0.043731, CurrErr=   0.3, ErrRate=   0.0, Output= 0.004(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.841796] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.905" pose="(x=-49.8,y=-55.1,angle=-0.7)" />
+globalTracer.printPidInfo_Info: [0.906441] purePursuitDrive.xPosPid: Target= -57.6, Input= -49.8, dT=0.045593, CurrErr=  -7.8, ErrRate=  76.2, Output=-0.741(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.908852] purePursuitDrive.yPosPid: Target= -50.4, Input= -55.1, dT=0.045596, CurrErr=   4.7, ErrRate= -26.1, Output= 0.058(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.909738] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.7, dT=0.045595, CurrErr=   0.7, ErrRate=   8.4, Output= 0.009(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.910595] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.953" pose="(x=-51.2,y=-54.5,angle=-0.8)" />
+globalTracer.printPidInfo_Info: [0.954181] purePursuitDrive.xPosPid: Target= -57.9, Input= -51.2, dT=0.067509, CurrErr=  -6.6, ErrRate=  17.2, Output=-0.631(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.955243] purePursuitDrive.yPosPid: Target= -50.3, Input= -54.5, dT=0.067500, CurrErr=   4.2, ErrRate=  -7.5, Output= 0.131(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.956317] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.8, dT=0.067500, CurrErr=   0.8, ErrRate=   2.3, Output= 0.011(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.957625] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="0.994" pose="(x=-53.5,y=-54.0,angle=-0.8)" />
+globalTracer.printPidInfo_Info: [0.994674] purePursuitDrive.xPosPid: Target= -57.0, Input= -53.5, dT=0.039309, CurrErr=  -3.5, ErrRate=  80.5, Output=-0.331(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.995218] purePursuitDrive.yPosPid: Target= -50.3, Input= -54.0, dT=0.039315, CurrErr=   3.7, ErrRate= -13.5, Output= 0.079(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.995836] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.8, dT=0.039314, CurrErr=   0.8, ErrRate=  -0.9, Output= 0.010(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [0.996466] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.033" pose="(x=-54.9,y=-53.7,angle=-0.8)" />
+globalTracer.printPidInfo_Info: [1.033389] purePursuitDrive.xPosPid: Target= -58.0, Input= -54.9, dT=0.034118, CurrErr=  -3.1, ErrRate=  10.6, Output=-0.296(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.034448] purePursuitDrive.yPosPid: Target= -50.1, Input= -53.7, dT=0.034117, CurrErr=   3.6, ErrRate=  -2.2, Output= 0.133(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.035326] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.8, dT=0.034119, CurrErr=   0.8, ErrRate=   0.0, Output= 0.010(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.036168] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.082" pose="(x=-57.6,y=-53.3,angle=-0.8)" />
+globalTracer.printPidInfo_Info: [1.083310] purePursuitDrive.xPosPid: Target= -59.3, Input= -57.6, dT=0.049239, CurrErr=  -1.7, ErrRate=  28.7, Output=-0.162(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.084362] purePursuitDrive.yPosPid: Target= -49.8, Input= -53.3, dT=0.049266, CurrErr=   3.5, ErrRate=  -2.4, Output= 0.127(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.085250] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.8, dT=0.049269, CurrErr=   0.8, ErrRate=   0.4, Output= 0.010(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.086125] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.160" pose="(x=-59.1,y=-52.9,angle=-0.6)" />
+globalTracer.printPidInfo_Info: [1.161236] purePursuitDrive.xPosPid: Target= -59.3, Input= -59.1, dT=0.070141, CurrErr=  -0.2, ErrRate=  20.9, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.162029] purePursuitDrive.yPosPid: Target= -49.8, Input= -52.9, dT=0.070162, CurrErr=   3.0, ErrRate=  -6.6, Output= 0.088(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.163007] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.6, dT=0.070183, CurrErr=   0.6, ErrRate=  -2.4, Output= 0.008(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.164311] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.246" pose="(x=-60.6,y=-52.3,angle=-0.5)" />
+globalTracer.printPidInfo_Info: [1.247103] purePursuitDrive.xPosPid: Target= -59.3, Input= -60.6, dT=0.057527, CurrErr=   1.3, ErrRate=  26.3, Output= 0.121(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.248261] purePursuitDrive.yPosPid: Target= -49.9, Input= -52.3, dT=0.057491, CurrErr=   2.5, ErrRate=  -9.7, Output= 0.050(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.249693] purePursuitDrive.turnPid: Target=   0.0, Input=  -0.5, dT=0.057465, CurrErr=   0.5, ErrRate=  -3.1, Output= 0.006(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.251621] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.301" pose="(x=-61.6,y=-51.7,angle=0.1)" />
+globalTracer.printPidInfo_Info: [1.301769] purePursuitDrive.xPosPid: Target= -59.4, Input= -61.6, dT=0.081850, CurrErr=   2.3, ErrRate=  12.0, Output= 0.214(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.302679] purePursuitDrive.yPosPid: Target= -49.9, Input= -51.7, dT=0.081872, CurrErr=   1.9, ErrRate=  -7.4, Output= 0.038(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.304201] purePursuitDrive.turnPid: Target=   0.0, Input=   0.1, dT=0.081873, CurrErr=  -0.1, ErrRate=  -7.3, Output=-0.002(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.305187] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.337" pose="(x=-61.6,y=-51.4,angle=1.4)" />
+globalTracer.printPidInfo_Info: [1.337717] purePursuitDrive.xPosPid: Target= -59.4, Input= -61.6, dT=0.052879, CurrErr=   2.3, ErrRate=  -0.1, Output= 0.214(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.338599] purePursuitDrive.yPosPid: Target= -49.9, Input= -51.4, dT=0.052886, CurrErr=   1.6, ErrRate=  -5.2, Output= 0.037(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.339332] purePursuitDrive.turnPid: Target=   0.0, Input=   1.4, dT=0.052908, CurrErr=  -1.4, ErrRate= -24.1, Output=-0.018(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.340069] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.385" pose="(x=-61.4,y=-51.2,angle=1.9)" />
+globalTracer.printPidInfo_Info: [1.386294] purePursuitDrive.xPosPid: Target= -59.4, Input= -61.6, dT=0.034316, CurrErr=   2.2, ErrRate=  -1.0, Output= 0.211(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.387647] purePursuitDrive.yPosPid: Target= -49.8, Input= -51.4, dT=0.034319, CurrErr=   1.6, ErrRate=   1.4, Output= 0.073(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.388553] purePursuitDrive.turnPid: Target=   0.0, Input=   1.4, dT=0.034310, CurrErr=  -1.4, ErrRate=   0.0, Output=-0.018(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.389611] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.430" pose="(x=-61.1,y=-51.1,angle=2.1)" />
+globalTracer.printPidInfo_Info: [1.431290] purePursuitDrive.xPosPid: Target= -59.6, Input= -61.4, dT=0.048966, CurrErr=   1.8, ErrRate=  -8.4, Output= 0.172(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.432007] purePursuitDrive.yPosPid: Target= -50.1, Input= -51.2, dT=0.048941, CurrErr=   1.1, ErrRate= -10.2, Output=-0.006(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.432695] purePursuitDrive.turnPid: Target=   0.0, Input=   1.9, dT=0.048928, CurrErr=  -1.9, ErrRate=  -9.5, Output=-0.024(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.433423] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.468" pose="(x=-61.1,y=-51.1,angle=2.1)" />
+globalTracer.printPidInfo_Info: [1.471740] purePursuitDrive.xPosPid: Target= -59.7, Input= -61.1, dT=0.045508, CurrErr=   1.4, ErrRate=  -9.6, Output= 0.130(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.472667] purePursuitDrive.yPosPid: Target= -49.9, Input= -51.1, dT=0.045570, CurrErr=   1.2, ErrRate=   1.0, Output= 0.052(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.473610] purePursuitDrive.turnPid: Target=   0.0, Input=   2.1, dT=0.045584, CurrErr=  -2.1, ErrRate=  -4.5, Output=-0.027(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.474570] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.515" pose="(x=-60.8,y=-51.0,angle=1.7)" />
+globalTracer.printPidInfo_Info: [1.516482] purePursuitDrive.xPosPid: Target= -59.4, Input= -60.8, dT=0.041544, CurrErr=   1.4, ErrRate=   0.7, Output= 0.133(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.517795] purePursuitDrive.yPosPid: Target= -49.8, Input= -51.0, dT=0.041530, CurrErr=   1.2, ErrRate=  -0.5, Output= 0.044(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.518548] purePursuitDrive.turnPid: Target=   0.0, Input=   1.7, dT=0.041519, CurrErr=  -1.7, ErrRate=   8.5, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.519614] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.562" pose="(x=-60.7,y=-50.9,angle=1.4)" />
+globalTracer.printPidInfo_Info: [1.563159] purePursuitDrive.xPosPid: Target= -59.4, Input= -60.8, dT=0.044521, CurrErr=   1.4, ErrRate=   0.3, Output= 0.134(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.564167] purePursuitDrive.yPosPid: Target= -49.8, Input= -51.0, dT=0.044452, CurrErr=   1.1, ErrRate=  -0.4, Output= 0.043(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.564869] purePursuitDrive.turnPid: Target=   0.0, Input=   1.7, dT=0.044466, CurrErr=  -1.7, ErrRate=   0.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.565502] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.608" pose="(x=-60.6,y=-50.8,angle=1.2)" />
+globalTracer.printPidInfo_Info: [1.608831] purePursuitDrive.xPosPid: Target= -59.5, Input= -60.7, dT=0.045265, CurrErr=   1.1, ErrRate=  -6.3, Output= 0.107(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.609506] purePursuitDrive.yPosPid: Target= -49.9, Input= -50.9, dT=0.045259, CurrErr=   1.0, ErrRate=  -3.7, Output= 0.020(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.610143] purePursuitDrive.turnPid: Target=   0.0, Input=   1.4, dT=0.045241, CurrErr=  -1.4, ErrRate=   7.0, Output=-0.018(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.610866] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.653" pose="(x=-60.5,y=-50.7,angle=1.0)" />
+globalTracer.printPidInfo_Info: [1.654126] purePursuitDrive.xPosPid: Target= -59.5, Input= -60.6, dT=0.050686, CurrErr=   1.1, ErrRate=   0.4, Output= 0.108(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.654967] purePursuitDrive.yPosPid: Target= -49.9, Input= -50.8, dT=0.050688, CurrErr=   0.9, ErrRate=  -1.9, Output= 0.026(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.655838] purePursuitDrive.turnPid: Target=   0.0, Input=   1.2, dT=0.050688, CurrErr=  -1.2, ErrRate=   3.5, Output=-0.016(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.656682] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.688" pose="(x=-60.5,y=-50.7,angle=1.0)" />
+globalTracer.printPidInfo_Info: [1.688618] purePursuitDrive.xPosPid: Target= -59.5, Input= -60.5, dT=0.041816, CurrErr=   1.1, ErrRate=  -1.5, Output= 0.102(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.689504] purePursuitDrive.yPosPid: Target= -49.9, Input= -50.7, dT=0.041816, CurrErr=   0.8, ErrRate=  -2.4, Output= 0.019(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.690248] purePursuitDrive.turnPid: Target=   0.0, Input=   1.0, dT=0.041814, CurrErr=  -1.0, ErrRate=   5.8, Output=-0.013(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.691042] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="1.748" pose="(x=-60.5,y=-50.6,angle=1.0)" />
+globalTracer.printPidInfo_Info: [1.748283] purePursuitDrive.xPosPid: Target= -59.4, Input= -60.5, dT=0.033539, CurrErr=   1.1, ErrRate=   0.2, Output= 0.103(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.749007] purePursuitDrive.yPosPid: Target= -49.9, Input= -50.6, dT=0.033557, CurrErr=   0.8, ErrRate=   0.7, Output= 0.035(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.749660] purePursuitDrive.turnPid: Target=   0.0, Input=   1.0, dT=0.033561, CurrErr=  -1.0, ErrRate=   1.3, Output=-0.012(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [1.750333] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.traceStateInfo_Info: <Event name="StateInfo" time="1.758" tag=">>>>>" state="GET_TO_CAROUSEL" volt="12.39V(11.04V)" />
+globalTracer.traceStateInfo_Info: <Event name="StateInfo" time="2.635" tag=">>>>>" state="SPIN_CAROUSEL" volt="12.17V(11.04V)" />
+globalTracer.getFollowingPoint_Info: Segment[1:TrcWaypoint(pose=(x=0.9,y=5.3,angle=0.0),vel=0.00)->2:TrcWaypoint(pose=(x=-0.7,y=31.4,angle=0.0),vel=0.00)] PrevIndex=1, Target=TrcWaypoint(simple=false,timestep=0.000,pose=(x=-0.7,y=31.4,angle=0.0),vel=0.00,encPos=0.0,accel=0.00,jerk=0.00)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.176" pose="(x=-60.6,y=-52.8,angle=3.4)" />
+globalTracer.printPidInfo_Info: [6.177026] purePursuitDrive.xPosPid: Target= -61.3, Input= -60.6, dT=0.000137, CurrErr=  -0.7, ErrRate=   0.0, Output=-0.065(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.177832] purePursuitDrive.yPosPid: Target= -21.4, Input= -52.8, dT=0.000140, CurrErr=  31.4, ErrRate=   0.0, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.178463] purePursuitDrive.turnPid: Target=   0.0, Input=   3.4, dT=0.000129, CurrErr=  -3.4, ErrRate=   0.0, Output=-0.045(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.179143] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.traceStateInfo_Info: <Event name="StateInfo" time="6.196" tag=">>>>>" state="DRIVE_TO_ALLIANCE_SHIPPING_HUB" RobotPose=(x=-60.6,y=-52.8,angle=3.4) TargetPose=(x=-30.9,y=-23.7,angle=93.4) vel=(x=-0.0,y=-0.0,angle=-0.2) Path=TrcPath(degrees=true, [TrcWaypoint(pose=(x=0.0,y=0.0,angle=3.4),vel=0.00), TrcWaypoint(pose=(x=0.9,y=5.3,angle=0.0),vel=0.00), TrcWaypoint(pose=(x=-0.7,y=31.4,angle=0.0),vel=0.00), TrcWaypoint(pose=(x=11.3,y=29.8,angle=90.0),vel=0.00), TrcWaypoint(pose=(x=27.9,y=30.8,angle=90.0),vel=0.00)]) volt="10.69V(11.04V)" />
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.232" pose="(x=-60.6,y=-52.8,angle=3.4)" />
+globalTracer.printPidInfo_Info: [6.232409] purePursuitDrive.xPosPid: Target= -61.3, Input= -60.6, dT=0.062247, CurrErr=  -0.7, ErrRate=  -0.1, Output=-0.065(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.233281] purePursuitDrive.yPosPid: Target= -21.4, Input= -52.8, dT=0.062253, CurrErr=  31.4, ErrRate=  -0.3, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.233931] purePursuitDrive.turnPid: Target=   0.0, Input=   3.4, dT=0.062255, CurrErr=  -3.4, ErrRate=   0.0, Output=-0.045(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.234537] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.268" pose="(x=-60.6,y=-52.3,angle=3.4)" />
+globalTracer.printPidInfo_Info: [6.268952] purePursuitDrive.xPosPid: Target= -61.3, Input= -60.6, dT=0.038518, CurrErr=  -0.7, ErrRate=   0.9, Output=-0.062(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.269555] purePursuitDrive.yPosPid: Target= -21.4, Input= -52.3, dT=0.038524, CurrErr=  30.9, ErrRate= -13.2, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.270125] purePursuitDrive.turnPid: Target=   0.0, Input=   3.4, dT=0.038527, CurrErr=  -3.4, ErrRate=  -0.0, Output=-0.045(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.270715] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.309" pose="(x=-60.5,y=-51.7,angle=4.3)" />
+globalTracer.printPidInfo_Info: [6.309838] purePursuitDrive.xPosPid: Target= -61.2, Input= -60.6, dT=0.040311, CurrErr=  -0.6, ErrRate=   0.8, Output=-0.059(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.310455] purePursuitDrive.yPosPid: Target= -21.4, Input= -52.3, dT=0.040304, CurrErr=  30.9, ErrRate=   0.1, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.311228] purePursuitDrive.turnPid: Target=   0.0, Input=   3.4, dT=0.040303, CurrErr=  -3.4, ErrRate=   0.0, Output=-0.045(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.311914] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.354" pose="(x=-60.5,y=-51.7,angle=4.3)" />
+globalTracer.printPidInfo_Info: [6.355180] purePursuitDrive.xPosPid: Target= -61.8, Input= -60.5, dT=0.036236, CurrErr=  -1.2, ErrRate= -17.2, Output=-0.119(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.356097] purePursuitDrive.yPosPid: Target= -21.9, Input= -51.7, dT=0.036236, CurrErr=  29.8, ErrRate= -31.3, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.356866] purePursuitDrive.turnPid: Target=   0.0, Input=   4.3, dT=0.036234, CurrErr=  -4.3, ErrRate= -24.6, Output=-0.056(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.357592] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.398" pose="(x=-60.4,y=-50.9,angle=5.4)" />
+globalTracer.printPidInfo_Info: [6.398812] purePursuitDrive.xPosPid: Target= -62.3, Input= -60.4, dT=0.058510, CurrErr=  -1.9, ErrRate= -11.4, Output=-0.182(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.399527] purePursuitDrive.yPosPid: Target= -22.2, Input= -50.9, dT=0.058505, CurrErr=  28.6, ErrRate= -19.4, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.400127] purePursuitDrive.turnPid: Target=   0.0, Input=   5.4, dT=0.058506, CurrErr=  -5.4, ErrRate= -18.5, Output=-0.070(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.400807] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.433" pose="(x=-60.0,y=-48.2,angle=6.2)" />
+globalTracer.printPidInfo_Info: [6.434028] purePursuitDrive.xPosPid: Target= -62.2, Input= -60.0, dT=0.035271, CurrErr=  -2.1, ErrRate=  -5.8, Output=-0.201(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.434814] purePursuitDrive.yPosPid: Target= -21.4, Input= -48.2, dT=0.035284, CurrErr=  26.8, ErrRate= -51.5, Output= 0.815(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.435399] purePursuitDrive.turnPid: Target=   0.0, Input=   6.2, dT=0.035284, CurrErr=  -6.2, ErrRate= -21.7, Output=-0.080(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.436043] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.482" pose="(x=-59.9,y=-47.1,angle=6.2)" />
+globalTracer.printPidInfo_Info: [6.482998] purePursuitDrive.xPosPid: Target= -62.3, Input= -59.9, dT=0.034390, CurrErr=  -2.4, ErrRate=  -7.1, Output=-0.225(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.484664] purePursuitDrive.yPosPid: Target= -21.5, Input= -47.1, dT=0.034398, CurrErr=  25.7, ErrRate= -33.4, Output= 0.860(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.485438] purePursuitDrive.turnPid: Target=   0.0, Input=   6.2, dT=0.034401, CurrErr=  -6.2, ErrRate=   0.0, Output=-0.080(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.486115] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.507" pose="(x=-59.9,y=-47.1,angle=6.2)" />
+globalTracer.printPidInfo_Info: [6.507233] purePursuitDrive.xPosPid: Target= -62.1, Input= -59.9, dT=0.045057, CurrErr=  -2.2, ErrRate=   2.6, Output=-0.213(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.507969] purePursuitDrive.yPosPid: Target= -21.5, Input= -47.1, dT=0.045040, CurrErr=  25.7, ErrRate=  -0.2, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.508638] purePursuitDrive.turnPid: Target=   0.0, Input=   6.2, dT=0.045037, CurrErr=  -6.2, ErrRate=   0.0, Output=-0.080(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.509400] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.551" pose="(x=-59.7,y=-44.4,angle=6.1)" />
+globalTracer.printPidInfo_Info: [6.552030] purePursuitDrive.xPosPid: Target= -62.0, Input= -59.7, dT=0.025592, CurrErr=  -2.3, ErrRate=  -3.7, Output=-0.222(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.552724] purePursuitDrive.yPosPid: Target= -24.2, Input= -44.4, dT=0.025591, CurrErr=  20.3, ErrRate=-211.5, Output=-0.247(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.553433] purePursuitDrive.turnPid: Target=   0.0, Input=   6.1, dT=0.025591, CurrErr=  -6.1, ErrRate=   0.7, Output=-0.080(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.554088] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.600" pose="(x=-59.7,y=-42.6,angle=5.3)" />
+globalTracer.printPidInfo_Info: [6.600469] purePursuitDrive.xPosPid: Target= -61.8, Input= -59.7, dT=0.045774, CurrErr=  -2.1, ErrRate=   4.4, Output=-0.203(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.601274] purePursuitDrive.yPosPid: Target= -21.5, Input= -42.6, dT=0.045779, CurrErr=  21.1, ErrRate=  18.6, Output= 0.937(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.601923] purePursuitDrive.turnPid: Target=   0.0, Input=   5.3, dT=0.045779, CurrErr=  -5.3, ErrRate=  18.8, Output=-0.069(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.602629] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.638" pose="(x=-59.9,y=-40.9,angle=4.5)" />
+globalTracer.printPidInfo_Info: [6.639051] purePursuitDrive.xPosPid: Target= -61.3, Input= -59.7, dT=0.053579, CurrErr=  -1.6, ErrRate=   9.6, Output=-0.154(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.639906] purePursuitDrive.yPosPid: Target= -21.4, Input= -42.6, dT=0.053575, CurrErr=  21.1, ErrRate=   0.7, Output= 0.849(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.640792] purePursuitDrive.turnPid: Target=   0.0, Input=   5.3, dT=0.053573, CurrErr=  -5.3, ErrRate=   0.0, Output=-0.069(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.641731] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.719" pose="(x=-59.9,y=-40.9,angle=4.5)" />
+globalTracer.printPidInfo_Info: [6.719994] purePursuitDrive.xPosPid: Target= -60.7, Input= -59.9, dT=0.034683, CurrErr=  -0.8, ErrRate=  24.6, Output=-0.073(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.720669] purePursuitDrive.yPosPid: Target= -23.1, Input= -40.9, dT=0.034779, CurrErr=  17.8, ErrRate= -96.0, Output= 0.232(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.721401] purePursuitDrive.turnPid: Target=   0.0, Input=   4.5, dT=0.034786, CurrErr=  -4.5, ErrRate=  23.0, Output=-0.058(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.722092] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.762" pose="(x=-59.6,y=-39.0,angle=2.1)" />
+globalTracer.printPidInfo_Info: [6.765380] purePursuitDrive.xPosPid: Target= -60.4, Input= -59.6, dT=0.081521, CurrErr=  -0.8, ErrRate=   0.1, Output=-0.072(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.766138] purePursuitDrive.yPosPid: Target= -23.2, Input= -39.0, dT=0.081432, CurrErr=  15.8, ErrRate= -24.3, Output= 0.512(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.766972] purePursuitDrive.turnPid: Target=   0.0, Input=   2.1, dT=0.081427, CurrErr=  -2.1, ErrRate=  29.3, Output=-0.027(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.768245] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.817" pose="(x=-59.6,y=-35.4,angle=-1.1)" />
+globalTracer.printPidInfo_Info: [6.817446] purePursuitDrive.xPosPid: Target= -60.0, Input= -59.6, dT=0.054717, CurrErr=  -0.4, ErrRate=   6.9, Output=-0.037(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.818147] purePursuitDrive.yPosPid: Target= -21.4, Input= -35.4, dT=0.054718, CurrErr=  14.0, ErrRate= -32.9, Output= 0.397(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.818790] purePursuitDrive.turnPid: Target=   0.0, Input=  -1.1, dT=0.054716, CurrErr=   1.1, ErrRate=  58.9, Output= 0.015(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.819348] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.868" pose="(x=-59.7,y=-33.5,angle=-2.4)" />
+globalTracer.printPidInfo_Info: [6.868559] purePursuitDrive.xPosPid: Target= -59.1, Input= -59.7, dT=0.047114, CurrErr=   0.6, ErrRate=  21.3, Output= 0.059(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.869224] purePursuitDrive.yPosPid: Target= -21.4, Input= -33.5, dT=0.047158, CurrErr=  12.1, ErrRate= -41.3, Output= 0.277(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.869846] purePursuitDrive.turnPid: Target=   0.0, Input=  -2.4, dT=0.047160, CurrErr=   2.4, ErrRate=  27.6, Output= 0.031(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.870458] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.921" pose="(x=-60.0,y=-32.0,angle=-3.3)" />
+globalTracer.printPidInfo_Info: [6.921873] purePursuitDrive.xPosPid: Target= -58.9, Input= -60.0, dT=0.051167, CurrErr=   1.1, ErrRate=   9.8, Output= 0.107(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.922538] purePursuitDrive.yPosPid: Target= -21.4, Input= -32.0, dT=0.051124, CurrErr=  10.6, ErrRate= -29.3, Output= 0.277(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.923156] purePursuitDrive.turnPid: Target=   0.0, Input=  -3.3, dT=0.051123, CurrErr=   3.3, ErrRate=  16.4, Output= 0.042(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.923804] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="6.968" pose="(x=-60.1,y=-30.1,angle=-3.9)" />
+globalTracer.printPidInfo_Info: [6.968824] purePursuitDrive.xPosPid: Target= -58.8, Input= -60.0, dT=0.049029, CurrErr=   1.2, ErrRate=   1.9, Output= 0.115(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.969777] purePursuitDrive.yPosPid: Target= -21.4, Input= -32.0, dT=0.049021, CurrErr=  10.6, ErrRate=  -0.5, Output= 0.420(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.970679] purePursuitDrive.turnPid: Target=   0.0, Input=  -3.3, dT=0.049021, CurrErr=   3.3, ErrRate=   0.0, Output= 0.042(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [6.971505] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.024" pose="(x=-60.1,y=-30.1,angle=-3.9)" />
+globalTracer.printPidInfo_Info: [7.024910] purePursuitDrive.xPosPid: Target= -58.7, Input= -60.1, dT=0.060501, CurrErr=   1.4, ErrRate=   2.6, Output= 0.130(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.026089] purePursuitDrive.yPosPid: Target= -23.3, Input= -30.1, dT=0.060515, CurrErr=   6.8, ErrRate= -62.0, Output=-0.038(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.026743] purePursuitDrive.turnPid: Target=   0.0, Input=  -3.9, dT=0.060519, CurrErr=   3.9, ErrRate=  10.6, Output= 0.051(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.027396] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.064" pose="(x=-60.2,y=-28.6,angle=-4.4)" />
+globalTracer.printPidInfo_Info: [7.064855] purePursuitDrive.xPosPid: Target= -58.7, Input= -60.2, dT=0.043669, CurrErr=   1.6, ErrRate=   5.0, Output= 0.151(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.065545] purePursuitDrive.yPosPid: Target= -23.0, Input= -28.6, dT=0.043653, CurrErr=   5.5, ErrRate= -29.2, Output= 0.075(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.066238] purePursuitDrive.turnPid: Target=   0.0, Input=  -4.4, dT=0.043648, CurrErr=   4.4, ErrRate=  11.2, Output= 0.057(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.066840] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.102" pose="(x=-60.2,y=-26.8,angle=-4.1)" />
+globalTracer.printPidInfo_Info: [7.102340] purePursuitDrive.xPosPid: Target= -58.8, Input= -60.2, dT=0.041908, CurrErr=   1.4, ErrRate=  -4.9, Output= 0.131(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.103025] purePursuitDrive.yPosPid: Target= -21.5, Input= -26.8, dT=0.041919, CurrErr=   5.3, ErrRate=  -4.9, Output= 0.188(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.103604] purePursuitDrive.turnPid: Target=   0.0, Input=  -4.1, dT=0.041921, CurrErr=   4.1, ErrRate=  -7.6, Output= 0.053(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.104246] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.getFollowingPoint_Info: Segment[2:TrcWaypoint(pose=(x=-0.7,y=31.4,angle=0.0),vel=0.00)->3:TrcWaypoint(pose=(x=11.3,y=29.8,angle=90.0),vel=0.00)] PrevIndex=2, Target=TrcWaypoint(simple=false,timestep=0.000,pose=(x=11.3,y=29.8,angle=90.0),vel=0.00,encPos=0.0,accel=0.00,jerk=0.00)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.158" pose="(x=-60.0,y=-26.0,angle=-3.5)" />
+globalTracer.printPidInfo_Info: [7.158942] purePursuitDrive.xPosPid: Target= -47.3, Input= -60.0, dT=0.033640, CurrErr=  12.7, ErrRate= 336.3, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.159598] purePursuitDrive.yPosPid: Target= -24.7, Input= -26.0, dT=0.033636, CurrErr=   1.3, ErrRate=-119.0, Output=-0.542(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.160258] purePursuitDrive.turnPid: Target=  90.0, Input=  -3.5, dT=0.033635, CurrErr=  93.5, ErrRate=2659.1, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.160975] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.277" pose="(x=-59.6,y=-25.0,angle=-3.2)" />
+globalTracer.printPidInfo_Info: [7.277606] purePursuitDrive.xPosPid: Target= -47.4, Input= -60.0, dT=0.055433, CurrErr=  12.6, ErrRate=  -1.3, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.278492] purePursuitDrive.yPosPid: Target= -24.5, Input= -26.0, dT=0.055439, CurrErr=   1.5, ErrRate=   2.5, Output= 0.071(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.279207] purePursuitDrive.turnPid: Target=  90.0, Input=  -3.5, dT=0.055440, CurrErr=  93.5, ErrRate=   0.0, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.279872] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.347" pose="(x=-59.0,y=-24.2,angle=-0.7)" />
+globalTracer.printPidInfo_Info: [7.347693] purePursuitDrive.xPosPid: Target= -48.5, Input= -59.0, dT=0.148765, CurrErr=  10.6, ErrRate= -13.8, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.348360] purePursuitDrive.yPosPid: Target= -25.7, Input= -24.2, dT=0.148755, CurrErr=  -1.5, ErrRate= -19.6, Output=-0.157(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.349223] purePursuitDrive.turnPid: Target=  90.0, Input=  -0.7, dT=0.148756, CurrErr=  90.7, ErrRate= -19.2, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.349935] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.402" pose="(x=-57.8,y=-23.9,angle=3.8)" />
+globalTracer.printPidInfo_Info: [7.404761] purePursuitDrive.xPosPid: Target= -47.5, Input= -57.8, dT=0.046799, CurrErr=  10.3, ErrRate=  -6.8, Output= 0.975(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.405677] purePursuitDrive.yPosPid: Target= -23.9, Input= -23.9, dT=0.046828, CurrErr=   0.1, ErrRate=  32.5, Output= 0.165(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.406608] purePursuitDrive.turnPid: Target=  90.0, Input=   3.8, dT=0.046829, CurrErr=  86.2, ErrRate= -95.6, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.407407] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.440" pose="(x=-56.7,y=-23.8,angle=11.6)" />
+globalTracer.printPidInfo_Info: [7.441217] purePursuitDrive.xPosPid: Target= -47.5, Input= -56.7, dT=0.054087, CurrErr=   9.2, ErrRate= -20.4, Output= 0.870(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.441986] purePursuitDrive.yPosPid: Target= -23.1, Input= -23.8, dT=0.054070, CurrErr=   0.8, ErrRate=  12.8, Output= 0.094(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.443298] purePursuitDrive.turnPid: Target=  90.0, Input=  11.6, dT=0.054060, CurrErr=  78.4, ErrRate=-144.8, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.444250] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.482" pose="(x=-55.8,y=-23.8,angle=17.0)" />
+globalTracer.printPidInfo_Info: [7.483678] purePursuitDrive.xPosPid: Target= -47.7, Input= -56.7, dT=0.035010, CurrErr=   9.0, ErrRate=  -4.8, Output= 0.854(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.484864] purePursuitDrive.yPosPid: Target= -21.9, Input= -23.8, dT=0.035127, CurrErr=   1.9, ErrRate=  33.4, Output= 0.244(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.485789] purePursuitDrive.turnPid: Target=  90.0, Input=  11.6, dT=0.035138, CurrErr=  78.4, ErrRate=   0.0, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.486941] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.525" pose="(x=-55.8,y=-23.8,angle=17.0)" />
+globalTracer.printPidInfo_Info: [7.525770] purePursuitDrive.xPosPid: Target= -48.8, Input= -55.8, dT=0.042771, CurrErr=   7.0, ErrRate= -46.2, Output= 0.666(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.526564] purePursuitDrive.yPosPid: Target= -21.3, Input= -23.8, dT=0.042643, CurrErr=   2.5, ErrRate=  14.5, Output= 0.175(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.527366] purePursuitDrive.turnPid: Target=  90.0, Input=  17.0, dT=0.042657, CurrErr=  73.0, ErrRate=-126.6, Output= 0.948(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.528918] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.563" pose="(x=-55.0,y=-23.8,angle=22.5)" />
+globalTracer.printPidInfo_Info: [7.564137] purePursuitDrive.xPosPid: Target= -48.8, Input= -55.0, dT=0.051279, CurrErr=   6.2, ErrRate= -16.2, Output= 0.588(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.564935] purePursuitDrive.yPosPid: Target= -20.9, Input= -23.8, dT=0.051265, CurrErr=   2.8, ErrRate=   5.8, Output= 0.143(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.565575] purePursuitDrive.turnPid: Target=  90.0, Input=  22.5, dT=0.051237, CurrErr=  67.5, ErrRate=-106.8, Output= 0.877(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.566262] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.599" pose="(x=-53.9,y=-24.1,angle=29.7)" />
+globalTracer.printPidInfo_Info: [7.599205] purePursuitDrive.xPosPid: Target= -48.1, Input= -53.9, dT=0.031755, CurrErr=   5.8, ErrRate= -11.0, Output= 0.555(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.599788] purePursuitDrive.yPosPid: Target= -20.9, Input= -24.1, dT=0.031760, CurrErr=   3.2, ErrRate=  12.4, Output= 0.192(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.600365] purePursuitDrive.turnPid: Target=  90.0, Input=  29.7, dT=0.031760, CurrErr=  60.3, ErrRate=-226.0, Output= 0.784(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.601081] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.625" pose="(x=-53.9,y=-24.1,angle=29.7)" />
+globalTracer.printPidInfo_Info: [7.626050] purePursuitDrive.xPosPid: Target= -48.5, Input= -53.9, dT=0.029198, CurrErr=   5.4, ErrRate= -14.9, Output= 0.513(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.626752] purePursuitDrive.yPosPid: Target= -20.6, Input= -24.1, dT=0.029223, CurrErr=   3.5, ErrRate=   8.6, Output= 0.183(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.627478] purePursuitDrive.turnPid: Target=  90.0, Input=  29.7, dT=0.029231, CurrErr=  60.3, ErrRate=   0.0, Output= 0.784(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.628248] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.658" pose="(x=-53.0,y=-24.1,angle=35.8)" />
+globalTracer.printPidInfo_Info: [7.658357] purePursuitDrive.xPosPid: Target= -48.5, Input= -53.0, dT=0.027053, CurrErr=   4.5, ErrRate= -34.1, Output= 0.426(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.659180] purePursuitDrive.yPosPid: Target= -20.6, Input= -24.1, dT=0.027032, CurrErr=   3.5, ErrRate=  -1.0, Output= 0.134(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.660016] purePursuitDrive.turnPid: Target=  90.0, Input=  35.8, dT=0.027025, CurrErr=  54.2, ErrRate=-224.9, Output= 0.705(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.660793] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.getFollowingPoint_Info: Segment[3:TrcWaypoint(pose=(x=11.3,y=29.8,angle=90.0),vel=0.00)->4:TrcWaypoint(pose=(x=27.9,y=30.8,angle=90.0),vel=0.00)] PrevIndex=3, Target=TrcWaypoint(simple=false,timestep=0.000,pose=(x=27.9,y=30.8,angle=90.0),vel=0.00,encPos=0.0,accel=0.00,jerk=0.00)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.696" pose="(x=-53.0,y=-24.1,angle=35.8)" />
+globalTracer.printPidInfo_Info: [7.696897] purePursuitDrive.xPosPid: Target= -35.2, Input= -53.0, dT=0.037654, CurrErr=  17.8, ErrRate= 352.7, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.697852] purePursuitDrive.yPosPid: Target= -10.9, Input= -24.1, dT=0.037648, CurrErr=  13.2, ErrRate= 258.6, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.698709] purePursuitDrive.turnPid: Target=  90.0, Input=  35.8, dT=0.037649, CurrErr=  54.2, ErrRate=   0.0, Output= 0.705(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.699692] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.770" pose="(x=-52.1,y=-24.0,angle=42.1)" />
+globalTracer.printPidInfo_Info: [7.771238] purePursuitDrive.xPosPid: Target= -37.4, Input= -52.1, dT=0.044318, CurrErr=  14.7, ErrRate= -69.3, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.771928] purePursuitDrive.yPosPid: Target=  -9.6, Input= -24.0, dT=0.044319, CurrErr=  14.4, ErrRate=  26.0, Output= 0.704(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.772567] purePursuitDrive.turnPid: Target=  90.0, Input=  42.1, dT=0.044356, CurrErr=  47.9, ErrRate=-143.3, Output= 0.622(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.773235] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.805" pose="(x=-51.1,y=-24.1,angle=51.2)" />
+globalTracer.printPidInfo_Info: [7.805850] purePursuitDrive.xPosPid: Target= -39.8, Input= -51.1, dT=0.064231, CurrErr=  11.3, ErrRate= -52.6, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.806521] purePursuitDrive.yPosPid: Target=  -8.0, Input= -24.1, dT=0.064228, CurrErr=  16.1, ErrRate=  27.3, Output= 0.781(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.807139] purePursuitDrive.turnPid: Target=  90.0, Input=  51.2, dT=0.064191, CurrErr=  38.8, ErrRate=-140.8, Output= 0.505(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.807845] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.844" pose="(x=-49.9,y=-24.7,angle=59.4)" />
+globalTracer.printPidInfo_Info: [7.844639] purePursuitDrive.xPosPid: Target= -42.1, Input= -49.9, dT=0.042340, CurrErr=   7.8, ErrRate= -83.4, Output= 0.739(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.845330] purePursuitDrive.yPosPid: Target=  -7.3, Input= -24.7, dT=0.042340, CurrErr=  17.4, ErrRate=  29.9, Output= 0.845(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.846044] purePursuitDrive.turnPid: Target=  90.0, Input=  59.4, dT=0.042338, CurrErr=  30.6, ErrRate=-193.8, Output= 0.398(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.846720] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.883" pose="(x=-48.5,y=-24.9,angle=63.8)" />
+globalTracer.printPidInfo_Info: [7.885941] purePursuitDrive.xPosPid: Target= -41.0, Input= -49.9, dT=0.028157, CurrErr=   8.9, ErrRate=  40.5, Output= 0.847(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.886583] purePursuitDrive.yPosPid: Target=  -7.8, Input= -24.7, dT=0.028155, CurrErr=  16.9, ErrRate= -18.5, Output= 0.581(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.887328] purePursuitDrive.turnPid: Target=  90.0, Input=  59.4, dT=0.028155, CurrErr=  30.6, ErrRate=   0.0, Output= 0.398(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.888058] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.925" pose="(x=-48.5,y=-24.9,angle=63.8)" />
+globalTracer.printPidInfo_Info: [7.926010] purePursuitDrive.xPosPid: Target= -43.2, Input= -48.5, dT=0.050180, CurrErr=   5.3, ErrRate= -71.2, Output= 0.508(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.926880] purePursuitDrive.yPosPid: Target=  -8.3, Input= -24.9, dT=0.050184, CurrErr=  16.6, ErrRate=  -4.6, Output= 0.642(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.927761] purePursuitDrive.turnPid: Target=  90.0, Input=  63.8, dT=0.050184, CurrErr=  26.2, ErrRate= -88.8, Output= 0.340(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.928542] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.952" pose="(x=-47.0,y=-25.4,angle=69.1)" />
+globalTracer.printPidInfo_Info: [7.953136] purePursuitDrive.xPosPid: Target= -41.8, Input= -47.0, dT=0.033491, CurrErr=   5.2, ErrRate=  -5.7, Output= 0.490(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.953987] purePursuitDrive.yPosPid: Target=  -8.6, Input= -25.4, dT=0.033489, CurrErr=  16.8, ErrRate=   5.3, Output= 0.699(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.954894] purePursuitDrive.turnPid: Target=  90.0, Input=  69.1, dT=0.033489, CurrErr=  20.9, ErrRate=-157.4, Output= 0.272(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.955762] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="7.979" pose="(x=-47.0,y=-25.4,angle=69.1)" />
+globalTracer.printPidInfo_Info: [7.980467] purePursuitDrive.xPosPid: Target= -42.7, Input= -47.0, dT=0.024942, CurrErr=   4.2, ErrRate= -37.1, Output= 0.402(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.983776] purePursuitDrive.yPosPid: Target=  -9.8, Input= -25.4, dT=0.024939, CurrErr=  15.6, ErrRate= -48.4, Output= 0.382(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.988511] purePursuitDrive.turnPid: Target=  90.0, Input=  69.1, dT=0.024940, CurrErr=  20.9, ErrRate=   0.0, Output= 0.272(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [7.989454] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.061" pose="(x=-46.1,y=-25.5,angle=71.9)" />
+globalTracer.printPidInfo_Info: [8.061343] purePursuitDrive.xPosPid: Target= -43.9, Input= -46.1, dT=0.034667, CurrErr=   2.2, ErrRate= -59.5, Output= 0.206(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.061982] purePursuitDrive.yPosPid: Target= -10.4, Input= -25.5, dT=0.034667, CurrErr=  15.1, ErrRate= -13.0, Output= 0.541(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.062726] purePursuitDrive.turnPid: Target=  90.0, Input=  71.9, dT=0.034667, CurrErr=  18.1, ErrRate= -79.9, Output= 0.236(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.063555] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.099" pose="(x=-44.8,y=-25.6,angle=75.2)" />
+globalTracer.printPidInfo_Info: [8.100111] purePursuitDrive.xPosPid: Target= -44.3, Input= -44.8, dT=0.076711, CurrErr=   0.5, ErrRate= -22.3, Output= 0.043(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.100799] purePursuitDrive.yPosPid: Target= -11.6, Input= -25.6, dT=0.076724, CurrErr=  14.1, ErrRate= -14.2, Output= 0.491(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.101493] purePursuitDrive.turnPid: Target=  90.0, Input=  75.2, dT=0.076732, CurrErr=  14.8, ErrRate= -42.9, Output= 0.193(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.102144] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.140" pose="(x=-42.6,y=-26.2,angle=80.2)" />
+globalTracer.printPidInfo_Info: [8.141037] purePursuitDrive.xPosPid: Target= -43.0, Input= -42.6, dT=0.037732, CurrErr=  -0.4, ErrRate= -22.8, Output=-0.038(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.141673] purePursuitDrive.yPosPid: Target= -11.7, Input= -26.2, dT=0.037739, CurrErr=  14.5, ErrRate=  12.8, Output= 0.645(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.142321] purePursuitDrive.turnPid: Target=  90.0, Input=  80.2, dT=0.037736, CurrErr=   9.8, ErrRate=-134.9, Output= 0.127(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.143112] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.171" pose="(x=-41.4,y=-26.5,angle=83.4)" />
+globalTracer.printPidInfo_Info: [8.171454] purePursuitDrive.xPosPid: Target= -43.1, Input= -42.6, dT=0.037973, CurrErr=  -0.5, ErrRate=  -1.6, Output=-0.044(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.172141] purePursuitDrive.yPosPid: Target= -14.2, Input= -26.2, dT=0.037956, CurrErr=  12.0, ErrRate= -66.3, Output= 0.149(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.172798] purePursuitDrive.turnPid: Target=  90.0, Input=  80.2, dT=0.037951, CurrErr=   9.8, ErrRate=   0.0, Output= 0.127(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.173432] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.211" pose="(x=-41.4,y=-26.5,angle=83.4)" />
+globalTracer.printPidInfo_Info: [8.211420] purePursuitDrive.xPosPid: Target= -44.2, Input= -41.4, dT=0.032846, CurrErr=  -2.8, ErrRate= -69.7, Output=-0.262(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.212263] purePursuitDrive.yPosPid: Target= -15.5, Input= -26.5, dT=0.032851, CurrErr=  11.0, ErrRate= -29.8, Output= 0.293(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.212907] purePursuitDrive.turnPid: Target=  90.0, Input=  83.4, dT=0.032855, CurrErr=   6.6, ErrRate= -95.9, Output= 0.086(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.213529] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.283" pose="(x=-39.7,y=-26.4,angle=86.2)" />
+globalTracer.printPidInfo_Info: [8.283945] purePursuitDrive.xPosPid: Target= -42.9, Input= -39.7, dT=0.039745, CurrErr=  -3.2, ErrRate= -12.0, Output=-0.307(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.284688] purePursuitDrive.yPosPid: Target= -15.7, Input= -26.4, dT=0.039805, CurrErr=  10.7, ErrRate=  -8.9, Output= 0.383(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.285322] purePursuitDrive.turnPid: Target=  90.0, Input=  86.2, dT=0.039809, CurrErr=   3.8, ErrRate= -70.1, Output= 0.050(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.286031] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.326" pose="(x=-38.7,y=-26.6,angle=88.7)" />
+globalTracer.printPidInfo_Info: [8.326758] purePursuitDrive.xPosPid: Target= -42.3, Input= -38.7, dT=0.068234, CurrErr=  -3.6, ErrRate=  -5.1, Output=-0.340(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.327425] purePursuitDrive.yPosPid: Target= -18.5, Input= -26.6, dT=0.068168, CurrErr=   8.1, ErrRate= -38.2, Output= 0.132(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.328179] purePursuitDrive.turnPid: Target=  90.0, Input=  88.7, dT=0.068159, CurrErr=   1.3, ErrRate= -37.0, Output= 0.017(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.329124] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.402" pose="(x=-37.0,y=-26.4,angle=91.1)" />
+globalTracer.printPidInfo_Info: [8.402447] purePursuitDrive.xPosPid: Target= -41.5, Input= -37.0, dT=0.082225, CurrErr=  -4.5, ErrRate= -11.5, Output=-0.430(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.403129] purePursuitDrive.yPosPid: Target= -20.5, Input= -26.4, dT=0.082226, CurrErr=   5.9, ErrRate= -26.4, Output= 0.104(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.403745] purePursuitDrive.turnPid: Target=  90.0, Input=  91.1, dT=0.082225, CurrErr=  -1.1, ErrRate= -29.0, Output=-0.014(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.404443] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.439" pose="(x=-35.0,y=-25.5,angle=93.4)" />
+globalTracer.printPidInfo_Info: [8.439816] purePursuitDrive.xPosPid: Target= -39.8, Input= -35.0, dT=0.040336, CurrErr=  -4.8, ErrRate=  -6.0, Output=-0.452(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.440429] purePursuitDrive.yPosPid: Target= -20.3, Input= -25.5, dT=0.040349, CurrErr=   5.2, ErrRate= -18.7, Output= 0.112(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.441075] purePursuitDrive.turnPid: Target=  90.0, Input=  93.4, dT=0.040350, CurrErr=  -3.4, ErrRate= -57.0, Output=-0.044(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.441736] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.494" pose="(x=-34.3,y=-25.4,angle=93.8)" />
+globalTracer.printPidInfo_Info: [8.495034] purePursuitDrive.xPosPid: Target= -37.0, Input= -35.0, dT=0.037413, CurrErr=  -2.0, ErrRate=  74.4, Output=-0.188(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.495801] purePursuitDrive.yPosPid: Target= -21.5, Input= -25.5, dT=0.037400, CurrErr=   4.0, ErrRate= -30.7, Output= 0.007(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.496495] purePursuitDrive.turnPid: Target=  90.0, Input=  93.4, dT=0.037400, CurrErr=  -3.4, ErrRate=   0.0, Output=-0.044(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.497204] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.529" pose="(x=-34.3,y=-25.4,angle=93.8)" />
+globalTracer.printPidInfo_Info: [8.529476] purePursuitDrive.xPosPid: Target= -36.8, Input= -34.3, dT=0.052309, CurrErr=  -2.6, ErrRate= -11.0, Output=-0.242(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.530124] purePursuitDrive.yPosPid: Target= -22.2, Input= -25.4, dT=0.052307, CurrErr=   3.2, ErrRate= -16.3, Output= 0.045(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.530750] purePursuitDrive.turnPid: Target=  90.0, Input=  93.8, dT=0.052307, CurrErr=  -3.8, ErrRate=  -8.2, Output=-0.050(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.531405] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.593" pose="(x=-33.3,y=-24.3,angle=93.7)" />
+globalTracer.printPidInfo_Info: [8.594049] purePursuitDrive.xPosPid: Target= -36.1, Input= -34.3, dT=0.038218, CurrErr=  -1.8, ErrRate=  18.8, Output=-0.174(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.594742] purePursuitDrive.yPosPid: Target= -22.1, Input= -25.4, dT=0.038218, CurrErr=   3.3, ErrRate=   3.3, Output= 0.148(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.595363] purePursuitDrive.turnPid: Target=  90.0, Input=  93.8, dT=0.038218, CurrErr=  -3.8, ErrRate=   0.0, Output=-0.050(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.596022] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.626" pose="(x=-33.3,y=-24.3,angle=93.7)" />
+globalTracer.printPidInfo_Info: [8.626842] purePursuitDrive.xPosPid: Target= -35.0, Input= -33.3, dT=0.063030, CurrErr=  -1.6, ErrRate=   3.4, Output=-0.154(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.627493] purePursuitDrive.yPosPid: Target= -22.9, Input= -24.3, dT=0.063031, CurrErr=   1.4, ErrRate= -30.6, Output=-0.099(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.628172] purePursuitDrive.turnPid: Target=  90.0, Input=  93.7, dT=0.063030, CurrErr=  -3.7, ErrRate=   2.0, Output=-0.048(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.628948] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.668" pose="(x=-32.7,y=-23.6,angle=93.4)" />
+globalTracer.printPidInfo_Info: [8.669167] purePursuitDrive.xPosPid: Target= -33.3, Input= -32.7, dT=0.030982, CurrErr=  -0.6, ErrRate=  31.4, Output=-0.061(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.669835] purePursuitDrive.yPosPid: Target= -22.5, Input= -23.6, dT=0.030984, CurrErr=   1.2, ErrRate=  -5.7, Output= 0.019(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.670520] purePursuitDrive.turnPid: Target=  90.0, Input=  93.4, dT=0.030984, CurrErr=  -3.4, ErrRate=   8.2, Output=-0.045(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.671175] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.713" pose="(x=-32.2,y=-23.2,angle=93.4)" />
+globalTracer.printPidInfo_Info: [8.714525] purePursuitDrive.xPosPid: Target= -32.7, Input= -32.2, dT=0.047351, CurrErr=  -0.4, ErrRate=   4.2, Output=-0.042(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.715285] purePursuitDrive.yPosPid: Target= -21.8, Input= -23.2, dT=0.047353, CurrErr=   1.4, ErrRate=   3.7, Output= 0.073(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.715945] purePursuitDrive.turnPid: Target=  90.0, Input=  93.4, dT=0.047355, CurrErr=  -3.4, ErrRate=   1.1, Output=-0.044(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.716658] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.756" pose="(x=-32.1,y=-23.0,angle=93.1)" />
+globalTracer.printPidInfo_Info: [8.757152] purePursuitDrive.xPosPid: Target= -31.7, Input= -32.2, dT=0.045220, CurrErr=   0.5, ErrRate=  20.9, Output= 0.048(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.757895] purePursuitDrive.yPosPid: Target= -21.8, Input= -23.2, dT=0.045215, CurrErr=   1.4, ErrRate=   1.1, Output= 0.062(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.758541] purePursuitDrive.turnPid: Target=  90.0, Input=  93.4, dT=0.045212, CurrErr=  -3.4, ErrRate=   0.0, Output=-0.044(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.759183] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.848" pose="(x=-32.0,y=-22.9,angle=92.9)" />
+globalTracer.printPidInfo_Info: [8.848611] purePursuitDrive.xPosPid: Target= -31.6, Input= -32.1, dT=0.044779, CurrErr=   0.5, ErrRate=   0.4, Output= 0.050(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.849295] purePursuitDrive.yPosPid: Target= -21.9, Input= -23.0, dT=0.044786, CurrErr=   1.2, ErrRate=  -5.2, Output= 0.021(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.849974] purePursuitDrive.turnPid: Target=  90.0, Input=  93.1, dT=0.044787, CurrErr=  -3.1, ErrRate=   6.7, Output=-0.040(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.850710] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.900" pose="(x=-31.9,y=-23.0,angle=92.6)" />
+globalTracer.printPidInfo_Info: [8.901248] purePursuitDrive.xPosPid: Target= -31.4, Input= -31.9, dT=0.101183, CurrErr=   0.5, ErrRate=  -0.4, Output= 0.046(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.901923] purePursuitDrive.yPosPid: Target= -22.0, Input= -23.0, dT=0.101195, CurrErr=   1.0, ErrRate=  -2.0, Output= 0.029(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.902560] purePursuitDrive.turnPid: Target=  90.0, Input=  92.6, dT=0.101198, CurrErr=  -2.6, ErrRate=   4.8, Output=-0.034(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.903219] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.940" pose="(x=-31.8,y=-23.1,angle=92.2)" />
+globalTracer.printPidInfo_Info: [8.940489] purePursuitDrive.xPosPid: Target= -31.1, Input= -31.9, dT=0.039211, CurrErr=   0.7, ErrRate=   6.4, Output= 0.070(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.941180] purePursuitDrive.yPosPid: Target= -21.9, Input= -23.0, dT=0.039199, CurrErr=   1.0, ErrRate=   1.8, Output= 0.050(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.941852] purePursuitDrive.turnPid: Target=  90.0, Input=  92.6, dT=0.039196, CurrErr=  -2.6, ErrRate=   0.0, Output=-0.034(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.942605] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="8.977" pose="(x=-31.8,y=-23.1,angle=92.2)" />
+globalTracer.printPidInfo_Info: [8.977250] purePursuitDrive.xPosPid: Target= -31.2, Input= -31.8, dT=0.036854, CurrErr=   0.5, ErrRate=  -5.6, Output= 0.050(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.977880] purePursuitDrive.yPosPid: Target= -22.1, Input= -23.1, dT=0.036847, CurrErr=   1.0, ErrRate=  -0.7, Output= 0.037(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.978550] purePursuitDrive.turnPid: Target=  90.0, Input=  92.2, dT=0.036844, CurrErr=  -2.2, ErrRate=  11.8, Output=-0.028(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [8.979214] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="9.023" pose="(x=-31.7,y=-23.1,angle=92.0)" />
+globalTracer.printPidInfo_Info: [9.023371] purePursuitDrive.xPosPid: Target= -31.1, Input= -31.7, dT=0.047130, CurrErr=   0.6, ErrRate=   1.9, Output= 0.059(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [9.024056] purePursuitDrive.yPosPid: Target= -22.2, Input= -23.1, dT=0.047137, CurrErr=   0.9, ErrRate=  -2.2, Output= 0.025(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [9.024860] purePursuitDrive.turnPid: Target=  90.0, Input=  92.0, dT=0.047139, CurrErr=  -2.0, ErrRate=   3.6, Output=-0.026(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [9.025528] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="9.056" pose="(x=-31.7,y=-23.1,angle=91.8)" />
+globalTracer.printPidInfo_Info: [9.056665] purePursuitDrive.xPosPid: Target= -31.1, Input= -31.7, dT=0.036654, CurrErr=   0.6, ErrRate=  -0.0, Output= 0.059(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [9.057392] purePursuitDrive.yPosPid: Target= -22.2, Input= -23.1, dT=0.036683, CurrErr=   0.9, ErrRate=  -0.3, Output= 0.034(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [9.058092] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.036686, CurrErr=  -1.8, ErrRate=   5.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [9.058702] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.TrcPurePursuitDrive.driveTask_Info: purePursuitDrive: Stalled=true, Timedout=false
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="9.122" pose="(x=-31.7,y=-23.1,angle=91.7)" />
+globalTracer.printPidInfo_Info: [9.122257] purePursuitDrive.xPosPid: Target= -31.1, Input= -31.7, dT=0.035373, CurrErr=   0.6, ErrRate=   0.4, Output= 0.060(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [9.122877] purePursuitDrive.yPosPid: Target= -22.2, Input= -23.1, dT=0.035340, CurrErr=   0.9, ErrRate=  -0.6, Output= 0.032(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [9.123503] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.035335, CurrErr=  -1.8, ErrRate=   0.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [9.124189] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.traceStateInfo_Info: <Event name="StateInfo" time="9.128" tag=">>>>>" state="DUMP_FREIGHT" volt="12.19V(10.50V)" />
+globalTracer.traceStateInfo_Info: <Event name="StateInfo" time="10.310" tag=">>>>>" state="DRIVE_TO_ALLIANCE_STORAGE_UNIT" volt="12.42V(10.50V)" />
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.352" pose="(x=-31.7,y=-23.1,angle=91.8)" />
+globalTracer.printPidInfo_Info: [10.352386] purePursuitDrive.xPosPid: Target= -20.7, Input= -31.7, dT=0.000101, CurrErr=  11.0, ErrRate=   0.0, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.353032] purePursuitDrive.yPosPid: Target= -50.4, Input= -23.1, dT=0.000089, CurrErr= -27.3, ErrRate=  -0.0, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.353800] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.000076, CurrErr=  -1.8, ErrRate=   0.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.354565] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.356" pose="(x=-31.7,y=-23.1,angle=91.8)" />
+globalTracer.printPidInfo_Info: [10.356319] purePursuitDrive.xPosPid: Target= -20.7, Input= -31.7, dT=0.038196, CurrErr=  11.0, ErrRate=   0.0, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.356887] purePursuitDrive.yPosPid: Target= -50.4, Input= -23.1, dT=0.038200, CurrErr= -27.3, ErrRate=   0.0, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.357671] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.038203, CurrErr=  -1.8, ErrRate=   0.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.358293] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.traceStateInfo_Info: <Event name="StateInfo" time="10.359" tag=">>>>>" state="DRIVE_TO_ALLIANCE_STORAGE_UNIT" RobotPose=(x=-31.7,y=-23.1,angle=91.8) TargetPose=(x=-59.4,y=-33.3,angle=181.8) vel=(x=-0.0,y=0.0,angle=0.0) Path=TrcPath(degrees=true, [TrcWaypoint(pose=(x=0.0,y=0.0,angle=91.8),vel=0.00), TrcWaypoint(pose=(x=11.0,y=-27.3,angle=90.0),vel=0.00)]) volt="10.95V(10.50V)" />
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.394" pose="(x=-31.8,y=-23.1,angle=91.8)" />
+globalTracer.printPidInfo_Info: [10.395063] purePursuitDrive.xPosPid: Target= -20.7, Input= -31.8, dT=0.020891, CurrErr=  11.0, ErrRate=   1.5, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.395710] purePursuitDrive.yPosPid: Target= -50.4, Input= -23.1, dT=0.020891, CurrErr= -27.3, ErrRate=   1.4, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.397046] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.020892, CurrErr=  -1.8, ErrRate=  -0.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.397933] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.399" pose="(x=-31.8,y=-23.1,angle=91.8)" />
+globalTracer.printPidInfo_Info: [10.399985] purePursuitDrive.xPosPid: Target= -20.8, Input= -31.8, dT=0.022588, CurrErr=  11.0, ErrRate=  -1.3, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.400861] purePursuitDrive.yPosPid: Target= -50.4, Input= -23.1, dT=0.022586, CurrErr= -27.3, ErrRate=   0.0, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.401597] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.022586, CurrErr=  -1.8, ErrRate=   0.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.402196] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.436" pose="(x=-31.9,y=-23.1,angle=91.8)" />
+globalTracer.printPidInfo_Info: [10.436284] purePursuitDrive.xPosPid: Target= -20.8, Input= -31.9, dT=0.020355, CurrErr=  11.2, ErrRate=   7.8, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.436898] purePursuitDrive.yPosPid: Target= -50.2, Input= -23.1, dT=0.020357, CurrErr= -27.1, ErrRate=   7.2, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.437528] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.020358, CurrErr=  -1.8, ErrRate=  -1.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.438114] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.441" pose="(x=-31.9,y=-23.1,angle=91.8)" />
+globalTracer.printPidInfo_Info: [10.441373] purePursuitDrive.xPosPid: Target= -20.9, Input= -31.9, dT=0.020947, CurrErr=  11.0, ErrRate=  -7.1, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.441966] purePursuitDrive.yPosPid: Target= -50.2, Input= -23.1, dT=0.020947, CurrErr= -27.1, ErrRate=   0.2, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.442584] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.020946, CurrErr=  -1.8, ErrRate=   0.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.443217] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.472" pose="(x=-31.9,y=-23.1,angle=91.8)" />
+globalTracer.printPidInfo_Info: [10.472317] purePursuitDrive.xPosPid: Target= -20.9, Input= -31.9, dT=0.021226, CurrErr=  11.0, ErrRate=   0.0, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.472929] purePursuitDrive.yPosPid: Target= -50.2, Input= -23.1, dT=0.021230, CurrErr= -27.1, ErrRate=   0.0, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.473519] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.021232, CurrErr=  -1.8, ErrRate=   0.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.474171] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.505" pose="(x=-32.4,y=-23.2,angle=91.8)" />
+globalTracer.printPidInfo_Info: [10.505807] purePursuitDrive.xPosPid: Target= -21.0, Input= -32.4, dT=0.021045, CurrErr=  11.3, ErrRate=  16.1, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.506533] purePursuitDrive.yPosPid: Target= -49.8, Input= -23.2, dT=0.021058, CurrErr= -26.6, ErrRate=  26.7, Output=-0.930(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.507197] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.021059, CurrErr=  -1.8, ErrRate=  -0.4, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.508944] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.539" pose="(x=-32.7,y=-23.6,angle=91.9)" />
+globalTracer.printPidInfo_Info: [10.539788] purePursuitDrive.xPosPid: Target= -21.5, Input= -32.4, dT=0.027341, CurrErr=  10.9, ErrRate= -16.7, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.540391] purePursuitDrive.yPosPid: Target= -49.9, Input= -23.2, dT=0.027325, CurrErr= -26.7, ErrRate=  -3.9, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.541100] purePursuitDrive.turnPid: Target=  90.0, Input=  91.8, dT=0.027322, CurrErr=  -1.8, ErrRate=   0.0, Output=-0.023(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.541837] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.568" pose="(x=-32.7,y=-23.6,angle=91.9)" />
+globalTracer.printPidInfo_Info: [10.568590] purePursuitDrive.xPosPid: Target= -21.9, Input= -32.7, dT=0.032882, CurrErr=  10.8, ErrRate=  -1.6, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.569434] purePursuitDrive.yPosPid: Target= -49.5, Input= -23.6, dT=0.032882, CurrErr= -25.9, ErrRate=  24.1, Output=-0.915(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.570065] purePursuitDrive.turnPid: Target=  90.0, Input=  91.9, dT=0.032881, CurrErr=  -1.9, ErrRate=  -2.7, Output=-0.025(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.570660] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.613" pose="(x=-34.3,y=-24.7,angle=91.9)" />
+globalTracer.printPidInfo_Info: [10.614472] purePursuitDrive.xPosPid: Target= -22.2, Input= -32.7, dT=0.044976, CurrErr=  10.5, ErrRate=  -7.8, Output= 0.996(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.616012] purePursuitDrive.yPosPid: Target= -50.0, Input= -23.6, dT=0.044978, CurrErr= -26.3, ErrRate=  -9.7, Output=-1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.618315] purePursuitDrive.turnPid: Target=  90.0, Input=  91.9, dT=0.044979, CurrErr=  -1.9, ErrRate=   0.0, Output=-0.025(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.619193] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.650" pose="(x=-34.3,y=-24.7,angle=91.9)" />
+globalTracer.printPidInfo_Info: [10.650344] purePursuitDrive.xPosPid: Target= -23.3, Input= -34.3, dT=0.042114, CurrErr=  10.9, ErrRate=  10.5, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.651388] purePursuitDrive.yPosPid: Target= -48.4, Input= -24.7, dT=0.042132, CurrErr= -23.8, ErrRate=  60.9, Output=-0.646(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.652135] purePursuitDrive.turnPid: Target=  90.0, Input=  91.9, dT=0.042134, CurrErr=  -1.9, ErrRate=   0.5, Output=-0.024(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.653034] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.679" pose="(x=-35.9,y=-26.1,angle=91.6)" />
+globalTracer.printPidInfo_Info: [10.679855] purePursuitDrive.xPosPid: Target= -24.9, Input= -35.9, dT=0.032688, CurrErr=  11.0, ErrRate=   1.8, Output= 1.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.680787] purePursuitDrive.yPosPid: Target= -49.5, Input= -26.1, dT=0.032675, CurrErr= -23.4, ErrRate=  11.6, Output=-0.878(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.681609] purePursuitDrive.turnPid: Target=  90.0, Input=  91.6, dT=0.032688, CurrErr=  -1.6, ErrRate=   7.4, Output=-0.021(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.682462] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.714" pose="(x=-35.9,y=-26.1,angle=91.6)" />
+globalTracer.printPidInfo_Info: [10.714778] purePursuitDrive.xPosPid: Target= -28.1, Input= -35.9, dT=0.029372, CurrErr=   7.8, ErrRate=-108.6, Output= 0.741(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.715567] purePursuitDrive.yPosPid: Target= -49.4, Input= -26.1, dT=0.029378, CurrErr= -23.3, ErrRate=   3.5, Output=-0.914(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.716280] purePursuitDrive.turnPid: Target=  90.0, Input=  91.6, dT=0.029364, CurrErr=  -1.6, ErrRate=   0.0, Output=-0.021(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.717133] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.747" pose="(x=-36.8,y=-26.6,angle=91.4)" />
+globalTracer.printPidInfo_Info: [10.747654] purePursuitDrive.xPosPid: Target= -28.7, Input= -36.8, dT=0.036750, CurrErr=   8.1, ErrRate=   8.5, Output= 0.770(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.748421] purePursuitDrive.yPosPid: Target= -48.5, Input= -26.6, dT=0.036743, CurrErr= -21.9, ErrRate=  38.5, Output=-0.682(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.749342] purePursuitDrive.turnPid: Target=  90.0, Input=  91.4, dT=0.036756, CurrErr=  -1.4, ErrRate=   7.4, Output=-0.018(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.750176] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.777" pose="(x=-38.1,y=-27.9,angle=91.1)" />
+globalTracer.printPidInfo_Info: [10.777884] purePursuitDrive.xPosPid: Target= -29.7, Input= -38.1, dT=0.029912, CurrErr=   8.4, ErrRate=  10.5, Output= 0.800(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.778806] purePursuitDrive.yPosPid: Target= -49.0, Input= -27.9, dT=0.029907, CurrErr= -21.1, ErrRate=  25.9, Output=-0.714(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.779598] purePursuitDrive.turnPid: Target=  90.0, Input=  91.1, dT=0.029893, CurrErr=  -1.1, ErrRate=   9.3, Output=-0.014(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.780298] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.812" pose="(x=-38.1,y=-27.9,angle=91.1)" />
+globalTracer.printPidInfo_Info: [10.812869] purePursuitDrive.xPosPid: Target= -32.4, Input= -38.1, dT=0.029691, CurrErr=   5.7, ErrRate= -90.4, Output= 0.545(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.813544] purePursuitDrive.yPosPid: Target= -49.1, Input= -27.9, dT=0.029695, CurrErr= -21.2, ErrRate=  -2.6, Output=-0.859(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.814198] purePursuitDrive.turnPid: Target=  90.0, Input=  91.1, dT=0.029696, CurrErr=  -1.1, ErrRate=   0.0, Output=-0.014(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.814848] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.889" pose="(x=-39.0,y=-28.6,angle=91.1)" />
+globalTracer.printPidInfo_Info: [10.889560] purePursuitDrive.xPosPid: Target= -33.1, Input= -39.0, dT=0.034344, CurrErr=   5.9, ErrRate=   5.8, Output= 0.564(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.890184] purePursuitDrive.yPosPid: Target= -48.2, Input= -28.6, dT=0.034340, CurrErr= -19.6, ErrRate=  45.3, Output=-0.558(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.890820] purePursuitDrive.turnPid: Target=  90.0, Input=  91.1, dT=0.034339, CurrErr=  -1.1, ErrRate=   0.4, Output=-0.014(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.891433] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.928" pose="(x=-40.5,y=-29.1,angle=90.9)" />
+globalTracer.printPidInfo_Info: [10.928836] purePursuitDrive.xPosPid: Target= -34.5, Input= -40.5, dT=0.079955, CurrErr=   5.9, ErrRate=  -0.2, Output= 0.563(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.929685] purePursuitDrive.yPosPid: Target= -47.4, Input= -29.1, dT=0.079961, CurrErr= -18.3, ErrRate=  16.0, Output=-0.653(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.930490] purePursuitDrive.turnPid: Target=  90.0, Input=  90.9, dT=0.079965, CurrErr=  -0.9, ErrRate=   1.9, Output=-0.012(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.931858] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="10.969" pose="(x=-43.1,y=-31.5,angle=90.2)" />
+globalTracer.printPidInfo_Info: [10.969675] purePursuitDrive.xPosPid: Target= -36.0, Input= -40.5, dT=0.043223, CurrErr=   4.5, ErrRate= -33.9, Output= 0.423(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.970716] purePursuitDrive.yPosPid: Target= -47.9, Input= -29.1, dT=0.043215, CurrErr= -18.8, ErrRate= -11.8, Output=-0.813(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.971765] purePursuitDrive.turnPid: Target=  90.0, Input=  90.9, dT=0.043214, CurrErr=  -0.9, ErrRate=   0.0, Output=-0.012(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [10.972555] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.031" pose="(x=-43.1,y=-31.5,angle=90.2)" />
+globalTracer.printPidInfo_Info: [11.032397] purePursuitDrive.xPosPid: Target= -38.7, Input= -43.1, dT=0.040442, CurrErr=   4.5, ErrRate=   0.2, Output= 0.424(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.033208] purePursuitDrive.yPosPid: Target= -45.3, Input= -31.5, dT=0.040446, CurrErr= -13.8, ErrRate= 124.0, Output= 0.067(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.034168] purePursuitDrive.turnPid: Target=  90.0, Input=  90.2, dT=0.040446, CurrErr=  -0.2, ErrRate=  16.8, Output=-0.003(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.034945] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.076" pose="(x=-44.9,y=-32.2,angle=89.8)" />
+globalTracer.printPidInfo_Info: [11.076234] purePursuitDrive.xPosPid: Target= -42.1, Input= -44.9, dT=0.054604, CurrErr=   2.8, ErrRate= -31.2, Output= 0.262(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.076835] purePursuitDrive.yPosPid: Target= -46.0, Input= -32.2, dT=0.054605, CurrErr= -13.9, ErrRate=  -0.7, Output=-0.558(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.077425] purePursuitDrive.turnPid: Target=  90.0, Input=  89.8, dT=0.054604, CurrErr=   0.2, ErrRate=   7.7, Output= 0.003(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.078145] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.114" pose="(x=-47.1,y=-33.9,angle=89.6)" />
+globalTracer.printPidInfo_Info: [11.115152] purePursuitDrive.xPosPid: Target= -43.8, Input= -44.9, dT=0.045406, CurrErr=   1.0, ErrRate= -38.1, Output= 0.098(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.116145] purePursuitDrive.yPosPid: Target= -46.7, Input= -32.2, dT=0.045402, CurrErr= -14.5, ErrRate= -14.5, Output=-0.653(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.116904] purePursuitDrive.turnPid: Target=  90.0, Input=  89.8, dT=0.045401, CurrErr=   0.2, ErrRate=   0.0, Output= 0.003(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.117620] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.153" pose="(x=-47.1,y=-33.9,angle=89.6)" />
+globalTracer.printPidInfo_Info: [11.153325] purePursuitDrive.xPosPid: Target= -45.6, Input= -47.1, dT=0.039569, CurrErr=   1.5, ErrRate=  12.0, Output= 0.143(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.153977] purePursuitDrive.yPosPid: Target= -44.5, Input= -33.9, dT=0.039567, CurrErr= -10.6, ErrRate=  99.3, Output= 0.073(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.154694] purePursuitDrive.turnPid: Target=  90.0, Input=  89.6, dT=0.039567, CurrErr=   0.4, ErrRate=   5.2, Output= 0.005(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.155366] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.189" pose="(x=-48.9,y=-34.9,angle=89.5)" />
+globalTracer.printPidInfo_Info: [11.189615] purePursuitDrive.xPosPid: Target= -47.8, Input= -47.1, dT=0.039762, CurrErr=  -0.7, ErrRate= -55.7, Output=-0.067(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.190440] purePursuitDrive.yPosPid: Target= -46.2, Input= -33.9, dT=0.039782, CurrErr= -12.3, ErrRate= -42.8, Output=-0.706(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.191239] purePursuitDrive.turnPid: Target=  90.0, Input=  89.6, dT=0.039783, CurrErr=   0.4, ErrRate=   0.0, Output= 0.005(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.191951] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.244" pose="(x=-48.9,y=-34.9,angle=89.5)" />
+globalTracer.printPidInfo_Info: [11.245096] purePursuitDrive.xPosPid: Target= -48.8, Input= -48.9, dT=0.036235, CurrErr=   0.1, ErrRate=  23.5, Output= 0.014(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.245688] purePursuitDrive.yPosPid: Target= -44.3, Input= -34.9, dT=0.036218, CurrErr=  -9.4, ErrRate=  80.2, Output= 0.025(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.246367] purePursuitDrive.turnPid: Target=  90.0, Input=  89.5, dT=0.036216, CurrErr=   0.5, ErrRate=   2.9, Output= 0.007(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.247017] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.288" pose="(x=-50.5,y=-35.4,angle=88.9)" />
+globalTracer.printPidInfo_Info: [11.289085] purePursuitDrive.xPosPid: Target= -51.3, Input= -50.5, dT=0.054044, CurrErr=  -0.8, ErrRate= -16.6, Output=-0.072(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.289940] purePursuitDrive.yPosPid: Target= -43.7, Input= -35.4, dT=0.054046, CurrErr=  -8.3, ErrRate=  20.5, Output=-0.229(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.290739] purePursuitDrive.turnPid: Target=  90.0, Input=  88.9, dT=0.054047, CurrErr=   1.1, ErrRate=  10.5, Output= 0.014(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.291597] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.330" pose="(x=-52.3,y=-36.1,angle=88.8)" />
+globalTracer.printPidInfo_Info: [11.331127] purePursuitDrive.xPosPid: Target= -52.9, Input= -52.3, dT=0.047153, CurrErr=  -0.6, ErrRate=   3.5, Output=-0.056(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.331908] purePursuitDrive.yPosPid: Target= -44.2, Input= -36.1, dT=0.047154, CurrErr=  -8.1, ErrRate=   3.7, Output=-0.306(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.332604] purePursuitDrive.turnPid: Target=  90.0, Input=  88.8, dT=0.047153, CurrErr=   1.2, ErrRate=   2.5, Output= 0.015(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.333251] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.400" pose="(x=-52.3,y=-36.1,angle=88.8)" />
+globalTracer.printPidInfo_Info: [11.400860] purePursuitDrive.xPosPid: Target= -55.3, Input= -52.3, dT=0.034838, CurrErr=  -3.0, ErrRate= -69.5, Output=-0.286(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.401544] purePursuitDrive.yPosPid: Target= -43.2, Input= -36.1, dT=0.034837, CurrErr=  -7.0, ErrRate=  30.5, Output=-0.130(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.402273] purePursuitDrive.turnPid: Target=  90.0, Input=  88.8, dT=0.034841, CurrErr=   1.2, ErrRate=   0.0, Output= 0.015(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.403220] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.472" pose="(x=-54.6,y=-36.2,angle=89.6)" />
+globalTracer.printPidInfo_Info: [11.472736] purePursuitDrive.xPosPid: Target= -55.2, Input= -53.3, dT=0.096526, CurrErr=  -1.9, ErrRate=  11.4, Output=-0.181(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.473374] purePursuitDrive.yPosPid: Target= -42.1, Input= -36.1, dT=0.096525, CurrErr=  -6.0, ErrRate=  10.9, Output=-0.185(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.474030] purePursuitDrive.turnPid: Target=  90.0, Input=  89.4, dT=0.096521, CurrErr=   0.6, ErrRate=  -6.2, Output= 0.008(-1.000/ 1.000)
+globalTracer.triggerEvent_Info: TrcMotor encoder reset! motor=arm.motor,pos=-143.00
+globalTracer.printPidInfo_Info: [11.474656] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.537" pose="(x=-54.6,y=-36.2,angle=89.6)" />
+globalTracer.printPidInfo_Info: [11.537942] purePursuitDrive.xPosPid: Target= -56.3, Input= -54.6, dT=0.057802, CurrErr=  -1.7, ErrRate=   3.6, Output=-0.161(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.538591] purePursuitDrive.yPosPid: Target= -40.9, Input= -36.2, dT=0.057802, CurrErr=  -4.8, ErrRate=  21.5, Output=-0.083(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.539293] purePursuitDrive.turnPid: Target=  90.0, Input=  89.6, dT=0.057802, CurrErr=   0.4, ErrRate=  -4.1, Output= 0.005(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.539958] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.589" pose="(x=-55.8,y=-35.5,angle=89.2)" />
+globalTracer.printPidInfo_Info: [11.589766] purePursuitDrive.xPosPid: Target= -56.9, Input= -55.8, dT=0.061283, CurrErr=  -1.0, ErrRate=  10.8, Output=-0.098(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.590363] purePursuitDrive.yPosPid: Target= -39.7, Input= -35.5, dT=0.061281, CurrErr=  -4.2, ErrRate=   9.0, Output=-0.123(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.591039] purePursuitDrive.turnPid: Target=  90.0, Input=  89.2, dT=0.061281, CurrErr=   0.8, ErrRate=   7.5, Output= 0.011(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.591632] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.632" pose="(x=-56.2,y=-35.3,angle=89.3)" />
+globalTracer.printPidInfo_Info: [11.632375] purePursuitDrive.xPosPid: Target= -58.0, Input= -56.2, dT=0.046378, CurrErr=  -1.8, ErrRate= -16.5, Output=-0.171(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.633091] purePursuitDrive.yPosPid: Target= -38.7, Input= -35.3, dT=0.046379, CurrErr=  -3.3, ErrRate=  18.7, Output=-0.040(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.634015] purePursuitDrive.turnPid: Target=  90.0, Input=  89.3, dT=0.046380, CurrErr=   0.7, ErrRate=  -3.2, Output= 0.009(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.634806] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.678" pose="(x=-56.8,y=-34.8,angle=89.7)" />
+globalTracer.printPidInfo_Info: [11.678627] purePursuitDrive.xPosPid: Target= -58.3, Input= -56.8, dT=0.042329, CurrErr=  -1.5, ErrRate=   6.9, Output=-0.143(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.679347] purePursuitDrive.yPosPid: Target= -38.5, Input= -34.8, dT=0.042336, CurrErr=  -3.7, ErrRate=  -8.3, Output=-0.189(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.679964] purePursuitDrive.turnPid: Target=  90.0, Input=  89.7, dT=0.042336, CurrErr=   0.3, ErrRate=  -7.7, Output= 0.004(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.680588] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.736" pose="(x=-57.0,y=-34.8,angle=89.8)" />
+globalTracer.printPidInfo_Info: [11.736754] purePursuitDrive.xPosPid: Target= -58.4, Input= -56.8, dT=0.049017, CurrErr=  -1.6, ErrRate=  -2.1, Output=-0.153(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.737384] purePursuitDrive.yPosPid: Target= -37.4, Input= -34.8, dT=0.049016, CurrErr=  -2.6, ErrRate=  22.5, Output= 0.009(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.738049] purePursuitDrive.turnPid: Target=  90.0, Input=  89.7, dT=0.049016, CurrErr=   0.3, ErrRate=   0.0, Output= 0.004(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.738639] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.787" pose="(x=-57.3,y=-34.5,angle=89.9)" />
+globalTracer.printPidInfo_Info: [11.788188] purePursuitDrive.xPosPid: Target= -58.3, Input= -57.0, dT=0.055448, CurrErr=  -1.3, ErrRate=   5.4, Output=-0.125(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.788949] purePursuitDrive.yPosPid: Target= -37.2, Input= -34.8, dT=0.055440, CurrErr=  -2.5, ErrRate=   2.0, Output=-0.089(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.789834] purePursuitDrive.turnPid: Target=  90.0, Input=  89.8, dT=0.055441, CurrErr=   0.2, ErrRate=  -1.9, Output= 0.003(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.790668] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.829" pose="(x=-57.3,y=-34.5,angle=89.9)" />
+globalTracer.printPidInfo_Info: [11.829905] purePursuitDrive.xPosPid: Target= -58.3, Input= -57.3, dT=0.050580, CurrErr=  -0.9, ErrRate=   7.7, Output=-0.088(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.830619] purePursuitDrive.yPosPid: Target= -36.8, Input= -34.5, dT=0.050581, CurrErr=  -2.3, ErrRate=   3.9, Output=-0.071(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.831430] purePursuitDrive.turnPid: Target=  90.0, Input=  89.9, dT=0.050582, CurrErr=   0.1, ErrRate=  -2.5, Output= 0.001(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.832228] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.881" pose="(x=-57.6,y=-34.4,angle=90.0)" />
+globalTracer.printPidInfo_Info: [11.882411] purePursuitDrive.xPosPid: Target= -58.5, Input= -57.6, dT=0.042698, CurrErr=  -0.8, ErrRate=   2.0, Output=-0.080(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.883356] purePursuitDrive.yPosPid: Target= -36.3, Input= -34.4, dT=0.042701, CurrErr=  -1.9, ErrRate=   8.8, Output=-0.032(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.884119] purePursuitDrive.turnPid: Target=  90.0, Input=  90.0, dT=0.042700, CurrErr=   0.0, ErrRate=  -2.3, Output= 0.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.884870] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="11.958" pose="(x=-57.8,y=-34.1,angle=90.0)" />
+globalTracer.printPidInfo_Info: [11.958169] purePursuitDrive.xPosPid: Target= -58.8, Input= -57.8, dT=0.052756, CurrErr=  -0.9, ErrRate=  -1.5, Output=-0.088(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.958683] purePursuitDrive.yPosPid: Target= -36.1, Input= -34.1, dT=0.052755, CurrErr=  -2.0, ErrRate=  -1.9, Output=-0.089(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.959263] purePursuitDrive.turnPid: Target=  90.0, Input=  90.0, dT=0.052757, CurrErr=   0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [11.959856] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="12.007" pose="(x=-57.9,y=-34.1,angle=89.9)" />
+globalTracer.printPidInfo_Info: [12.007240] purePursuitDrive.xPosPid: Target= -58.7, Input= -57.9, dT=0.080365, CurrErr=  -0.8, ErrRate=   1.3, Output=-0.078(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [12.007842] purePursuitDrive.yPosPid: Target= -35.6, Input= -34.1, dT=0.080361, CurrErr=  -1.5, ErrRate=   5.9, Output=-0.031(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [12.008499] purePursuitDrive.turnPid: Target=  90.0, Input=  89.9, dT=0.080363, CurrErr=   0.1, ErrRate=   1.0, Output= 0.001(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [12.009264] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.purePursuitDrive_Info: <Event name="RobotPose" time="12.056" pose="(x=-58.0,y=-34.0,angle=90.0)" />
+globalTracer.printPidInfo_Info: [12.056687] purePursuitDrive.xPosPid: Target= -58.7, Input= -58.0, dT=0.049278, CurrErr=  -0.7, ErrRate=   2.8, Output=-0.065(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [12.057482] purePursuitDrive.yPosPid: Target= -35.5, Input= -34.0, dT=0.049280, CurrErr=  -1.5, ErrRate=   1.4, Output=-0.051(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [12.058284] purePursuitDrive.turnPid: Target=  90.0, Input=  90.0, dT=0.049278, CurrErr=   0.0, ErrRate=  -1.2, Output= 0.000(-1.000/ 1.000)
+globalTracer.printPidInfo_Info: [12.058986] purePursuitDrive.velPid: Target=   0.0, Input=   0.0, dT=0.000000, CurrErr=  -0.0, ErrRate=   0.0, Output= 0.000(-1.000/ 1.000)
+globalTracer.traceStateInfo_Info: <Event name="StateInfo" time="12.076" tag=">>>>>" state="null" volt="12.46V(10.50V)" />
+globalTracer.printElapsedTime_Info: imu.getGyroData: avgElapsed=0.000010, minElapsed=0.000002, maxElapsed=0.002035
+globalTracer.printElapsedTime_Info: TrcDigitalInput.getInput: avgElapsed=0.005645, minElapsed=0.000054, maxElapsed=0.022417
+globalTracer.printElapsedTime_Info: TrcMotor.getPos: avgElapsed=0.001417, minElapsed=0.000026, maxElapsed=0.035484
+globalTracer.printElapsedTime_Info: TrcMotor.set: avgElapsed=0.007090, minElapsed=0.000006, maxElapsed=0.041215
+globalTracer.printElapsedTime_Info: TrcServo.setPos: avgElapsed=0.000572, minElapsed=0.000456, maxElapsed=0.000767
+globalTracer.stopMode_Info: Shutting down TensorFlow.
+globalTracer.FtcOpMode_Info:    FtcAutonomous: Periodic=0.000089, Continuous=0.000469, SDK=0.000441
+globalTracer.TaskPerformance_Info: TrcRobotBattery.robotBatteryTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.005797/0.007024, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: imu.converterTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000081/0.007024, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info:     imu.gyroTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.021436/0.037136, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info:    imu.accelTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: TrcMotor.odometryTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.004762/0.024707, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: lfWheel.cleanupTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: lfWheel.velCtrlTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: rfWheel.velCtrlTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: lbWheel.velCtrlTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: rbWheel.velCtrlTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: TrcDriveBase.odometryTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000560/0.037124, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: TrcDriveBase.stopTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: pidDrive.driveTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: pidDrive.stopTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: purePursuitDrive.driveTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.036606/0.086326
+globalTracer.TaskPerformance_Info: arm.motor.velCtrlTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: arm.pidMotorTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.008027/0.163858
+globalTracer.TaskPerformance_Info: arm.stopMotorTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: arm.motor.triggerTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.001321/0.024701, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: intake.motor.velCtrlTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: intake.analogTrigger.triggerTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: spinnerMotor.velCtrlTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: yLeftOdwServo.servoTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: yRightOdwServo.servoTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
+globalTracer.TaskPerformance_Info: xOdwServo.servoTask: Start=0.000000/0.000000, Stop=0.000000/0.000000, PrePeriodic=0.000000/0.000000, PostPeriodic=0.000000/0.000000, PreContinuous=0.000000/0.000000, PostContinous=0.000000/0.000000, Standalone=0.000000/0.000000, Input=0.000000/0.000000, Output=0.000000/0.000000
