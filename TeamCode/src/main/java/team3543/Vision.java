@@ -22,7 +22,6 @@
 
 package team3543;
 
-import org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
@@ -31,9 +30,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-import org.opencv.android.BaseLoaderCallback;
-import org.opencv.android.LoaderCallbackInterface;
-import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
 import org.opencv.core.KeyPoint;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfKeyPoint;
@@ -108,9 +105,10 @@ public class Vision
     //
     // Grip Vision.
     //
-    private FtcRobotControllerActivity activity;
-    private BaseLoaderCallback loaderCallback;
+//    private FtcRobotControllerActivity activity;
+//    private BaseLoaderCallback loaderCallback;
     private GripVision gripVision;
+    private final Mat cameraImage = new Mat();
 
     /**
      * Constructor: Create an instance of the object. Vision is required by both Vuforia and TensorFlow and must be
@@ -152,42 +150,57 @@ public class Vision
 
         if (useGripPipeline)
         {
-            initOpenCV();
+            vuforia.configVideoSource(RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT, 1);
+//            initOpenCV();
             gripVision = new GripVision("GripVision", vuforia);
         }
     }   //Vision
 
-    private void initOpenCV()
+    public Rect[] gripDetectObjects()
     {
-        vuforia.configVideoSource(RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT, 1);
-        //
-        // Initialize OpenCV.
-        //
-        activity = (FtcRobotControllerActivity)FtcOpMode.getInstance().hardwareMap.appContext;
-        loaderCallback = new BaseLoaderCallback(activity)
-        {
-            /**
-             * This method is called when the OpenCV manager is connected. It loads the
-             * OpenCV library.
-             *
-             * @param status specifies the OpenCV connection status.
-             */
-            @Override
-            public void onManagerConnected(int status)
-            {
-                switch (status)
-                {
-                    case LoaderCallbackInterface.SUCCESS:
-                        System.loadLibrary("opencv_java3");
-                        break;
+        Rect[] detectedObjects = null;
 
-                    default:
-                        super.onManagerConnected(status);
-                        break;
-                }
-            }   //onManagerConnected
-        };
-    }   //initOpenCV
+        if (gripVision != null)
+        {
+            double startTime = TrcUtil.getCurrentTime();
+            gripVision.grabFrame(cameraImage);
+            detectedObjects = gripVision.detectObjects(cameraImage, null);
+            robot.dashboard.displayPrintf(15, "GripVisionTime=%.3f", TrcUtil.getCurrentTime() - startTime);
+        }
+
+        return detectedObjects;
+    }   //gripDetectObjects
+
+//    private void initOpenCV()
+//    {
+//        //
+//        // Initialize OpenCV.
+//        //
+//        activity = (FtcRobotControllerActivity)FtcOpMode.getInstance().hardwareMap.appContext;
+//        loaderCallback = new BaseLoaderCallback(activity)
+//        {
+//            /**
+//             * This method is called when the OpenCV manager is connected. It loads the
+//             * OpenCV library.
+//             *
+//             * @param status specifies the OpenCV connection status.
+//             */
+//            @Override
+//            public void onManagerConnected(int status)
+//            {
+//                switch (status)
+//                {
+//                    case LoaderCallbackInterface.SUCCESS:
+//                        System.loadLibrary("opencv_java3");
+//                        break;
+//
+//                    default:
+//                        super.onManagerConnected(status);
+//                        break;
+//                }
+//            }   //onManagerConnected
+//        };
+//    }   //initOpenCV
 
     /**
      * This method sets up the Blinkin with a priority pattern list and a pattern name map.
@@ -662,7 +675,7 @@ public class Vision
      */
     private class TensorFlowVision
     {
-        private static final String OPENCV_NATIVE_LIBRARY_NAME = "opencv_java3";
+//        private static final String OPENCV_NATIVE_LIBRARY_NAME = "opencv_java3";
         private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
         private static final float TFOD_MIN_CONFIDENCE = 0.2f;
         private static final double TARGET_WIDTH_LOWER_TOLERANCE = 2.0;
@@ -680,7 +693,7 @@ public class Vision
          */
         private TensorFlowVision()
         {
-            System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
+            System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
             FtcOpMode opMode = FtcOpMode.getInstance();
             int tfodMonitorViewId = !RobotParams.Preferences.showTensorFlowView ? -1 :
                 opMode.hardwareMap.appContext.getResources().getIdentifier(
@@ -943,21 +956,21 @@ public class Vision
             gripPipeline = new GripPipeline("Target", TARGET_HUE);
         }   //GripVision
 
-        public void setVisionEnabled(boolean enabled)
-        {
-            if (enabled)
-            {
-                if (!OpenCVLoader.initDebug())
-                {
-                    OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, activity, loaderCallback);
-                }
-                else
-                {
-                    loaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-                }
-            }
-            setEnabled(enabled);
-        }   //setVisionEnabled
+//        public void setVisionEnabled(boolean enabled)
+//        {
+//            if (enabled)
+//            {
+//                if (!OpenCVLoader.initDebug())
+//                {
+//                    OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, activity, loaderCallback);
+//                }
+//                else
+//                {
+//                    loaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+//                }
+//            }
+//            setEnabled(enabled);
+//        }   //setVisionEnabled
 
         /**
          * This method enables/disables the video out stream.
