@@ -89,6 +89,7 @@ public class Vision
         new TrcRevBlinkin.Pattern(redAllianceWallName, TrcRevBlinkin.RevLedPattern.FixedLightChaseRed),
         new TrcRevBlinkin.Pattern(blueAllianceWallName, TrcRevBlinkin.RevLedPattern.FixedLightChaseBlue)};
 
+    private static final String OPENCV_NATIVE_LIBRARY_NAME = "opencv_java3";
     private final Robot robot;
     private final TrcDbgTrace tracer;
     private final FtcVuforia vuforia;
@@ -108,7 +109,7 @@ public class Vision
 //    private FtcRobotControllerActivity activity;
 //    private BaseLoaderCallback loaderCallback;
     private GripVision gripVision;
-    private final Mat cameraImage = new Mat();
+    private Mat cameraImage;
 
     /**
      * Constructor: Create an instance of the object. Vision is required by both Vuforia and TensorFlow and must be
@@ -151,6 +152,8 @@ public class Vision
         if (useGripPipeline)
         {
             vuforia.configVideoSource(RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT, 1);
+            System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
+            cameraImage = new Mat();
 //            initOpenCV();
             gripVision = new GripVision("GripVision", vuforia);
         }
@@ -677,7 +680,6 @@ public class Vision
      */
     private class TensorFlowVision
     {
-//        private static final String OPENCV_NATIVE_LIBRARY_NAME = "opencv_java3";
         private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
         private static final float TFOD_MIN_CONFIDENCE = 0.2f;
         private static final double TARGET_WIDTH_LOWER_TOLERANCE = 2.0;
@@ -695,7 +697,7 @@ public class Vision
          */
         private TensorFlowVision()
         {
-            System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+            System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
             FtcOpMode opMode = FtcOpMode.getInstance();
             int tfodMonitorViewId = !RobotParams.Preferences.showTensorFlowView ? -1 :
                 opMode.hardwareMap.appContext.getResources().getIdentifier(
