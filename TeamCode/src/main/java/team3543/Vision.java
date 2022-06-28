@@ -163,9 +163,11 @@ public class Vision
         if (gripVision != null)
         {
             double startTime = TrcUtil.getCurrentTime();
-            gripVision.grabFrame(cameraImage);
-            detectedObjects = gripVision.detectObjects(cameraImage, null);
-            robot.dashboard.displayPrintf(15, "GripVisionTime=%.3f", TrcUtil.getCurrentTime() - startTime);
+            if (gripVision.grabFrame(cameraImage))
+            {
+                detectedObjects = gripVision.detectObjects(cameraImage, null);
+                robot.dashboard.displayPrintf(15, "GripVisionTime=%.3f", TrcUtil.getCurrentTime() - startTime);
+            }
         }
 
         return detectedObjects;
