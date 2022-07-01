@@ -30,7 +30,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-import org.opencv.core.Core;
 import org.opencv.core.KeyPoint;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfKeyPoint;
@@ -948,16 +947,13 @@ public class Vision
      */
     private class GripVision extends TrcOpenCvDetector<Rect[]>
     {
-        private final double[] TARGET_HUE = {0.0, 100.0};
-
-        private final Rect[] targetRects = new Rect[2];
         private final GripPipeline gripPipeline;
         private boolean videoOutEnabled = false;
 
         public GripVision(String instanceName, TrcVideoSource<Mat> videoSource)
         {
             super(instanceName, videoSource, 2, null);
-            gripPipeline = new GripPipeline("Target", TARGET_HUE);
+            gripPipeline = new GripPipeline();
         }   //GripVision
 
 //        public void setVisionEnabled(boolean enabled)
@@ -986,40 +982,45 @@ public class Vision
             videoOutEnabled = enabled;
         }   //setVideoOutEnabled
 
-        public void retrieveTargetRects(Rect[] rects)
-        {
-            synchronized (targetRects)
-            {
-                rects[0] = targetRects[0];
-                targetRects[0] = null;
-                rects[1] = targetRects[1];
-                targetRects[1] = null;
-            }
-        }   //retrieveTargetRects
+//        public void retrieveTargetRects(Rect[] rects)
+//        {
+//            synchronized (targetRects)
+//            {
+//                rects[0] = targetRects[0];
+//                targetRects[0] = null;
+//                rects[1] = targetRects[1];
+//                targetRects[1] = null;
+//            }
+//        }   //retrieveTargetRects
 
-        private Rect getTargetRect(GripPipeline pipeline, Mat image)
-        {
-            Rect targetRect = null;
-            MatOfKeyPoint detectedTargets;
-
-            pipeline.process(image);
-            detectedTargets = pipeline.findBlobsOutput();
-            if (detectedTargets != null)
-            {
-                KeyPoint[] targets = detectedTargets.toArray();
-                if (targets.length > 1)
-                {
-                    FtcDashboard.getInstance().displayPrintf(15, "%s: %s", pipeline, targets[0]);
-                    double radius = targets[0].size/2;
-                    targetRect = new Rect(
-                        (int)(targets[0].pt.x - radius), (int)(targets[0].pt.y - radius),
-                        (int)targets[0].size, (int)targets[0].size);
-                }
-                detectedTargets.release();
-            }
-
-            return targetRect;
-        }   //getTargetRect
+//        private Rect[] getTargetRects(GripPipeline pipeline, Mat image)
+//        {
+//            Rect[] targetRects = null;
+//            MatOfKeyPoint detectedTargets;
+//            int lineNum = 10;
+//
+//            pipeline.process(image);
+//            detectedTargets = pipeline.findBlobsOutput();
+//            if (detectedTargets != null)
+//            {
+//                KeyPoint[] targets = detectedTargets.toArray();
+//                targetRects = new Rect[targets.length];
+//                for (int i = 0; i < targetRects.length; i++)
+//                {
+//                    double radius = targets[i].size/2;
+//                    targetRects[i] = new Rect(
+//                        (int)(targets[i].pt.x - radius), (int)(targets[i].pt.y - radius),
+//                        (int)targets[i].size, (int)targets[i].size);
+//                    if (lineNum + i < FtcDashboard.getInstance().getNumTextLines())
+//                    {
+//                        FtcDashboard.getInstance().displayPrintf(lineNum + i, "[%d] %s", i, targetRects[i]);
+//                    }
+//                }
+//                detectedTargets.release();
+//            }
+//
+//            return targetRects;
+//        }   //getTargetRects
 
         /**
          * This method is called to grab an image frame from the video input.
@@ -1044,17 +1045,35 @@ public class Vision
         @Override
         public Rect[] detectObjects(Mat image, Rect[] buffers)
         {
+            Rect[] targetRects = null;
+            MatOfKeyPoint detectedTargets;
+            int lineNum = 10;
             //
             // Process the image to detect the targets we are looking for and put them into targetRects.
             //
-            synchronized (targetRects)
+            gripPipeline.process(image);
+            detectedTargets = gripPipeline.findBlobsOutput();
+            if (detectedTargets != null)
             {
-                targetRects[0] = getTargetRect(gripPipeline, image);
-
-                if (videoOutEnabled)
+                KeyPoint[] targets = detectedTargets.toArray();
+                targetRects = new Rect[targets.length];
+                for (int i = 0; i < targetRects.length; i++)
                 {
-                    drawRectangles(image, targetRects, new Scalar(0, 255, 0), 0);
+                    double radius = targets[i].size/2;
+                    targetRects[i] = new Rect(
+                        (int)(targets[i].pt.x - radius), (int)(targets[i].pt.y - radius),
+                        (int)targets[i].size, (int)targets[i].size);
+                    if (lineNum + i < FtcDashboard.getInstance().getNumTextLines())
+                    {
+                        FtcDashboard.getInstance().displayPrintf(lineNum + i, "[%d] %s", i, targetRects[i]);
+                    }
                 }
+                detectedTargets.release();
+            }
+
+            if (videoOutEnabled)
+            {
+                drawRectangles(image, targetRects, new Scalar(0, 255, 0), 0);
             }
 
             return targetRects;
