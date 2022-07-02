@@ -26,24 +26,30 @@ import org.opencv.objdetect.*;
 public class GripPipeline {
 
 	//Outputs
+	private Mat cvCvtcolorOutput = new Mat();
 	private Mat hsvThresholdOutput = new Mat();
 	private Mat cvErodeOutput = new Mat();
 	private Mat maskOutput = new Mat();
 	private MatOfKeyPoint findBlobsOutput = new MatOfKeyPoint();
 
-	static {
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-	}
+//	static {
+//		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//	}
 
 	/**
 	 * This is the primary method that runs the entire pipeline and updates the outputs.
 	 */
 	public void process(Mat source0) {
+		// Step CV_cvtColor0:
+		Mat cvCvtcolorSrc = source0;
+		int cvCvtcolorCode = Imgproc.COLOR_RGB2HSV;
+		cvCvtcolor(cvCvtcolorSrc, cvCvtcolorCode, cvCvtcolorOutput);
+
 		// Step HSV_Threshold0:
-		Mat hsvThresholdInput = source0;
-		double[] hsvThresholdHue = {14.568345323741006, 87.84982935153585};
-		double[] hsvThresholdSaturation = {80.26079136690647, 255.0};
-		double[] hsvThresholdValue = {206.38489208633092, 255.0};
+		Mat hsvThresholdInput = cvCvtcolorOutput;
+		double[] hsvThresholdHue = {14.568345323741006, 78.63481228668942};
+		double[] hsvThresholdSaturation = {128.41726618705036, 255.0};
+		double[] hsvThresholdValue = {217.85071942446044, 255.0};
 		hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, hsvThresholdOutput);
 
 		// Step CV_erode0:
@@ -56,7 +62,7 @@ public class GripPipeline {
 		cvErode(cvErodeSrc, cvErodeKernel, cvErodeAnchor, cvErodeIterations, cvErodeBordertype, cvErodeBordervalue, cvErodeOutput);
 
 		// Step Mask0:
-		Mat maskInput = source0;
+		Mat maskInput = cvCvtcolorOutput;
 		Mat maskMask = cvErodeOutput;
 		mask(maskInput, maskMask, maskOutput);
 
@@ -67,6 +73,14 @@ public class GripPipeline {
 		boolean findBlobsDarkBlobs = false;
 		findBlobs(findBlobsInput, findBlobsMinArea, findBlobsCircularity, findBlobsDarkBlobs, findBlobsOutput);
 
+	}
+
+	/**
+	 * This method is a generated getter for the output of a CV_cvtColor.
+	 * @return Mat output from CV_cvtColor.
+	 */
+	public Mat cvCvtcolorOutput() {
+		return cvCvtcolorOutput;
 	}
 
 	/**
@@ -101,6 +115,16 @@ public class GripPipeline {
 		return findBlobsOutput;
 	}
 
+
+	/**
+	 * Converts an image from one color space to another.
+	 * @param src Image to convert.
+	 * @param code conversion code.
+	 * @param dst converted Image.
+	 */
+	private void cvCvtcolor(Mat src, int code, Mat dst) {
+		Imgproc.cvtColor(src, dst, code);
+	}
 
 	/**
 	 * Segment an image based on hue, saturation, and value ranges.
