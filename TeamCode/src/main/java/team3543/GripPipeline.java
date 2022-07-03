@@ -133,7 +133,7 @@ public class GripPipeline {
 	 * @param hue The min and max hue
 	 * @param sat The min and max saturation
 	 * @param val The min and max value
-	 * @param output The image in which to store the output.
+	 * @param out The image in which to store the output.
 	 */
 	private void hsvThreshold(Mat input, double[] hue, double[] sat, double[] val,
 	    Mat out) {

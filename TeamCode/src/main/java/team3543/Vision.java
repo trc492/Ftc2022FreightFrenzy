@@ -105,8 +105,6 @@ public class Vision
     //
     // Grip Vision.
     //
-//    private FtcRobotControllerActivity activity;
-//    private BaseLoaderCallback loaderCallback;
     private GripVision gripVision;
     private Mat cameraImage;
 
@@ -153,7 +151,6 @@ public class Vision
             vuforia.configVideoSource(RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT, 1);
             System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
             cameraImage = new Mat();
-//            initOpenCV();
             gripVision = new GripVision("GripVision", vuforia);
         }
     }   //Vision
@@ -174,37 +171,6 @@ public class Vision
 
         return detectedObjects;
     }   //gripDetectObjects
-
-//    private void initOpenCV()
-//    {
-//        //
-//        // Initialize OpenCV.
-//        //
-//        activity = (FtcRobotControllerActivity)FtcOpMode.getInstance().hardwareMap.appContext;
-//        loaderCallback = new BaseLoaderCallback(activity)
-//        {
-//            /**
-//             * This method is called when the OpenCV manager is connected. It loads the
-//             * OpenCV library.
-//             *
-//             * @param status specifies the OpenCV connection status.
-//             */
-//            @Override
-//            public void onManagerConnected(int status)
-//            {
-//                switch (status)
-//                {
-//                    case LoaderCallbackInterface.SUCCESS:
-//                        System.loadLibrary("opencv_java3");
-//                        break;
-//
-//                    default:
-//                        super.onManagerConnected(status);
-//                        break;
-//                }
-//            }   //onManagerConnected
-//        };
-//    }   //initOpenCV
 
     /**
      * This method sets up the Blinkin with a priority pattern list and a pattern name map.
@@ -335,6 +301,17 @@ public class Vision
 
         return tensorFlowVision.getDetectedTargetsInfo(label, filter, comparator);
     }   //getDetectedTargetsInfo
+
+    /**
+     * This method determines the duck position with the detected target info.
+     *
+     * @param targetInfo specifies the detected target info.
+     * @return duck position.
+     */
+    public int getDuckPosition(FtcTensorFlow.TargetInfo targetInfo)
+    {
+        return tensorFlowVision.determineDuckPosition(targetInfo);
+    }   //getDuckPosition
 
     /**
      * This method returns the best detected targets from TensorFlow vision.
@@ -919,18 +896,6 @@ public class Vision
                     {
                         tracer.traceInfo(funcName, "[%d] targetInfo=%s, duckPos=%d", i, targetInfo[i], duckPositions[i]);
                     }
-                    // We don't have unlimited display lines, so only display the first three in the array.
-                    if (i < 3)
-                    {
-                        robot.dashboard.displayPrintf(12 + i, "%s (Pos=%d)", targetInfo[i], duckPositions[i]);
-                    }
-                }
-                //
-                // Clear the rest of the allocated display lines.
-                //
-                for (int i = targetInfo.length; i < 3; i++)
-                {
-                    robot.dashboard.displayPrintf(12 + i, "");
                 }
 
                 lastDuckPosition = duckPositions[0];
@@ -955,22 +920,6 @@ public class Vision
             super(instanceName, videoSource, 2, null);
             gripPipeline = new GripPipeline();
         }   //GripVision
-
-//        public void setVisionEnabled(boolean enabled)
-//        {
-//            if (enabled)
-//            {
-//                if (!OpenCVLoader.initDebug())
-//                {
-//                    OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, activity, loaderCallback);
-//                }
-//                else
-//                {
-//                    loaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-//                }
-//            }
-//            setEnabled(enabled);
-//        }   //setVisionEnabled
 
         /**
          * This method enables/disables the video out stream.
@@ -1047,7 +996,6 @@ public class Vision
         {
             Rect[] targetRects = null;
             MatOfKeyPoint detectedTargets;
-            int lineNum = 10;
             //
             // Process the image to detect the targets we are looking for and put them into targetRects.
             //
@@ -1063,11 +1011,8 @@ public class Vision
                     targetRects[i] = new Rect(
                         (int)(targets[i].pt.x - radius), (int)(targets[i].pt.y - radius),
                         (int)targets[i].size, (int)targets[i].size);
-                    if (lineNum + i < FtcDashboard.getInstance().getNumTextLines())
-                    {
-                        FtcDashboard.getInstance().displayPrintf(lineNum + i, "[%d] %s", i, targetRects[i]);
-                    }
                 }
+
                 detectedTargets.release();
             }
 
