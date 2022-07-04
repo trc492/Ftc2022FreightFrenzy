@@ -26,7 +26,7 @@ import TrcCommonLib.trclib.TrcEvent;
 import TrcCommonLib.trclib.TrcPose2D;
 import TrcCommonLib.trclib.TrcRobot;
 import TrcCommonLib.trclib.TrcStateMachine;
-import TrcFtcLib.ftclib.FtcTensorFlow;
+import TrcCommonLib.trclib.TrcVisionTargetInfo;
 
 class CmdAutoTest implements TrcRobot.RobotCommand
 {
@@ -60,7 +60,7 @@ class CmdAutoTest implements TrcRobot.RobotCommand
 //    private final TrcHolonomicPurePursuitDrive purePursuitDrive;
     private final TrcPose2D startPos;
     private final TrcPose2D lookingPos;
-    private FtcTensorFlow.TargetInfo freightInfo;
+    private TrcVisionTargetInfo<?> freightInfo;
 
     /**
      * Constructor: Create an instance of the object.
@@ -175,7 +175,7 @@ class CmdAutoTest implements TrcRobot.RobotCommand
                     {
                         if (robot.blinkin != null)
                         {
-                            robot.blinkin.setPatternState(Vision.sawTarget, true);
+                            robot.blinkin.setPatternState(Vision.SAW_TARGET, true);
                         }
                         sm.setState(State.PICKING_UP_FREIGHT);
                     }
@@ -189,7 +189,7 @@ class CmdAutoTest implements TrcRobot.RobotCommand
                     robot.robotDrive.purePursuitDrive.start(
                         driveEvent, robot.robotDrive.driveBase.getFieldPosition(), true,
                         new TrcPose2D(freightInfo.distanceFromCamera.x, freightInfo.distanceFromCamera.y - 8.0,
-                                      freightInfo.angle));
+                                      freightInfo.horizontalAngle));
                     sm.addEvent(pickupEvent);
                     sm.addEvent(driveEvent);
                     sm.waitForEvents(State.CHECK_FOR_FREIGHT);
@@ -202,7 +202,7 @@ class CmdAutoTest implements TrcRobot.RobotCommand
                     {
                         if (robot.blinkin != null)
                         {
-                            robot.blinkin.setPatternState(Vision.gotTarget, true);
+                            robot.blinkin.setPatternState(Vision.GOT_TARGET, true);
                         }
                         sm.setState(State.GO_HOME);
                     }

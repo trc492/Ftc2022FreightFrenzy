@@ -24,8 +24,6 @@ package team3543;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.opencv.core.Rect;
-
 import java.util.Locale;
 
 import TrcCommonLib.command.CmdDriveMotorsTest;
@@ -40,12 +38,12 @@ import TrcCommonLib.trclib.TrcPose2D;
 import TrcCommonLib.trclib.TrcRobot;
 import TrcCommonLib.trclib.TrcTone;
 import TrcCommonLib.trclib.TrcUtil;
+import TrcCommonLib.trclib.TrcVisionTargetInfo;
 import TrcFtcLib.ftclib.FtcChoiceMenu;
 import TrcFtcLib.ftclib.FtcDcMotor;
 import TrcFtcLib.ftclib.FtcGamepad;
 import TrcFtcLib.ftclib.FtcMenu;
 import TrcFtcLib.ftclib.FtcPidCoeffCache;
-import TrcFtcLib.ftclib.FtcTensorFlow;
 import TrcFtcLib.ftclib.FtcValueMenu;
 
 /**
@@ -226,7 +224,7 @@ public class FtcTest extends FtcTeleOp
         //
         // Only SENSORS_TEST and SUBSYSTEMS_TEST need TensorFlow, shut it down for all other tests.
         //
-        if (robot.vision != null && RobotParams.Preferences.useTensorFlow &&
+        if (robot.vision != null && robot.vision.tensorFlowVision != null &&
             testChoices.test != Test.SENSORS_TEST && testChoices.test != Test.SUBSYSTEMS_TEST)
         {
             robot.globalTracer.traceInfo("TestInit", "Shutting down TensorFlow.");
@@ -260,16 +258,21 @@ public class FtcTest extends FtcTeleOp
                     //
                     // Vision generally will impact performance, so we only enable it if it's needed.
                     //
-                    if (RobotParams.Preferences.useVuforia)
+                    if (robot.vision.vuforiaVision != null)
                     {
                         robot.globalTracer.traceInfo(funcName, "Enabling Vuforia.");
-                        robot.vision.setVuforiaEnabled(true);
+                        robot.vision.vuforiaVision.setEnabled(true);
                     }
 
-                    if (RobotParams.Preferences.useTensorFlow)
+                    if (robot.vision.tensorFlowVision != null)
                     {
                         robot.globalTracer.traceInfo(funcName, "Enabling TensorFlow.");
-                        robot.vision.setTensorFlowEnabled(true);
+                        robot.vision.tensorFlowVision.setEnabled(true);
+                    }
+                    else if (robot.vision.gripVision != null)
+                    {
+                        robot.globalTracer.traceInfo(funcName, "Enabling GripVision.");
+                        robot.vision.gripVision.setEnabled(true);
                     }
                 }
                 break;
@@ -320,16 +323,22 @@ public class FtcTest extends FtcTeleOp
             //
             // Vision generally will impact performance, so we only enable it if it's needed.
             //
-            if (RobotParams.Preferences.useVuforia)
+            if (robot.vision.vuforiaVision != null)
             {
                 robot.globalTracer.traceInfo(funcName, "Disabling Vuforia.");
-                robot.vision.setVuforiaEnabled(false);
+                robot.vision.vuforiaVision.setEnabled(false);
             }
 
-            if (RobotParams.Preferences.useTensorFlow)
+            if (robot.vision.tensorFlowVision != null)
             {
                 robot.globalTracer.traceInfo(funcName, "Shutting down TensorFlow.");
                 robot.vision.tensorFlowShutdown();
+            }
+
+            if (robot.vision.gripVision != null)
+            {
+                robot.globalTracer.traceInfo(funcName, "Shutting down GripVision.");
+                robot.vision.gripVision.setEnabled(false);
             }
         }
 
@@ -548,9 +557,9 @@ public class FtcTest extends FtcTeleOp
                     break;
 
                 case FtcGamepad.GAMEPAD_DPAD_UP:
-                    if (robot.vision != null && RobotParams.Preferences.useTensorFlow)
+                    if (robot.vision != null && robot.vision.tensorFlowVision != null)
                     {
-                        robot.vision.setTensorFlowZoomFactor(pressed? 1.5: 1.0);
+                        robot.vision.tensorFlowVision.setZoomFactor(pressed? 1.5: 1.0);
                     }
                     processed = true;
                     break;
@@ -868,9 +877,9 @@ public class FtcTest extends FtcTeleOp
                 int endLine = lineIndex + maxNumLines;
                 int numTargets;
 
-                if (RobotParams.Preferences.useTensorFlow)
+                if (robot.vision.tensorFlowVision != null || robot.vision.gripVision != null)
                 {
-                    FtcTensorFlow.TargetInfo[] targetsInfo = robot.vision.getDetectedTargetsInfo(null, null, null);
+                    TrcVisionTargetInfo<?>[] targetsInfo = robot.vision.getDetectedDucksInfo();
 
                     if (targetsInfo != null)
                     {
@@ -879,25 +888,25 @@ public class FtcTest extends FtcTeleOp
                         {
                             robot.dashboard.displayPrintf(
                                 lineIndex, "[%d] %s (pos=%d)",
-                                i, targetsInfo[i], robot.vision.getDuckPosition(targetsInfo[i]));
+                                i, targetsInfo[i], robot.vision.determineDuckPosition(targetsInfo[i]));
                             lineIndex++;
                         }
                     }
                 }
-                else
-                {
-                    Rect[] detectedObjects = robot.vision.gripDetectObjects();
-
-                    if (detectedObjects != null)
-                    {
-                        numTargets = Math.min(detectedObjects.length, maxNumLines);
-                        for (int i = 0; i < numTargets; i++)
-                        {
-                            robot.dashboard.displayPrintf(lineIndex, "[%d] %s", i, detectedObjects[i]);
-                            lineIndex++;
-                        }
-                    }
-                }
+//                else if (RobotParams.Preferences.useGripPipeline)
+//                {
+//                    Rect[] detectedObjects = robot.vision.gripVision.getDetectedObjects();
+//
+//                    if (detectedObjects != null)
+//                    {
+//                        numTargets = Math.min(detectedObjects.length, maxNumLines);
+//                        for (int i = 0; i < numTargets; i++)
+//                        {
+//                            robot.dashboard.displayPrintf(lineIndex, "[%d] %s", i, detectedObjects[i]);
+//                            lineIndex++;
+//                        }
+//                    }
+//                }
 
                 while (lineIndex < endLine)
                 {
@@ -908,9 +917,9 @@ public class FtcTest extends FtcTeleOp
 
             if (RobotParams.Preferences.useVuforia)
             {
-                TrcPose2D robotPose = robot.vision.getRobotPose(null, false);
+                TrcPose2D robotPose = robot.vision.vuforiaVision.getRobotPose(null, false);
                 robot.dashboard.displayPrintf(13, "RobotLoc %s: %s",
-                                              robot.vision.getLastSeenVuforiaImageName(), robotPose);
+                                              robot.vision.vuforiaVision.getLastSeenImageName(), robotPose);
             }
         }
     }   //doVisionTest

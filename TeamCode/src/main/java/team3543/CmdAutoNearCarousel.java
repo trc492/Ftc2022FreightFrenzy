@@ -28,7 +28,7 @@ import TrcCommonLib.trclib.TrcRobot;
 import TrcCommonLib.trclib.TrcStateMachine;
 import TrcCommonLib.trclib.TrcTimer;
 import TrcCommonLib.trclib.TrcUtil;
-import TrcFtcLib.ftclib.FtcTensorFlow;
+import TrcCommonLib.trclib.TrcVisionTargetInfo;
 
 class CmdAutoNearCarousel implements TrcRobot.RobotCommand
 {
@@ -64,7 +64,7 @@ class CmdAutoNearCarousel implements TrcRobot.RobotCommand
     private final TrcEvent event;
     private final TrcStateMachine<State> sm;
     private int duckPosition = 0;
-    private FtcTensorFlow.TargetInfo targetInfo = null;
+    private TrcVisionTargetInfo<?> targetInfo = null;
     private Double expireTime = null;
     private boolean deliveringDuck = false;
     private int retryCount = 0;
@@ -329,11 +329,9 @@ class CmdAutoNearCarousel implements TrcRobot.RobotCommand
                     {
                         if (robot.blinkin != null)
                         {
-                            robot.blinkin.setPatternState(Vision.sawTarget, true);
+                            robot.blinkin.setPatternState(Vision.SAW_TARGET, true);
                         }
-                        robot.globalTracer.traceInfo(
-                            moduleName, "Found the duck at x=%.1f, y=%.1f, angle=%.1f",
-                            targetInfo.distanceFromCamera.x, targetInfo.distanceFromCamera.y, targetInfo.angle);
+                        robot.globalTracer.traceInfo(moduleName, "Found the duck (%s)", targetInfo);
                         robot.speak("Found the duck.");
                         sm.setState(State.GO_PICKUP_DUCK);
                     }
@@ -345,10 +343,14 @@ class CmdAutoNearCarousel implements TrcRobot.RobotCommand
                    {
                        if (retryCount == 0)
                        {
-                           // Did not find the duck the first time, zoom in and look again.
-                           robot.globalTracer.traceInfo(moduleName, "<<<<< Zoom in  and look again!");
-                           robot.speak("Zoom in and Look again ");
-                           robot.vision.setTensorFlowZoomFactor(1.5);
+                           if (robot.vision.tensorFlowVision != null)
+                           {
+                               // Did not find the duck the first time, zoom in and look again.
+                               // Note: only TensorFlow supports zoom.
+                               robot.globalTracer.traceInfo(moduleName, "<<<<< Zoom in  and look again!");
+                               robot.speak("Zoom in and Look again ");
+                               robot.vision.tensorFlowVision.setZoomFactor(1.5);
+                           }
                            sm.setState(State.FIND_THE_DUCK);
                            expireTime = null;
                            retryCount++;
@@ -397,7 +399,7 @@ class CmdAutoNearCarousel implements TrcRobot.RobotCommand
                         new TrcPose2D(
                             targetInfo.distanceFromCamera.x,
                             targetInfo.distanceFromCamera.y - 6.0,    //adjust for intake offset from robot centroid.
-                            targetInfo.angle));
+                            targetInfo.horizontalAngle));
                     deliveringDuck = true;
                     sm.waitForSingleEvent(event, State.DONE_PICKUP_DUCK);
                     break;

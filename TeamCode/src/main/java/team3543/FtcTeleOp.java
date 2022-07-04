@@ -186,7 +186,7 @@ public class FtcTeleOp extends FtcOpMode
         if (robot.odwDeployer != null)
         {
             robot.dashboard.displayPrintf(
-                6, "odwDep: deployed=%s", robot.odwDeployer == null? "n/a": robot.odwDeployer.isDeployed());
+                6, "odwDep: deployed=%s", robot.odwDeployer.isDeployed());
         }
     }   //slowPeriodic
 

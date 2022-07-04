@@ -23,38 +23,15 @@
 package team3543;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
-import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
-import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
-import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-import org.opencv.core.KeyPoint;
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfKeyPoint;
-import org.opencv.core.Point;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
 
 import TrcCommonLib.trclib.TrcDbgTrace;
-import TrcCommonLib.trclib.TrcHomographyMapper;
-import TrcCommonLib.trclib.TrcOpenCvDetector;
-import TrcCommonLib.trclib.TrcPose2D;
+import TrcCommonLib.trclib.TrcOpenCV;
 import TrcCommonLib.trclib.TrcRevBlinkin;
-import TrcCommonLib.trclib.TrcUtil;
-import TrcCommonLib.trclib.TrcVideoSource;
-import TrcFtcLib.ftclib.FtcDashboard;
+import TrcCommonLib.trclib.TrcVisionTargetInfo;
 import TrcFtcLib.ftclib.FtcOpMode;
 import TrcFtcLib.ftclib.FtcTensorFlow;
 import TrcFtcLib.ftclib.FtcVuforia;
-
-import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.XYZ;
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.YZX;
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
-
-import java.util.Comparator;
 
 /**
  * This class implements Vuforia/TensorFlow Vision for the game season. It creates and initializes all the vision
@@ -63,50 +40,39 @@ import java.util.Comparator;
  */
 public class Vision
 {
-    public static final String blueStorageName = "Blue Storage";
-    public static final String blueAllianceWallName = "Blue Alliance Wall";
-    public static final String redStorageName = "Red Storage";
-    public static final String redAllianceWallName = "Red Alliance Wall";
+    public static final String OPENCV_NATIVE_LIBRARY_NAME = "opencv_java3";
+    public static final String BLUE_STORAGE_NAME = "Blue Storage";
+    public static final String BLUE_ALLIANCE_WALL_NAME = "Blue Alliance Wall";
+    public static final String RED_STORAGE_NAME = "Red Storage";
+    public static final String RED_ALLIANCE_WALL_NAME = "Red Alliance Wall";
     public static final String LABEL_BALL = "Ball";
     public static final String LABEL_CUBE = "Cube";
     public static final String LABEL_DUCK = "Duck";
     public static final String LABEL_MARKER = "Marker";
-    public static final String duckPos1 = "DuckPos1";
-    public static final String duckPos2 = "DuckPos2";
-    public static final String duckPos3 = "DuckPos3";
-    public static final String gotTarget = "GotTarget";
-    public static final String sawTarget = "SawTarget";
+    public static final String DUCK_POS_1 = "DuckPos1";
+    public static final String DUCK_POS_2 = "DuckPos2";
+    public static final String DUCK_POS_3 = "DuckPos3";
+    public static final String GOT_TARGET = "GotTarget";
+    public static final String SAW_TARGET = "SawTarget";
 
     private final TrcRevBlinkin.Pattern[] ledPatternPriorities = {
-        new TrcRevBlinkin.Pattern(duckPos1, TrcRevBlinkin.RevLedPattern.SolidRed),
-        new TrcRevBlinkin.Pattern(duckPos2, TrcRevBlinkin.RevLedPattern.SolidGreen),
-        new TrcRevBlinkin.Pattern(duckPos3, TrcRevBlinkin.RevLedPattern.SolidBlue),
-        new TrcRevBlinkin.Pattern(sawTarget, TrcRevBlinkin.RevLedPattern.SolidViolet),
-        new TrcRevBlinkin.Pattern(gotTarget, TrcRevBlinkin.RevLedPattern.SolidAqua),
-        new TrcRevBlinkin.Pattern(redStorageName, TrcRevBlinkin.RevLedPattern.FixedStrobeRed),
-        new TrcRevBlinkin.Pattern(blueStorageName, TrcRevBlinkin.RevLedPattern.FixedStrobeBlue),
-        new TrcRevBlinkin.Pattern(redAllianceWallName, TrcRevBlinkin.RevLedPattern.FixedLightChaseRed),
-        new TrcRevBlinkin.Pattern(blueAllianceWallName, TrcRevBlinkin.RevLedPattern.FixedLightChaseBlue)};
+        new TrcRevBlinkin.Pattern(DUCK_POS_1, TrcRevBlinkin.RevLedPattern.SolidRed),
+        new TrcRevBlinkin.Pattern(DUCK_POS_2, TrcRevBlinkin.RevLedPattern.SolidGreen),
+        new TrcRevBlinkin.Pattern(DUCK_POS_3, TrcRevBlinkin.RevLedPattern.SolidBlue),
+        new TrcRevBlinkin.Pattern(SAW_TARGET, TrcRevBlinkin.RevLedPattern.SolidViolet),
+        new TrcRevBlinkin.Pattern(GOT_TARGET, TrcRevBlinkin.RevLedPattern.SolidAqua),
+        new TrcRevBlinkin.Pattern(RED_STORAGE_NAME, TrcRevBlinkin.RevLedPattern.FixedStrobeRed),
+        new TrcRevBlinkin.Pattern(BLUE_STORAGE_NAME, TrcRevBlinkin.RevLedPattern.FixedStrobeBlue),
+        new TrcRevBlinkin.Pattern(RED_ALLIANCE_WALL_NAME, TrcRevBlinkin.RevLedPattern.FixedLightChaseRed),
+        new TrcRevBlinkin.Pattern(BLUE_ALLIANCE_WALL_NAME, TrcRevBlinkin.RevLedPattern.FixedLightChaseBlue)};
 
-    private static final String OPENCV_NATIVE_LIBRARY_NAME = "opencv_java3";
     private final Robot robot;
     private final TrcDbgTrace tracer;
-    private final FtcVuforia vuforia;
-    //
-    // Vuforia Vision.
-    //
-    private final VuforiaVision vuforiaVision;
-    private String lastVuforiaImageName;
-    //
-    // TensorFlow Vision.
-    //
-    private TensorFlowVision tensorFlowVision;
+    public VuforiaVision vuforiaVision;
+    public TensorFlowVision tensorFlowVision;
+    public GripVision gripVision;
+
     private int lastDuckPosition = 0;
-    //
-    // Grip Vision.
-    //
-    private GripVision gripVision;
-    private Mat cameraImage;
 
     /**
      * Constructor: Create an instance of the object. Vision is required by both Vuforia and TensorFlow and must be
@@ -141,36 +107,18 @@ public class Vision
         vuforiaParams.cameraName = opMode.hardwareMap.get(WebcamName.class, RobotParams.HWNAME_WEBCAM);
         vuforiaParams.useExtendedTracking = false;
         vuforiaParams.cameraMonitorFeedback = VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
-        vuforia = new FtcVuforia(vuforiaParams);
+        FtcVuforia vuforia = new FtcVuforia(vuforiaParams);
 
-        vuforiaVision = useVuforia? new VuforiaVision(): null;
-        tensorFlowVision = useTensorFlow? new TensorFlowVision(): null;
+        vuforiaVision = useVuforia? new VuforiaVision(vuforia, robot.blinkin): null;
+        tensorFlowVision = useTensorFlow? new TensorFlowVision(vuforia, null): null;
 
         if (useGripPipeline)
         {
             vuforia.configVideoSource(RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT, 1);
             System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
-            cameraImage = new Mat();
             gripVision = new GripVision("GripVision", vuforia);
         }
     }   //Vision
-
-    public Rect[] gripDetectObjects()
-    {
-        Rect[] detectedObjects = null;
-
-        if (gripVision != null)
-        {
-            double startTime = TrcUtil.getCurrentTime();
-            if (gripVision.grabFrame(cameraImage))
-            {
-                detectedObjects = gripVision.detectObjects(cameraImage, null);
-                robot.dashboard.displayPrintf(15, "GripVisionTime=%.3f", TrcUtil.getCurrentTime() - startTime);
-            }
-        }
-
-        return detectedObjects;
-    }   //gripDetectObjects
 
     /**
      * This method sets up the Blinkin with a priority pattern list and a pattern name map.
@@ -181,248 +129,177 @@ public class Vision
     }   //setupBlinkin
 
     /**
-     * This method checks if Vuforia vision is initialized.
-     *
-     * @return true if Vuforia vision is initialized, false otherwise.
-     */
-    public boolean isVuforiaVisionInitialized()
-    {
-        return vuforiaVision != null;
-    }   //isVuforiaVisionInitialized
-
-    /**
-     * This method enables/disables Vuforia Vision.
-     *
-     * @param enabled specifies true to enable Vuforia Vision, false to disable.
-     */
-    public void setVuforiaEnabled(boolean enabled)
-    {
-        if (vuforiaVision == null) throw new RuntimeException("Vuforia Vision is not initialized.");
-
-        vuforia.setTrackingEnabled(enabled);
-    }   //setVuforiaEnabled
-
-    /**
-     * This method returns the name of the image last seen.
-     *
-     * @return last seen image name.
-     */
-    public String getLastSeenVuforiaImageName()
-    {
-        return lastVuforiaImageName;
-    }   //getLastSeenVuforiaImageName
-
-    /**
-     * This method returns the robot field position.
-     *
-     * @param targetName specifies the detected target name.
-     * @param exclude specifies true to exclude the specified target.
-     * @return robot field position.
-     */
-    public TrcPose2D getRobotPose(String targetName, boolean exclude)
-    {
-        if (vuforiaVision == null) throw new RuntimeException("Vuforia Vision is not initialized.");
-
-        OpenGLMatrix robotLocation = vuforiaVision.getRobotLocation(targetName, exclude);
-        VectorF translation = robotLocation == null? null: vuforiaVision.getLocationTranslation(robotLocation);
-        Orientation orientation = robotLocation == null? null: vuforiaVision.getLocationOrientation(robotLocation);
-        //
-        // The returned RobotPose have the X axis pointing from the audience side to the back of the field,
-        // the Y axis pointing from the red alliance to the blue alliance and the direction of the Y axis
-        // is zero degree and increases in the clockwise direction.
-        // Vuforia's orientation is such that facing the negative side of the X axis is 0 degree, clockwise gives
-        // you negative angle and anti-clockwise gives you positive angle.
-        // Robot's orientation is such that facing the positive side of the Y axis is 0 degree, clockwise gives
-        // you positive angle and anti-clockwise gives you negative angle.
-        // In order to translate Vuforia's orientation to the robot's orientation, we first negate the vuforia
-        // angle to make rotation agree with the robot's rotation. Then we subtract 90 degrees from the angle.
-        //
-        return (translation == null || orientation == null)? null:
-            new TrcPose2D(translation.get(0)/TrcUtil.MM_PER_INCH, translation.get(1)/TrcUtil.MM_PER_INCH,
-                          -orientation.thirdAngle - 90.0);
-    }   //getRobotPose
-
-    /**
-     * This method checks if TensorFlow vision is initialized.
-     *
-     * @return true if TensorFlow vision is initialized, false otherwise.
-     */
-    public boolean isTensorFlowVisionInitialized()
-    {
-        return tensorFlowVision != null;
-    }   //isTensorFlowVisionInitialized
-
-    /**
-     * This method enables/disables TensorFlow.
-     *
-     * @param enabled specifies true to enable TensorFlow, false to disable.
-     */
-    public void setTensorFlowEnabled(boolean enabled)
-    {
-        if (tensorFlowVision == null) throw new RuntimeException("TensorFlow Vision is not initialized!");
-
-        tensorFlowVision.tensorFlow.setEnabled(enabled);
-        if (enabled)
-        {
-            tensorFlowVision.tensorFlow.setZoom(1.0, 16.0/9.0);
-        }
-    }   //setTensorFlowEnabled
-
-    public void setTensorFlowZoomFactor(double factor)
-    {
-        if (tensorFlowVision == null) throw new RuntimeException("TensorFlow Vision is not initialized!");
-
-        tensorFlowVision.tensorFlow.setZoom(factor, 16.0/9.0);
-    }   //setTensorFlowZoomFactor
-
-    /**
      * This method shuts down TensorFlow.
      */
     public void tensorFlowShutdown()
     {
-        setTensorFlowEnabled(false);
         tensorFlowVision.shutdown();
         tensorFlowVision = null;
     }   //tensorFlowShutdown
 
     /**
-     * This method detects targets that matches the given label and filtering criteria.
+     * This method determines the duck's barcode position 1, 2, or 3 (0 if no valid duck found).
      *
-     * @param label specifies the target label to detect, can be null if detects any target.
-     * @param filter specifies the filter method to call to filter out false positives, can be null if not provided.
-     * @param comparator specifies the comparator to sort the array if provided, can be null if not provided.
-     *
-     * @return an array of detected targets, null if none found at the moment.
+     * @param targetInfo specifies the detected duck's target info.
+     * @return duck's barcode position.
      */
-    public FtcTensorFlow.TargetInfo[] getDetectedTargetsInfo(
-        String label, FtcTensorFlow.FilterTarget filter, Comparator<? super FtcTensorFlow.TargetInfo> comparator)
+    public int determineDuckPosition(TrcVisionTargetInfo<?> targetInfo)
     {
-        if (tensorFlowVision == null) throw new RuntimeException("TensorFlow Vision is not initialized!");
+        int pos = 0;
 
-        return tensorFlowVision.getDetectedTargetsInfo(label, filter, comparator);
-    }   //getDetectedTargetsInfo
-
-    /**
-     * This method determines the duck position with the detected target info.
-     *
-     * @param targetInfo specifies the detected target info.
-     * @return duck position.
-     */
-    public int getDuckPosition(FtcTensorFlow.TargetInfo targetInfo)
-    {
-        return tensorFlowVision.determineDuckPosition(targetInfo);
-    }   //getDuckPosition
-
-    /**
-     * This method returns the best detected targets from TensorFlow vision.
-     *
-     * @param label specifies the label of the targets to detect for, can be null for detecting any target.
-     * @param filter specifies the filter method to call to filter out false positives, can be null if not provided.
-     * @param comparator specifies the comparator to sort the array if provided, can be null if not provided.
-     * @param showAllTargets specifies true to display info for all detected targets.
-     * @return the best detected target info.
-     */
-    public FtcTensorFlow.TargetInfo getBestDetectedTargetInfo(
-        String label, FtcTensorFlow.FilterTarget filter,
-        Comparator<? super FtcTensorFlow.TargetInfo> comparator, boolean showAllTargets)
-    {
-        FtcTensorFlow.TargetInfo[] targets = getDetectedTargetsInfo(label, filter, comparator);
-
-        if (targets != null && showAllTargets)
+        if (targetInfo != null)
         {
-            for (int i = 0; i < targets.length; i++)
+            double oneSixthImageWidth = targetInfo.imageWidth/6.0;
+
+            if (targetInfo.distanceFromImageCenter.x <= -oneSixthImageWidth)
             {
-                tracer.traceInfo(
-                    "Vision.getBestDetectedTargetInfo", "[%d] Target=%s", i, targets[i]);
+                pos = 1;
+            }
+            else if (targetInfo.distanceFromImageCenter.x >= oneSixthImageWidth)
+            {
+                pos = 3;
+            }
+            else
+            {
+                pos = 2;
+            }
+
+            if (robot.blinkin != null)
+            {
+                // Turn off previous detection indication.
+                robot.blinkin.setPatternState(Vision.DUCK_POS_1, false);
+                robot.blinkin.setPatternState(Vision.DUCK_POS_2, false);
+                robot.blinkin.setPatternState(Vision.DUCK_POS_3, false);
+
+                switch (pos)
+                {
+                    case 1:
+                        robot.blinkin.setPatternState(Vision.DUCK_POS_1, true);
+                        break;
+
+                    case 2:
+                        robot.blinkin.setPatternState(Vision.DUCK_POS_2, true);
+                        break;
+
+                    case 3:
+                        robot.blinkin.setPatternState(Vision.DUCK_POS_3, true);
+                        break;
+                }
             }
         }
 
-        return targets != null? targets[0]: null;
-    }   //getBestDetectedTargetInfo
+        return pos;
+    }   //determineDuckPosition
 
     /**
-     * This method returns the best detected targets from TensorFlow vision.
+     * This method returns an array of detected duck info.
      *
-     * @param label specifies the label of the targets to detect for, can be null for detecting any target.
-     * @param filter specifies the filter method to call to filter out false positives, can be null if not provided.
-     * @param comparator specifies the comparator to sort the array if provided, can be null if not provided.
-     * @return the best detected target info.
+     * @return array of detected duck info.
      */
-    public FtcTensorFlow.TargetInfo getBestDetectedTargetInfo(
-        String label, FtcTensorFlow.FilterTarget filter, Comparator<? super FtcTensorFlow.TargetInfo> comparator)
+    public TrcVisionTargetInfo<?>[] getDetectedDucksInfo()
     {
-        return getBestDetectedTargetInfo(label, filter, comparator, false);
-    }   //getBestDetectedTargetInfo
+        TrcVisionTargetInfo<?>[] targetInfo = null;
+
+        if (tensorFlowVision != null)
+        {
+            targetInfo = tensorFlowVision.getDetectedDucksInfo();
+        }
+        else if (gripVision != null)
+        {
+            targetInfo = gripVision.getDetectedTargetsInfo(null, this::compareObjectSize);
+        }
+
+        return targetInfo;
+    }   //getDetectedDucksInfo
 
     /**
-     * This method looks for the rubber duck and returns its location info.
+     * This method calls vision to detect all the ducks and returns their barcode positions in an array.
      *
-     * @return duck location info, null if not found.
+     * @return duck barcode position array 1, 2, or 3, null if none found.
      */
-    public FtcTensorFlow.TargetInfo getDetectedDuckInfo()
+    public int[] getDetectedDuckPositions()
     {
-        return getBestDetectedTargetInfo(LABEL_DUCK, null, null);
+        final String funcName = "getDetectedDuckPositions";
+        int[] duckPositions = null;
+        TrcVisionTargetInfo<?>[] targetInfo = getDetectedDucksInfo();
+
+        if (targetInfo != null && targetInfo.length > 0)
+        {
+            duckPositions = new int[targetInfo.length];
+            //
+            // Target array is sorted with highest confidence first. Therefore, we process the array backward so
+            // that the highest confidence target will be processed last. Therefore, the LED state will show the
+            // highest confidence target position.
+            //
+            for (int i = targetInfo.length - 1; i >= 0; i--)
+            {
+                duckPositions[i] = determineDuckPosition(targetInfo[i]);
+                if (tracer != null)
+                {
+                    tracer.traceInfo(funcName, "[%d] targetInfo=%s, duckPos=%d", i, targetInfo[i], duckPositions[i]);
+                }
+            }
+
+            lastDuckPosition = duckPositions[0];
+        }
+
+        return duckPositions;
+    }   //getDetectedDuckPositions
+
+    /**
+     * This method returns the info of the detected duck.
+     *
+     * @return detected duck info.
+     */
+    public TrcVisionTargetInfo<?> getDetectedDuckInfo()
+    {
+        TrcVisionTargetInfo<?>[] targetInfo = getDetectedDucksInfo();
+        return targetInfo != null? targetInfo[0]: null;
     }   //getDetectedDuckInfo
-
-    /**
-     * This method returns target info of the closest freight detected.
-     *
-     * @return closest freight target info.
-     */
-    public FtcTensorFlow.TargetInfo getClosestFreightInfo()
-    {
-        return getBestDetectedTargetInfo(null, tensorFlowVision::validateFreight, this::compareCameraAngle);
-    }   //getClosestFreightInfo
-
-    /**
-     * This method is called by the Arrays.sort to sort the target object by increasing camera angle.
-     *
-     * @param a specifies the first target
-     * @param b specifies the second target.
-     * @return negative value if a has smaller camera angle than b, 0 if a and b have equal camera angle, positive
-     *         value if a has larger camera angle than b.
-     */
-    private int compareCameraAngle(FtcTensorFlow.TargetInfo a, FtcTensorFlow.TargetInfo b)
-    {
-        return (int)((Math.abs(a.angle) - Math.abs(b.angle))*1000);
-    }   //compareCameraAngle
 
     /**
      * This method returns target info of the closest detected duck to image center.
      *
      * @return closest duck target info.
      */
-    public FtcTensorFlow.TargetInfo getClosestDuckInfo()
+    public TrcVisionTargetInfo<?> getClosestDuckInfo()
     {
-        return getBestDetectedTargetInfo(
-            LABEL_DUCK, tensorFlowVision::validateDuck, this::compareDistanceToCenter, true);
+        TrcVisionTargetInfo<?>[] targets = null;
+
+        if (tensorFlowVision != null)
+        {
+            targets = tensorFlowVision.getDetectedTargetsInfo(
+                LABEL_DUCK, tensorFlowVision::validateDuck, this::compareDistanceToCenter, false);
+        }
+        else if (gripVision != null)
+        {
+            targets = gripVision.getDetectedTargetsInfo(null, this::compareObjectSize);
+        }
+
+        return targets != null? targets[0]: null;
     }   //getClosestDuckInfo
 
     /**
-     * This method is called by the Arrays.sort to sort the target object by increasing distance to image center.
+     * This method returns target info of the closest freight detected.
      *
-     * @param a specifies the first target
-     * @param b specifies the second target.
-     * @return negative value if a has smaller distance to image center than b, 0 if a and b have equal distance to
-     * image center, positive value if a has larger distance to image center than b.
+     * @return closest freight target info.
      */
-    private int compareDistanceToCenter(FtcTensorFlow.TargetInfo a, FtcTensorFlow.TargetInfo b)
+    public TrcVisionTargetInfo<?> getClosestFreightInfo()
     {
-        return (int)((Math.abs(a.distanceFromImageCenter.x) - Math.abs(b.distanceFromImageCenter.x))*1000);
-    }   //compareDistanceToCenter
+        TrcVisionTargetInfo<?>[] targets = null;
 
-    /**
-     * This method calls vision to detect the best duck and returns its barcode position.
-     *
-     * @return duck barcode position array 1, 2, or 3, 0 if none found.
-     */
-    public int getBestDuckPosition()
-    {
-        if (tensorFlowVision == null) throw new RuntimeException("TensorFlow Vision is not initialized!");
+        if (tensorFlowVision != null)
+        {
+            targets = tensorFlowVision.getDetectedTargetsInfo(
+                null, tensorFlowVision::validateFreight, this::compareCameraAngle, false);
+        }
+        else if (gripVision != null)
+        {
+            targets = gripVision.getDetectedTargetsInfo(null, this::compareObjectSize);
+        }
 
-        int[] detectedDuckPositions = tensorFlowVision.getDetectedDuckPositions();
-        return detectedDuckPositions != null? detectedDuckPositions[0]: 0;
-    }   //getBestDuckPosition
+        return targets != null? targets[0]: null;
+    }   //getClosestFreightInfo
 
     /**
      * This method returns the last detected duck barcode position.
@@ -435,595 +312,45 @@ public class Vision
     }   //getLastDuckPosition
 
     /**
-     * This class implements Vuforia Vision that provides the capability of using images to locate the robot position
-     * on the field.
+     * This method is called by the Arrays.sort to sort the target object by increasing distance to image center.
+     *
+     * @param a specifies the first target
+     * @param b specifies the second target.
+     * @return negative value if a has smaller distance to image center than b, 0 if a and b have equal distance to
+     * image center, positive value if a has larger distance to image center than b.
      */
-    private class VuforiaVision
+    private int compareDistanceToCenter(TrcVisionTargetInfo<?> a, TrcVisionTargetInfo<?> b)
     {
-        private static final int IMAGE_WIDTH = 640;     //in pixels
-        private static final int IMAGE_HEIGHT = 480;    //in pixels
-        private static final int FRAME_QUEUE_CAPACITY = 2;
-        //
-        // Since ImageTarget trackables use mm to specify their dimensions, we must use mm for all the physical
-        // dimension. We will define some constants and conversions here.
-        //
-        // Height of the center of the target image above the floor.
-        private static final float mmTargetHeight = 6.0f * (float)TrcUtil.MM_PER_INCH;
-        private static final float halfField = (float)(RobotParams.HALF_FIELD_INCHES*TrcUtil.MM_PER_INCH);
-        private static final float fullTile = (float)(RobotParams.FULL_TILE_INCHES*TrcUtil.MM_PER_INCH);
-        private static final float halfTile = (float)(RobotParams.HALF_TILE_INCHES*TrcUtil.MM_PER_INCH);
-        private static final float oneAndHalfTile = (float)(fullTile*1.5);
-
-        private final VuforiaTrackable[] vuforiaImageTargets;
-
-        /**
-         * Constructor: Create an instance of the object.
-         */
-        private VuforiaVision()
-        {
-            vuforia.configVideoSource(IMAGE_WIDTH, IMAGE_HEIGHT, FRAME_QUEUE_CAPACITY);
-            /*
-             * Create a transformation matrix describing where the camera is on the robot.
-             *
-             * Info:  The coordinate frame for the robot looks the same as the field.
-             * The robot's "forward" direction is facing out along X axis, with the LEFT side facing out along
-             * the Y axis. Z is UP on the robot.  This equates to a bearing angle of Zero degrees.
-             *
-             * For a WebCam, the default starting orientation of the camera is looking UP (pointing in the Z
-             * direction), with the wide (horizontal) axis of the camera aligned with the X axis, and
-             * the Narrow (vertical) axis of the camera aligned with the Y axis
-             *
-             * But, this example assumes that the camera is actually facing forward out the front of the robot.
-             * So, the "default" camera position requires two rotations to get it oriented correctly.
-             * 1) First it must be rotated +90 degrees around the X axis to get it horizontal (its now facing out
-             *    the right side of the robot)
-             * 2) Next it must be be rotated +90 degrees (counter-clockwise) around the Z axis to face forward.
-             *
-             * Finally the camera can be translated to its actual mounting position on the robot.
-             */
-            final float CAMERA_FORWARD_DISPLACEMENT =
-                (float)((RobotParams.ROBOT_LENGTH/2.0 - RobotParams.CAMERA_FRONT_OFFSET)*TrcUtil.MM_PER_INCH);
-            final float CAMERA_VERTICAL_DISPLACEMENT =
-                (float)(RobotParams.CAMERA_HEIGHT_OFFSET*TrcUtil.MM_PER_INCH);
-            final float CAMERA_LEFT_DISPLACEMENT =
-                (float)((RobotParams.ROBOT_WIDTH/2.0 - RobotParams.CAMERA_LEFT_OFFSET)*TrcUtil.MM_PER_INCH);
-            OpenGLMatrix cameraLocationOnRobot = OpenGLMatrix
-                .translation(CAMERA_FORWARD_DISPLACEMENT, CAMERA_LEFT_DISPLACEMENT, CAMERA_VERTICAL_DISPLACEMENT)
-                .multiplied(Orientation.getRotationMatrix(EXTRINSIC, YZX, DEGREES, 90, 90, 0));
-            /*
-             * In order for localization to work, we need to tell the system where each target is on the field,
-             * and where the camera resides on the robot.  These specifications are in the form of
-             * <em>transformation matrices.</em>
-             * Transformation matrices are a central, important concept in the math here involved in localization.
-             * See <a href="https://en.wikipedia.org/wiki/Transformation_matrix">Transformation Matrix</a>
-             * for detailed information. Commonly, you'll encounter transformation matrices as instances
-             * of the {@link OpenGLMatrix} class.
-             *
-             * If you are standing in the Red Alliance Station looking towards the center of the field,
-             *     - The X axis runs from your left to the right. (positive from the center to the right)
-             *     - The Y axis runs from the Red Alliance Station towards the other side of the field
-             *       where the Blue Alliance Station is. (Positive is from the center, towards the BlueAlliance
-             *       station)
-             *     - The Z axis runs from the floor, upwards towards the ceiling.  (Positive is above the floor)
-             *
-             * Before being transformed, each target image is conceptually located at the origin of the field's
-             * coordinate system (the center of the field), facing up.
-             */
-            OpenGLMatrix blueStorageLocation = OpenGLMatrix
-                .translation(-halfField, oneAndHalfTile, mmTargetHeight)
-                .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 90));
-            OpenGLMatrix blueAllianceWallLocation = OpenGLMatrix
-                .translation(halfTile, halfField, mmTargetHeight)
-                .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 0));
-            OpenGLMatrix redStorageLocation = OpenGLMatrix
-                .translation(-halfField, -oneAndHalfTile, mmTargetHeight)
-                .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 90));
-            OpenGLMatrix redAllianceWallLocation = OpenGLMatrix
-                .translation(halfTile, -halfField, mmTargetHeight)
-                .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, 180));
-            //
-            // Create and initialize all image targets.
-            //
-            FtcVuforia.TargetInfo[] imageTargetsInfo = {
-                new FtcVuforia.TargetInfo(0, blueStorageName, false, blueStorageLocation),
-                new FtcVuforia.TargetInfo(1, blueAllianceWallName, false, blueAllianceWallLocation),
-                new FtcVuforia.TargetInfo(2, redStorageName, false, redStorageLocation),
-                new FtcVuforia.TargetInfo(3, redAllianceWallName, false, redAllianceWallLocation)
-            };
-            vuforia.addTargetList(RobotParams.TRACKABLE_IMAGES_FILE, imageTargetsInfo, cameraLocationOnRobot);
-
-            vuforiaImageTargets = new VuforiaTrackable[imageTargetsInfo.length];
-            for (int i = 0; i < vuforiaImageTargets.length; i++)
-            {
-                vuforiaImageTargets[i] = vuforia.getTarget(imageTargetsInfo[i].name);
-            }
-        }   //VuforiaVision
-
-        /**
-         * This method returns the vector of the given target location object.
-         *
-         * @param location specifies the target location.
-         * @return target location vector.
-         */
-        private VectorF getLocationTranslation(OpenGLMatrix location)
-        {
-            return location.getTranslation();
-        }   //getLocationTranslation
-
-        /**
-         * This method returns the orientation of the given target location object.
-         *
-         * @param location specifies the target location.
-         * @return target orientation.
-         */
-        private Orientation getLocationOrientation(OpenGLMatrix location)
-        {
-            return Orientation.getOrientation(location, EXTRINSIC, XYZ, DEGREES);
-        }   //getLocationOrientation
-
-        /**
-         * This method returns the robot location computed with the detected target.
-         *
-         * @param targetName specifies the detected target name.
-         * @return robot location.
-         */
-        private OpenGLMatrix getRobotLocation(String targetName)
-        {
-            OpenGLMatrix robotLocation = null;
-            VuforiaTrackable target = vuforia.getTarget(targetName);
-
-            if (target != null)
-            {
-                robotLocation = vuforia.getRobotLocation(target);
-
-                if (robot.blinkin != null)
-                {
-                    if (robotLocation != null)
-                    {
-                        robot.blinkin.setPatternState(targetName, true);
-                    }
-                    else
-                    {
-                        robot.blinkin.reset();
-                    }
-                }
-            }
-
-            return robotLocation;
-        }   //getRobotLocation
-
-        /**
-         * This method returns the robot location computed with the detected target.
-         *
-         * @param targetName specifies the detected target name.
-         * @param exclude specifies true to exclude the specified target.
-         * @return robot location.
-         */
-        private OpenGLMatrix getRobotLocation(String targetName, boolean exclude)
-        {
-            OpenGLMatrix robotLocation = null;
-
-            if (targetName == null || exclude)
-            {
-                for (VuforiaTrackable target: vuforiaImageTargets)
-                {
-                    String name = target.getName();
-                    boolean isMatched = targetName == null || !targetName.equals(name);
-
-                    if (isMatched && vuforia.isTargetVisible(target))
-                    {
-                        // getRobotLocation() will return null if no new information is available since
-                        // the last time that call was made, or if the trackable is not currently visible.
-                        OpenGLMatrix location = vuforia.getRobotLocation(target);
-                        if (location != null)
-                        {
-                            robotLocation = location;
-                            lastVuforiaImageName = name;
-                        }
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                robotLocation = getRobotLocation(targetName);
-                if (robotLocation != null)
-                {
-                    lastVuforiaImageName = targetName;
-                }
-            }
-
-            if (robot.blinkin != null)
-            {
-                if (robotLocation != null)
-                {
-                    robot.blinkin.setPatternState(lastVuforiaImageName, true);
-                }
-                else
-                {
-                    robot.blinkin.reset();
-                }
-            }
-
-            return robotLocation;
-        }   //getRobotLocation
-
-    }   //class VuforiaVision
+        return (int)((Math.abs(a.distanceFromImageCenter.x) - Math.abs(b.distanceFromImageCenter.x))*1000);
+    }   //compareDistanceToCenter
 
     /**
-     * This class implements TensorFlow Vision that provides the capability to detect learned objects and return their
-     * location info.
+     * This method is called by the Arrays.sort to sort the target object by increasing camera angle.
+     *
+     * @param a specifies the first target
+     * @param b specifies the second target.
+     * @return negative value if a has smaller camera angle than b, 0 if a and b have equal camera angle, positive
+     *         value if a has larger camera angle than b.
      */
-    private class TensorFlowVision
+    private int compareCameraAngle(
+        TrcVisionTargetInfo<FtcTensorFlow.DetectedObject> a, TrcVisionTargetInfo<FtcTensorFlow.DetectedObject> b)
     {
-        private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
-        private static final float TFOD_MIN_CONFIDENCE = 0.2f;
-        private static final double TARGET_WIDTH_LOWER_TOLERANCE = 2.0;
-        private static final double TARGET_WIDTH_UPPER_TOLERANCE = 3.0;
-//        private static final double ASPECT_RATIO_TOLERANCE_LOWER = 0.75;
-//        private static final double ASPECT_RATIO_TOLERANCE_UPPER = 1.33;
-//        // Target size is area of target rect.
-//        private static final double TARGET_SIZE_TOLERANCE_LOWER = 4000.0;
-//        private static final double TARGET_SIZE_TOLERANCE_UPPER = 25000.0;
-
-        private FtcTensorFlow tensorFlow;
-
-        /**
-         * Constructor: Create an instance of the object.
-         */
-        private TensorFlowVision()
-        {
-            System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
-            FtcOpMode opMode = FtcOpMode.getInstance();
-            int tfodMonitorViewId = !RobotParams.Preferences.showTensorFlowView ? -1 :
-                opMode.hardwareMap.appContext.getResources().getIdentifier(
-                    "tfodMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-            //
-            // If no TFOD monitor view ID, do not activate camera monitor view to save power.
-            //
-            TFObjectDetector.Parameters tfodParams =
-                tfodMonitorViewId == -1?
-                    new TFObjectDetector.Parameters() : new TFObjectDetector.Parameters(tfodMonitorViewId);
-            tfodParams.minResultConfidence = TFOD_MIN_CONFIDENCE;
-            tfodParams.isModelTensorFlow2 = true;
-            tfodParams.inputSize = 320;
-
-            TrcHomographyMapper.Rectangle cameraRect = new TrcHomographyMapper.Rectangle(
-                RobotParams.HOMOGRAPHY_CAMERA_TOPLEFT_X, RobotParams.HOMOGRAPHY_CAMERA_TOPLEFT_Y,
-                RobotParams.HOMOGRAPHY_CAMERA_TOPRIGHT_X, RobotParams.HOMOGRAPHY_CAMERA_TOPRIGHT_Y,
-                RobotParams.HOMOGRAPHY_CAMERA_BOTTOMLEFT_X, RobotParams.HOMOGRAPHY_CAMERA_BOTTOMLEFT_Y,
-                RobotParams.HOMOGRAPHY_CAMERA_BOTTOMRIGHT_X, RobotParams.HOMOGRAPHY_CAMERA_BOTTOMRIGHT_Y);
-
-            TrcHomographyMapper.Rectangle worldRect = new TrcHomographyMapper.Rectangle(
-                RobotParams.HOMOGRAPHY_WORLD_TOPLEFT_X, RobotParams.HOMOGRAPHY_WORLD_TOPLEFT_Y,
-                RobotParams.HOMOGRAPHY_WORLD_TOPRIGHT_X, RobotParams.HOMOGRAPHY_WORLD_TOPRIGHT_Y,
-                RobotParams.HOMOGRAPHY_WORLD_BOTTOMLEFT_X, RobotParams.HOMOGRAPHY_WORLD_BOTTOMLEFT_Y,
-                RobotParams.HOMOGRAPHY_WORLD_BOTTOMRIGHT_X, RobotParams.HOMOGRAPHY_WORLD_BOTTOMRIGHT_Y);
-
-            tensorFlow = new FtcTensorFlow(
-                vuforia, tfodParams, TFOD_MODEL_ASSET, new String[] {LABEL_BALL, LABEL_CUBE, LABEL_DUCK, LABEL_MARKER},
-                cameraRect, worldRect, tracer);
-        }   //TensorFlowVision
-
-        /**
-         * This method shuts down TensorFlow.
-         */
-        private void shutdown()
-        {
-            if (tensorFlow != null)
-            {
-                tensorFlow.shutdown();
-                tensorFlow = null;
-            }
-        }   //shutdown
-
-        /**
-         * This method returns an array of detected targets from TensorFlow vision.
-         *
-         * @param label specifies the label of the targets to detect for, can be null for detecting any target.
-         * @param filter specifies the filter to call to filter out false positive targets.
-         * @param comparator specifies the comparator to sort the array if provided, can be null if not provided.
-         * @return array of detected target info.
-         */
-        private FtcTensorFlow.TargetInfo[] getDetectedTargetsInfo(
-            String label, FtcTensorFlow.FilterTarget filter, Comparator<? super FtcTensorFlow.TargetInfo> comparator)
-        {
-            return tensorFlow.getDetectedTargetsInfo(label, filter, comparator);
-        }   //getDetectedTargetsInfo
-
-        /**
-         * This method maps a camera screen point to a real-world point.
-         *
-         * @param point specifies the camera screen point.
-         * @return real-world point.
-         */
-        public Point mapPoint(Point point)
-        {
-            return tensorFlow != null? tensorFlow.mapPoint(point): null;
-        }   //mapPoint
-
-        /**
-         * This method maps a camera screen point to a real-world point.
-         *
-         * @param x specifies the camera screen point x.
-         * @param y specifies the camera screen point y.
-         * @return real-world point.
-         */
-        public Point mapPoint(double x, double y)
-        {
-            return mapPoint(new Point(x, y));
-        }   //mapPoint
-
-        /**
-         * This method is called by the Arrays.sort to sort the target object by decreasing confidence.
-         *
-         * @param a specifies the first target
-         * @param b specifies the second target.
-         * @return negative value if a has higher confidence than b, 0 if a and b have equal confidence, positive value
-         *         if a has lower confidence than b.
-         */
-        private int compareConfidence(FtcTensorFlow.TargetInfo a, FtcTensorFlow.TargetInfo b)
-        {
-            return (int)((b.confidence - a.confidence)*100);
-        }   //compareConfidence
-
-        /**
-         * This method is called to validate the detected target as a duck.
-         * To valid a valid duck, it must have:
-         *  - correct aspect ratio
-         *  - correct size
-         *  - at expected location(s).
-         *
-         * @param target specifies the target to be validated.
-         * @return true if target is valid, false if false positive.
-         */
-        private boolean validateDuck(Recognition target)
-        {
-            FtcTensorFlow.TargetInfo targetInfo = tensorFlow.getTargetInfo(target);
-//            double aspectRatio = (double)targetInfo.rect.width/(double)targetInfo.rect.height;
-//            double area = targetInfo.rect.width*targetInfo.rect.height;
-//            double distanceYTolerance = targetInfo.imageHeight/6.0;
-//            boolean isValid = targetInfo.label.equals(LABEL_DUCK) &&
-//                              aspectRatio <= ASPECT_RATIO_TOLERANCE_UPPER &&
-//                              aspectRatio >= ASPECT_RATIO_TOLERANCE_LOWER &&
-//                              targetInfo.rect.x > 20 && targetInfo.rect.x < targetInfo.imageWidth - 20;
-            boolean isValid = targetInfo.label.equals(LABEL_DUCK) &&
-                              targetInfo.objectWidth >= TARGET_WIDTH_LOWER_TOLERANCE &&
-                              targetInfo.objectWidth <= TARGET_WIDTH_UPPER_TOLERANCE;
-            tracer.traceInfo("validateDuck", "<<<<< valid=%s, duckInfo=%s", isValid, targetInfo);
-
-            return isValid;
-//            return targetInfo.label.equals(LABEL_DUCK) &&
-//                   aspectRatio <= ASPECT_RATIO_TOLERANCE_UPPER &&
-//                   aspectRatio >= ASPECT_RATIO_TOLERANCE_LOWER &&
-//                   targetInfo.rect.x > 20 && targetInfo.rect.x < targetInfo.imageWidth - 20;
-//                   area <= TARGET_SIZE_TOLERANCE_UPPER &&
-//                   area >= TARGET_SIZE_TOLERANCE_LOWER &&
-//                   Math.abs(targetInfo.distanceFromImageCenter.y) <= distanceYTolerance;
-        }   //validateDuck
-
-        /**
-         * This method is called to validate the detected target as either a cube or a ball.
-         *
-         * @param target specifies the target to be validated.
-         * @return true if target is valid, false if false positive.
-         */
-        private boolean validateFreight(Recognition target)
-        {
-            FtcTensorFlow.TargetInfo targetInfo = tensorFlow.getTargetInfo(target);
-
-            return targetInfo.label.equals(LABEL_CUBE) || targetInfo.label.equals(LABEL_BALL);
-        }   //validateFreight
-
-        /**
-         * This method determines the duck's barcode position 1, 2, or 3 (0 if no valid duck found).
-         *
-         * @param targetInfo specifies the detected duck's target info.
-         * @return duck's barcode position.
-         */
-        private int determineDuckPosition(FtcTensorFlow.TargetInfo targetInfo)
-        {
-            int pos = 0;
-
-            if (targetInfo != null)
-            {
-                double oneSixthImageWidth = targetInfo.imageWidth/6.0;
-
-                if (targetInfo.distanceFromImageCenter.x <= -oneSixthImageWidth)
-                {
-                    pos = 1;
-                }
-                else if (targetInfo.distanceFromImageCenter.x >= oneSixthImageWidth)
-                {
-                    pos = 3;
-                }
-                else
-                {
-                    pos = 2;
-                }
-
-                if (robot.blinkin != null)
-                {
-                    // Turn off previous detection indication.
-                    robot.blinkin.setPatternState(duckPos1, false);
-                    robot.blinkin.setPatternState(duckPos2, false);
-                    robot.blinkin.setPatternState(duckPos3, false);
-
-                    switch (pos)
-                    {
-                        case 1:
-                            robot.blinkin.setPatternState(duckPos1, true);
-                            break;
-
-                        case 2:
-                            robot.blinkin.setPatternState(duckPos2, true);
-                            break;
-
-                        case 3:
-                            robot.blinkin.setPatternState(duckPos3, true);
-                            break;
-                    }
-                }
-            }
-
-            return pos;
-        }   //determineDuckPosition
-
-        /**
-         * This method calls vision to detect all the ducks and returns their barcode positions in an array.
-         *
-         * @return duck barcode position array 1, 2, or 3, null if none found.
-         */
-        private int[] getDetectedDuckPositions()
-        {
-            final String funcName = "getDetectedDuckPositions";
-            int[] duckPositions = null;
-            FtcTensorFlow.TargetInfo[] targetInfo =
-                getDetectedTargetsInfo(Vision.LABEL_DUCK, null, this::compareConfidence);
-
-            if (targetInfo != null && targetInfo.length > 0)
-            {
-                duckPositions = new int[targetInfo.length];
-                //
-                // Target array is sorted with highest confidence first. Therefore, we process the array backward so
-                // that the highest confidence target will be processed last. Therefore, the LED state will show the
-                // highest confidence target position.
-                //
-                for (int i = targetInfo.length - 1; i >= 0; i--)
-                {
-                    duckPositions[i] = determineDuckPosition(targetInfo[i]);
-                    if (tracer != null)
-                    {
-                        tracer.traceInfo(funcName, "[%d] targetInfo=%s, duckPos=%d", i, targetInfo[i], duckPositions[i]);
-                    }
-                }
-
-                lastDuckPosition = duckPositions[0];
-            }
-
-            return duckPositions;
-        }   //getDetectedDuckPositions
-
-    }   //class TensorFlowVision
+        return (int)((Math.abs(a.detectedObj.angle) - Math.abs(b.detectedObj.angle))*1000);
+    }   //compareCameraAngle
 
     /**
-     * This class implements GRIP Vision that provides the capability to detect color blobs and return their
-     * location info.
+     * This method is called by the Arrays.sort to sort the target object by decreasing object size.
+     *
+     * @param a specifies the first target
+     * @param b specifies the second target.
+     * @return negative value if a has smaller area than b, 0 if a and b have equal area, positive value if a has
+     *         larger area than b.
      */
-    private class GripVision extends TrcOpenCvDetector<Rect[]>
+    private int compareObjectSize(
+        TrcVisionTargetInfo<TrcOpenCV.DetectedObject> a, TrcVisionTargetInfo<TrcOpenCV.DetectedObject> b)
     {
-        private final GripPipeline gripPipeline;
-        private boolean videoOutEnabled = false;
-
-        public GripVision(String instanceName, TrcVideoSource<Mat> videoSource)
-        {
-            super(instanceName, videoSource, 2, null);
-            gripPipeline = new GripPipeline();
-        }   //GripVision
-
-        /**
-         * This method enables/disables the video out stream.
-         *
-         * @param enabled specifies true to enable video out stream, false to disable.
-         */
-        public void setVideoOutEnabled(boolean enabled)
-        {
-            videoOutEnabled = enabled;
-        }   //setVideoOutEnabled
-
-//        public void retrieveTargetRects(Rect[] rects)
-//        {
-//            synchronized (targetRects)
-//            {
-//                rects[0] = targetRects[0];
-//                targetRects[0] = null;
-//                rects[1] = targetRects[1];
-//                targetRects[1] = null;
-//            }
-//        }   //retrieveTargetRects
-
-//        private Rect[] getTargetRects(GripPipeline pipeline, Mat image)
-//        {
-//            Rect[] targetRects = null;
-//            MatOfKeyPoint detectedTargets;
-//            int lineNum = 10;
-//
-//            pipeline.process(image);
-//            detectedTargets = pipeline.findBlobsOutput();
-//            if (detectedTargets != null)
-//            {
-//                KeyPoint[] targets = detectedTargets.toArray();
-//                targetRects = new Rect[targets.length];
-//                for (int i = 0; i < targetRects.length; i++)
-//                {
-//                    double radius = targets[i].size/2;
-//                    targetRects[i] = new Rect(
-//                        (int)(targets[i].pt.x - radius), (int)(targets[i].pt.y - radius),
-//                        (int)targets[i].size, (int)targets[i].size);
-//                    if (lineNum + i < FtcDashboard.getInstance().getNumTextLines())
-//                    {
-//                        FtcDashboard.getInstance().displayPrintf(lineNum + i, "[%d] %s", i, targetRects[i]);
-//                    }
-//                }
-//                detectedTargets.release();
-//            }
-//
-//            return targetRects;
-//        }   //getTargetRects
-
-        /**
-         * This method is called to grab an image frame from the video input.
-         *
-         * @param image specifies the frame buffer to hold the captured image.
-         * @return true if frame is successfully captured, false otherwise.
-         */
-        @Override
-        public boolean grabFrame(Mat image)
-        {
-            return vuforia.getFrame(image);
-        }   //grabFrame
-
-        /**
-         * This method is called to detect objects in the acquired image frame.
-         *
-         * @param image specifies the image to be processed.
-         * @param buffers specifies the preallocated buffer to hold the detected targets (not used since no
-         *        preallocated buffer required).
-         * @return detected objects, null if none detected.
-         */
-        @Override
-        public Rect[] detectObjects(Mat image, Rect[] buffers)
-        {
-            Rect[] targetRects = null;
-            MatOfKeyPoint detectedTargets;
-            //
-            // Process the image to detect the targets we are looking for and put them into targetRects.
-            //
-            gripPipeline.process(image);
-            detectedTargets = gripPipeline.findBlobsOutput();
-            if (detectedTargets != null)
-            {
-                KeyPoint[] targets = detectedTargets.toArray();
-                targetRects = new Rect[targets.length];
-                for (int i = 0; i < targetRects.length; i++)
-                {
-                    double radius = targets[i].size/2;
-                    targetRects[i] = new Rect(
-                        (int)(targets[i].pt.x - radius), (int)(targets[i].pt.y - radius),
-                        (int)targets[i].size, (int)targets[i].size);
-                }
-
-                detectedTargets.release();
-            }
-
-            if (videoOutEnabled)
-            {
-                drawRectangles(image, targetRects, new Scalar(0, 255, 0), 0);
-            }
-
-            return targetRects;
-        }   //detectObjects
-
-    }   //class GripVision
+        return a.detectedObj.rect.width * a.detectedObj.rect.height -
+               b.detectedObj.rect.width * b.detectedObj.rect.height;
+    }   //compareObjectSize
 
 }   //class Vision

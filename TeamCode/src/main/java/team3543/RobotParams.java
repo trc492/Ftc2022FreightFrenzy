@@ -26,6 +26,7 @@ import android.os.Environment;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import TrcCommonLib.trclib.TrcHomographyMapper;
 import TrcCommonLib.trclib.TrcPose2D;
 
 public class RobotParams
@@ -202,6 +203,18 @@ public class RobotParams
     static final double HOMOGRAPHY_WORLD_BOTTOMLEFT_Y           = 16.0;
     static final double HOMOGRAPHY_WORLD_BOTTOMRIGHT_X          = 7.5;
     static final double HOMOGRAPHY_WORLD_BOTTOMRIGHT_Y          = 16.0;
+
+    static final TrcHomographyMapper.Rectangle cameraRect = new TrcHomographyMapper.Rectangle(
+        RobotParams.HOMOGRAPHY_CAMERA_TOPLEFT_X, RobotParams.HOMOGRAPHY_CAMERA_TOPLEFT_Y,
+        RobotParams.HOMOGRAPHY_CAMERA_TOPRIGHT_X, RobotParams.HOMOGRAPHY_CAMERA_TOPRIGHT_Y,
+        RobotParams.HOMOGRAPHY_CAMERA_BOTTOMLEFT_X, RobotParams.HOMOGRAPHY_CAMERA_BOTTOMLEFT_Y,
+        RobotParams.HOMOGRAPHY_CAMERA_BOTTOMRIGHT_X, RobotParams.HOMOGRAPHY_CAMERA_BOTTOMRIGHT_Y);
+    static final TrcHomographyMapper.Rectangle worldRect = new TrcHomographyMapper.Rectangle(
+        RobotParams.HOMOGRAPHY_WORLD_TOPLEFT_X, RobotParams.HOMOGRAPHY_WORLD_TOPLEFT_Y,
+        RobotParams.HOMOGRAPHY_WORLD_TOPRIGHT_X, RobotParams.HOMOGRAPHY_WORLD_TOPRIGHT_Y,
+        RobotParams.HOMOGRAPHY_WORLD_BOTTOMLEFT_X, RobotParams.HOMOGRAPHY_WORLD_BOTTOMLEFT_Y,
+        RobotParams.HOMOGRAPHY_WORLD_BOTTOMRIGHT_X, RobotParams.HOMOGRAPHY_WORLD_BOTTOMRIGHT_Y);
+
     //
     // Vision subsystem.
     //
@@ -241,7 +254,7 @@ public class RobotParams
     //
     // Intake subsystem.
     //
-    static final double INTAKE_POWER_PICKUP                     = 1.0;;
+    static final double INTAKE_POWER_PICKUP                     = 1.0;
     static final double INTAKE_POWER_DUMP                       = -0.4;
     static final double INTAKE_DUMP_TIME                        = 1.2;
     static final double INTAKE_SENSOR_THRESHOLD                 = 4.6;    //in cm

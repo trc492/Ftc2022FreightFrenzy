@@ -253,11 +253,7 @@ public class RobotDrive
      */
     private void addIntermediatePoints(ArrayList<TrcPose2D> points, TrcPose2D endPoint, double angleInc)
     {
-        if (points.size() == 0)
-        {
-            points.add(endPoint);
-        }
-        else
+        if (points.size() != 0)
         {
             TrcPose2D startPoint = points.get(points.size() - 1);
             TrcPose2D relPose = endPoint.relativeTo(startPoint);
@@ -270,9 +266,8 @@ public class RobotDrive
             {
                 points.add(startPoint.addRelativePose(new TrcPose2D(xDelta*i, yDelta*i, angleDelta*i)));
             }
-
-            points.add(endPoint);
         }
+        points.add(endPoint);
     }   //addIntermediatePoints
 
     /**
@@ -286,7 +281,6 @@ public class RobotDrive
      */
     public TrcPath buildPath(double angleInc, boolean incrementalPath, TrcPose2D... poses)
     {
-        final String funcName = "buildPath";
         ArrayList<TrcPose2D> points = new ArrayList<>();
 
         addIntermediatePoints(points, driveBase.getFieldPosition(), angleInc);

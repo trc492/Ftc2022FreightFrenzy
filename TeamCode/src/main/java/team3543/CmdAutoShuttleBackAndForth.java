@@ -27,7 +27,7 @@ import TrcCommonLib.trclib.TrcPose2D;
 import TrcCommonLib.trclib.TrcRobot;
 import TrcCommonLib.trclib.TrcStateMachine;
 import TrcCommonLib.trclib.TrcTimer;
-import TrcFtcLib.ftclib.FtcTensorFlow;
+import TrcCommonLib.trclib.TrcVisionTargetInfo;
 
 class CmdAutoShuttleBackAndForth implements TrcRobot.RobotCommand
 {
@@ -67,9 +67,8 @@ class CmdAutoShuttleBackAndForth implements TrcRobot.RobotCommand
     private final TrcStateMachine<State> sm;
     private final TrcPose2D redLookingPos, blueLookingPos;
     private int duckPosition = 0;
-    private Double expireTime = null;
-    private boolean useVisionForPickup = false;
-    private FtcTensorFlow.TargetInfo freightInfo;
+    private final boolean useVisionForPickup = false;
+    private TrcVisionTargetInfo<?> freightInfo;
     private double pickupHeadingInc = 0.0;
 
     /**
@@ -344,7 +343,8 @@ class CmdAutoShuttleBackAndForth implements TrcRobot.RobotCommand
                         robot.robotDrive.purePursuitDrive.start(
                             event, robot.robotDrive.driveBase.getFieldPosition(), true,
                             new TrcPose2D(
-                                freightInfo.distanceFromCamera.x, freightInfo.distanceFromCamera.y, freightInfo.angle));
+                                freightInfo.distanceFromCamera.x, freightInfo.distanceFromCamera.y,
+                                freightInfo.horizontalAngle));
                     }
                     else if (autoChoices.alliance == FtcAuto.Alliance.RED_ALLIANCE)
                     {
@@ -378,7 +378,7 @@ class CmdAutoShuttleBackAndForth implements TrcRobot.RobotCommand
                         {
                             if (robot.blinkin != null)
                             {
-                                robot.blinkin.setPatternState(Vision.gotTarget, true);
+                                robot.blinkin.setPatternState(Vision.GOT_TARGET, true);
                             }
                             //if it has freight, keep running intake so block doesnt fall out
                             robot.intake.setPower(RobotParams.INTAKE_POWER_PICKUP);

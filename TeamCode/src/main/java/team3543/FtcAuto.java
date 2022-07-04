@@ -216,16 +216,21 @@ public class FtcAuto extends FtcOpMode
 
         if (robot.vision != null)
         {
-            if (RobotParams.Preferences.useVuforia)
+            if (robot.vision.vuforiaVision != null)
             {
                 robot.globalTracer.traceInfo(funcName, "Enabling Vuforia.");
-                robot.vision.setVuforiaEnabled(true);
+                robot.vision.vuforiaVision.setEnabled(true);
             }
 
-            if (RobotParams.Preferences.useTensorFlow)
+            if (robot.vision.tensorFlowVision != null)
             {
                 robot.globalTracer.traceInfo(funcName, "Enabling TensorFlow.");
-                robot.vision.setTensorFlowEnabled(true);
+                robot.vision.tensorFlowVision.setEnabled(true);
+            }
+            else if (robot.vision.gripVision != null)
+            {
+                robot.globalTracer.traceInfo(funcName, "Enabling GripVision.");
+                robot.vision.gripVision.setEnabled(true);
             }
         }
     }   //initRobot
@@ -243,7 +248,7 @@ public class FtcAuto extends FtcOpMode
     {
         if (robot.vision != null && RobotParams.Preferences.useTensorFlow)
         {
-            robot.vision.getBestDuckPosition();
+            robot.vision.getDetectedDuckPositions();
         }
     }   //initPeriodic
 
@@ -424,7 +429,7 @@ public class FtcAuto extends FtcOpMode
         autoChoices.drivePower = drivePowerMenu.getCurrentValue();
         // If we are doing NearCarousel duck delivery and storage or warehouse, we default other choices appropriately.
         if (autoChoices.strategy == AutoStrategy.AUTO_NEAR_CAROUSEL_DUCK_DELIVERY_STORAGE_PARKING ||
-            autoChoices.strategy == AutoStrategy.AUTO_NEAR_CAROUSEL_DUCK_DELIVERY_STORAGE_PARKING)
+            autoChoices.strategy == AutoStrategy.AUTO_NEAR_CAROUSEL_DUCK_DELIVERY_WAREHOUSE_PARKING)
         {
             autoChoices.freightDelivery = true;
             autoChoices.duckDelivery = true;

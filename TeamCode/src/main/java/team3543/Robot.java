@@ -298,13 +298,13 @@ public class Robot
         //
         if (vision != null)
         {
-            if (RobotParams.Preferences.useVuforia)
+            if (vision.vuforiaVision != null)
             {
                 globalTracer.traceInfo(funcName, "Disabling Vuforia.");
-                vision.setVuforiaEnabled(false);
+                vision.vuforiaVision.setEnabled(false);
             }
 
-            if (RobotParams.Preferences.useTensorFlow)
+            if (vision.tensorFlowVision != null)
             {
                 globalTracer.traceInfo(funcName, "Shutting down TensorFlow.");
                 vision.tensorFlowShutdown();
