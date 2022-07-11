@@ -26,7 +26,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 
 import TrcCommonLib.trclib.TrcDbgTrace;
-import TrcCommonLib.trclib.TrcOpenCV;
+import TrcCommonLib.trclib.TrcOpenCVDetector;
 import TrcCommonLib.trclib.TrcRevBlinkin;
 import TrcCommonLib.trclib.TrcVisionTargetInfo;
 import TrcFtcLib.ftclib.FtcOpMode;
@@ -347,7 +347,8 @@ public class Vision
      *         larger area than b.
      */
     private int compareObjectSize(
-        TrcVisionTargetInfo<TrcOpenCV.DetectedObject> a, TrcVisionTargetInfo<TrcOpenCV.DetectedObject> b)
+        TrcVisionTargetInfo<TrcOpenCVDetector.DetectedObject> a,
+        TrcVisionTargetInfo<TrcOpenCVDetector.DetectedObject> b)
     {
         return a.detectedObj.rect.width * a.detectedObj.rect.height -
                b.detectedObj.rect.width * b.detectedObj.rect.height;

@@ -28,21 +28,22 @@ import org.opencv.core.MatOfKeyPoint;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 
-import TrcCommonLib.trclib.TrcOpenCV;
+import TrcCommonLib.trclib.TrcOpenCVDetector;
 import TrcFtcLib.ftclib.FtcVuforia;
 
 /**
  * This class implements GRIP Vision that provides the capability to detect color blobs and return their
  * location info.
  */
-public class GripVision extends TrcOpenCV
+public class GripVision extends TrcOpenCVDetector
 {
+    private static final int NUM_IMAGE_BUFFERS = 2;
     private final FtcVuforia vuforia;
     private final GripPipeline gripPipeline;
 
     public GripVision(String instanceName, FtcVuforia vuforia)
     {
-        super(instanceName, 2, RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT,
+        super(instanceName, NUM_IMAGE_BUFFERS, RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT,
               RobotParams.cameraRect, RobotParams.worldRect, null);
         this.vuforia = vuforia;
         gripPipeline = new GripPipeline();
