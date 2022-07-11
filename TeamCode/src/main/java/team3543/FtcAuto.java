@@ -230,7 +230,7 @@ public class FtcAuto extends FtcOpMode
             else if (robot.vision.gripVision != null)
             {
                 robot.globalTracer.traceInfo(funcName, "Enabling GripVision.");
-                robot.vision.gripVision.setEnabled(true);
+                robot.vision.gripVision.setTaskEnabled(true);
             }
         }
     }   //initRobot

@@ -272,7 +272,7 @@ public class FtcTest extends FtcTeleOp
                     else if (robot.vision.gripVision != null)
                     {
                         robot.globalTracer.traceInfo(funcName, "Enabling GripVision.");
-                        robot.vision.gripVision.setEnabled(true);
+                        robot.vision.gripVision.setTaskEnabled(true);
                     }
                 }
                 break;
@@ -338,7 +338,7 @@ public class FtcTest extends FtcTeleOp
             if (robot.vision.gripVision != null)
             {
                 robot.globalTracer.traceInfo(funcName, "Shutting down GripVision.");
-                robot.vision.gripVision.setEnabled(false);
+                robot.vision.gripVision.setTaskEnabled(false);
             }
         }
 

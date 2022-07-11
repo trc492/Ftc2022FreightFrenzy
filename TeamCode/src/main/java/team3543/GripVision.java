@@ -39,25 +39,14 @@ public class GripVision extends TrcOpenCV
 {
     private final FtcVuforia vuforia;
     private final GripPipeline gripPipeline;
-    private boolean videoOutEnabled = false;
 
     public GripVision(String instanceName, FtcVuforia vuforia)
     {
-        super(instanceName, vuforia, 2, RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT,
+        super(instanceName, 2, RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT,
               RobotParams.cameraRect, RobotParams.worldRect, null);
         this.vuforia = vuforia;
         gripPipeline = new GripPipeline();
     }   //GripVision
-
-    /**
-     * This method enables/disables the video out stream.
-     *
-     * @param enabled specifies true to enable video out stream, false to disable.
-     */
-    public void setVideoOutEnabled(boolean enabled)
-    {
-        videoOutEnabled = enabled;
-    }   //setVideoOutEnabled
 
     /**
      * This method is called to grab an image frame from the video input.
@@ -102,12 +91,20 @@ public class GripVision extends TrcOpenCV
             detectedTargets.release();
         }
 
-        if (videoOutEnabled)
-        {
-            drawRectangles(image, targets, new Scalar(0, 255, 0), 0);
-        }
-
         return targets;
     }   //processFrame
+
+    /**
+     * This method is called to overlay rectangles of the detected objects on an image.
+     *
+     * @param image specifies the frame to be rendered to the video output.
+     * @param detectedObjects specifies the detected objects.`
+     */
+    @Override
+    public void annotateFrame(Mat image, DetectedObject[] detectedObjects)
+    {
+        drawRectangles(image, detectedObjects, new Scalar(0, 255, 0), 0);
+        vuforia.putFrame(image);
+    }   //annotateFrame
 
 }   //class GripVision
