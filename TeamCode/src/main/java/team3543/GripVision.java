@@ -49,17 +49,32 @@ public class GripVision extends TrcOpenCVDetector
         gripPipeline = new GripPipeline();
     }   //GripVision
 
+    //
+    // Implements TrcVisionTask.VisionProcessor interface.
+    //
+
     /**
-     * This method is called to grab an image frame from the video input.
+     * This method takes a snapshot of the video frame.
      *
-     * @param image specifies the frame buffer to hold the captured image.
-     * @return true if frame is successfully captured, false otherwise.
+     * @param frame specifies the frame buffer to hold the video snapshot.
+     * @return true if successful, false otherwise.
      */
     @Override
-    public boolean grabFrame(Mat image)
+    public boolean getFrame(Mat frame)
     {
-        return vuforia.getFrame(image);
-    }   //grabFrame
+        return vuforia.getFrame(frame);
+    }   //getFrame
+
+    /**
+     * This method displays a frame buffer to the display surface.
+     *
+     * @param frame specifies the video frame to be displayed.
+     */
+    @Override
+    public void putFrame(Mat frame)
+    {
+        vuforia.putFrame(frame);
+    }   //putFrame
 
     /**
      * This method is called to process an image frame to detect objects in the acquired frame.
