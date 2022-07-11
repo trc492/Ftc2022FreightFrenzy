@@ -85,7 +85,8 @@ public class GripVision extends TrcOpenCV
                 double radius = targetPoints[i].size/2;
                 targets[i] = new DetectedObject(
                     new Rect((int)(targetPoints[i].pt.x - radius), (int)(targetPoints[i].pt.y - radius),
-                             (int)targetPoints[i].size, (int)targetPoints[i].size));
+                             (int)targetPoints[i].size, (int)targetPoints[i].size),
+                    targetPoints[i].angle, targetPoints[i].response, targetPoints[i].octave, targetPoints[i].class_id);
             }
 
             detectedTargets.release();
