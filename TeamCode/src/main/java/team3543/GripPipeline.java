@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import org.opencv.core.*;
-import org.opencv.features2d.FeatureDetector;
+import org.opencv.features2d.SimpleBlobDetector;
 import org.opencv.imgproc.*;
 
 /**
@@ -15,7 +15,8 @@ import org.opencv.imgproc.*;
 *
 * @author GRIP
 */
-public class GripPipeline {
+public class GripPipeline
+{
 
 	//Outputs
 	private Mat cvCvtcolorOutput = new Mat();
@@ -180,7 +181,7 @@ public class GripPipeline {
 	 */
 	private void findBlobs(Mat input, double minArea, double[] circularity,
 		Boolean darkBlobs, MatOfKeyPoint blobList) {
-		FeatureDetector blobDet = FeatureDetector.create(FeatureDetector.SIMPLEBLOB);
+		SimpleBlobDetector blobDet = SimpleBlobDetector.create();
 		try {
 			File tempFile = File.createTempFile("config", ".xml");
 
@@ -229,9 +230,6 @@ public class GripPipeline {
 
 		blobDet.detect(input, blobList);
 	}
-
-
-
 
 }
 

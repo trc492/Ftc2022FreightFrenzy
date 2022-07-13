@@ -24,19 +24,20 @@ package team3543;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
 
 import TrcCommonLib.trclib.TrcDbgTrace;
 import TrcCommonLib.trclib.TrcOpenCVDetector;
 import TrcCommonLib.trclib.TrcRevBlinkin;
 import TrcCommonLib.trclib.TrcVisionTargetInfo;
 import TrcFtcLib.ftclib.FtcOpMode;
-import TrcFtcLib.ftclib.FtcTensorFlow;
 import TrcFtcLib.ftclib.FtcVuforia;
 
 /**
- * This class implements Vuforia/TensorFlow Vision for the game season. It creates and initializes all the vision
- * target info as well as providing info for the robot, camera and the field. It also provides methods to get the
- * location of the robot and detected targets.
+ * This class implements Vuforia/TensorFlow/Grip/Eocv Vision for the game season. It creates and initializes all the
+ * vision target info as well as providing info for the robot, camera and the field. It also provides methods to get
+ * the location of the robot and detected targets.
  */
 public class Vision
 {
@@ -71,6 +72,7 @@ public class Vision
     public VuforiaVision vuforiaVision;
     public TensorFlowVision tensorFlowVision;
     public GripVision gripVision;
+    public EocvVision eocvVision;
 
     private int lastDuckPosition = 0;
 
@@ -80,43 +82,54 @@ public class Vision
      * them by calling the initVuforia or initTensorFlow methods respectively.
      *
      * @param robot specifies the robot object.
-     * @param useVuforia specifies true to use Vuforia Vision, false otherwise.
-     * @param useTensorFlow specifies true to use TensorFlow Vision, false otherwise.
-     * @param useGripPipeline specifies true to use GRIP Vision, false otherwise.
      */
-    public Vision(Robot robot, boolean useVuforia, boolean useTensorFlow, boolean useGripPipeline)
+    public Vision(Robot robot)
     {
+        FtcOpMode opMode = FtcOpMode.getInstance();
+        int cameraViewId = opMode.hardwareMap.appContext.getResources().getIdentifier(
+                "cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
+
         this.robot = robot;
         this.tracer = TrcDbgTrace.getGlobalTracer();
-        final String VUFORIA_LICENSE_KEY =
-            "ARbBwjf/////AAABmZijKPKUWEY+uNSzCuTOUFgm7Gr5irDO55gtIOjsOXmhLzLEILJp45qdPrwMfoBV2Yh7F+Wh8iEjnSA" +
-            "NnnRKiJNHy1T9Pr2uufETE40YJth10Twv0sTNSEqxDPhg2t4PJXwRImMaEsTE53fmcm08jT9qMso2+1h9eNk2b4x6DVKgBt" +
-            "Tv5wocDs949Gkh6lRt5rAxATYYO9esmyKyfyzfFLMMpfq7/uvQQrSibNBqa13hJRmmHoM2v0Gfk8TCTTfP044/XsOm54u8k" +
-            "dv0HfeMBC91uQ/NvWHVV5XCh8pZAzmL5sry1YwG8FSRNVlSAZ1zN/m6jAe98q6IxpwQxP0da/TpJoqDI7x4RGjOs1Areunf";
-        FtcOpMode opMode = FtcOpMode.getInstance();
-        int cameraViewId = !RobotParams.Preferences.showVuforiaView ? -1 :
-            opMode.hardwareMap.appContext.getResources().getIdentifier(
-                "cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-        //
-        // If no camera view ID, do not activate camera monitor view to save power.
-        //
-        VuforiaLocalizer.Parameters vuforiaParams =
-            cameraViewId == -1? new VuforiaLocalizer.Parameters(): new VuforiaLocalizer.Parameters(cameraViewId);
 
-        vuforiaParams.vuforiaLicenseKey = VUFORIA_LICENSE_KEY;
-        vuforiaParams.cameraName = opMode.hardwareMap.get(WebcamName.class, RobotParams.HWNAME_WEBCAM);
-        vuforiaParams.useExtendedTracking = false;
-        vuforiaParams.cameraMonitorFeedback = VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
-        FtcVuforia vuforia = new FtcVuforia(vuforiaParams);
-
-        vuforiaVision = useVuforia? new VuforiaVision(vuforia, robot.blinkin): null;
-        tensorFlowVision = useTensorFlow? new TensorFlowVision(vuforia, null): null;
-
-        if (useGripPipeline)
+        if (RobotParams.Preferences.useEasyOpenCV)
         {
-            vuforia.configVideoSource(RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT, 1);
-            System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
-            gripVision = new GripVision("GripVision", vuforia);
+            OpenCvCamera webcam =
+                OpenCvCameraFactory.getInstance().createWebcam(
+                    opMode.hardwareMap.get(WebcamName.class, RobotParams.HWNAME_WEBCAM), cameraViewId);
+            eocvVision = new EocvVision(
+                "EocvVision", RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT,
+                RobotParams.cameraRect, RobotParams.worldRect, webcam, null);
+        }
+        else
+        {
+            final String VUFORIA_LICENSE_KEY =
+                "ARbBwjf/////AAABmZijKPKUWEY+uNSzCuTOUFgm7Gr5irDO55gtIOjsOXmhLzLEILJp45qdPrwMfoBV2Yh7F+Wh8iEjnSA" +
+                "NnnRKiJNHy1T9Pr2uufETE40YJth10Twv0sTNSEqxDPhg2t4PJXwRImMaEsTE53fmcm08jT9qMso2+1h9eNk2b4x6DVKgBt" +
+                "Tv5wocDs949Gkh6lRt5rAxATYYO9esmyKyfyzfFLMMpfq7/uvQQrSibNBqa13hJRmmHoM2v0Gfk8TCTTfP044/XsOm54u8k" +
+                "dv0HfeMBC91uQ/NvWHVV5XCh8pZAzmL5sry1YwG8FSRNVlSAZ1zN/m6jAe98q6IxpwQxP0da/TpJoqDI7x4RGjOs1Areunf";
+            //
+            // If no camera view ID, do not activate camera monitor view to save power.
+            //
+            VuforiaLocalizer.Parameters vuforiaParams =
+                RobotParams.Preferences.showVuforiaView?
+                    new VuforiaLocalizer.Parameters(cameraViewId): new VuforiaLocalizer.Parameters();
+
+            vuforiaParams.vuforiaLicenseKey = VUFORIA_LICENSE_KEY;
+            vuforiaParams.cameraName = opMode.hardwareMap.get(WebcamName.class, RobotParams.HWNAME_WEBCAM);
+            vuforiaParams.useExtendedTracking = false;
+            vuforiaParams.cameraMonitorFeedback = VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
+            FtcVuforia vuforia = new FtcVuforia(vuforiaParams);
+
+            vuforiaVision = RobotParams.Preferences.useVuforia? new VuforiaVision(vuforia, robot.blinkin): null;
+            tensorFlowVision = RobotParams.Preferences.useTensorFlow? new TensorFlowVision(vuforia, null): null;
+
+            if (RobotParams.Preferences.useGripPipeline)
+            {
+                vuforia.configVideoSource(RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT, 1);
+                System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
+                gripVision = new GripVision("GripVision", vuforia);
+            }
         }
     }   //Vision
 
@@ -208,6 +221,10 @@ public class Vision
         {
             targetInfo = gripVision.getDetectedTargetsInfo(null, this::compareObjectSize);
         }
+        else if (eocvVision != null)
+        {
+            targetInfo = eocvVision.getDetectedTargetsInfo(null, this::compareObjectSize);
+        }
 
         return targetInfo;
     }   //getDetectedDucksInfo
@@ -269,11 +286,15 @@ public class Vision
         if (tensorFlowVision != null)
         {
             targets = tensorFlowVision.getDetectedTargetsInfo(
-                LABEL_DUCK, tensorFlowVision::validateDuck, this::compareDistanceToCenter, false);
+                LABEL_DUCK, tensorFlowVision::validateDuck, this::compareDistanceFromCamera, false);
         }
         else if (gripVision != null)
         {
-            targets = gripVision.getDetectedTargetsInfo(null, this::compareObjectSize);
+            targets = gripVision.getDetectedTargetsInfo(null, this::compareDistanceFromCamera);
+        }
+        else if (eocvVision != null)
+        {
+            targets = eocvVision.getDetectedTargetsInfo(null, this::compareDistanceFromCamera);
         }
 
         return targets != null? targets[0]: null;
@@ -295,7 +316,11 @@ public class Vision
         }
         else if (gripVision != null)
         {
-            targets = gripVision.getDetectedTargetsInfo(null, this::compareObjectSize);
+            targets = gripVision.getDetectedTargetsInfo(null, this::compareCameraAngle);
+        }
+        else if (eocvVision != null)
+        {
+            targets = eocvVision.getDetectedTargetsInfo(null, this::compareCameraAngle);
         }
 
         return targets != null? targets[0]: null;
@@ -312,17 +337,17 @@ public class Vision
     }   //getLastDuckPosition
 
     /**
-     * This method is called by the Arrays.sort to sort the target object by increasing distance to image center.
+     * This method is called by the Arrays.sort to sort the target object by increasing object distance.
      *
      * @param a specifies the first target
      * @param b specifies the second target.
      * @return negative value if a has smaller distance to image center than b, 0 if a and b have equal distance to
      * image center, positive value if a has larger distance to image center than b.
      */
-    private int compareDistanceToCenter(TrcVisionTargetInfo<?> a, TrcVisionTargetInfo<?> b)
+    private int compareDistanceFromCamera(TrcVisionTargetInfo<?> a, TrcVisionTargetInfo<?> b)
     {
-        return (int)((Math.abs(a.distanceFromImageCenter.x) - Math.abs(b.distanceFromImageCenter.x))*1000);
-    }   //compareDistanceToCenter
+        return (int)((Math.abs(a.distanceFromCamera.y) - Math.abs(b.distanceFromCamera.y))*1000);
+    }   //compareDistanceFromCamera
 
     /**
      * This method is called by the Arrays.sort to sort the target object by increasing camera angle.
@@ -332,10 +357,9 @@ public class Vision
      * @return negative value if a has smaller camera angle than b, 0 if a and b have equal camera angle, positive
      *         value if a has larger camera angle than b.
      */
-    private int compareCameraAngle(
-        TrcVisionTargetInfo<FtcTensorFlow.DetectedObject> a, TrcVisionTargetInfo<FtcTensorFlow.DetectedObject> b)
+    private int compareCameraAngle(TrcVisionTargetInfo<?> a, TrcVisionTargetInfo<?> b)
     {
-        return (int)((Math.abs(a.detectedObj.angle) - Math.abs(b.detectedObj.angle))*1000);
+        return (int)((Math.abs(a.horizontalAngle) - Math.abs(b.horizontalAngle))*1000);
     }   //compareCameraAngle
 
     /**

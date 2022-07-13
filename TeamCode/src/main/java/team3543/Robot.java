@@ -99,12 +99,11 @@ public class Robot
         //
         if ((RobotParams.Preferences.useVuforia ||
              RobotParams.Preferences.useTensorFlow ||
-             RobotParams.Preferences.useGripPipeline) &&
+             RobotParams.Preferences.useGripPipeline ||
+             RobotParams.Preferences.useEasyOpenCV) &&
             (runMode == TrcRobot.RunMode.AUTO_MODE || runMode == TrcRobot.RunMode.TEST_MODE))
         {
-            vision = new Vision(
-                this, RobotParams.Preferences.useVuforia, RobotParams.Preferences.useTensorFlow,
-                RobotParams.Preferences.useGripPipeline);
+            vision = new Vision(this);
         }
         //
         // If visionOnly is true, the robot controller is disconnected from the robot for testing vision.
