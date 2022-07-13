@@ -71,7 +71,6 @@ public class Vision
     private final TrcDbgTrace tracer;
     public VuforiaVision vuforiaVision;
     public TensorFlowVision tensorFlowVision;
-    public GripVision gripVision;
     public EocvVision eocvVision;
 
     private int lastDuckPosition = 0;
@@ -123,13 +122,6 @@ public class Vision
 
             vuforiaVision = RobotParams.Preferences.useVuforia? new VuforiaVision(vuforia, robot.blinkin): null;
             tensorFlowVision = RobotParams.Preferences.useTensorFlow? new TensorFlowVision(vuforia, null): null;
-
-            if (RobotParams.Preferences.useGripPipeline)
-            {
-                vuforia.configVideoSource(RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT, 1);
-                System.loadLibrary(OPENCV_NATIVE_LIBRARY_NAME);
-                gripVision = new GripVision("GripVision", vuforia);
-            }
         }
     }   //Vision
 
@@ -217,10 +209,6 @@ public class Vision
         {
             targetInfo = tensorFlowVision.getDetectedDucksInfo();
         }
-        else if (gripVision != null)
-        {
-            targetInfo = gripVision.getDetectedTargetsInfo(null, this::compareObjectSize);
-        }
         else if (eocvVision != null)
         {
             targetInfo = eocvVision.getDetectedTargetsInfo(null, this::compareObjectSize);
@@ -288,10 +276,6 @@ public class Vision
             targets = tensorFlowVision.getDetectedTargetsInfo(
                 LABEL_DUCK, tensorFlowVision::validateDuck, this::compareDistanceFromCamera, false);
         }
-        else if (gripVision != null)
-        {
-            targets = gripVision.getDetectedTargetsInfo(null, this::compareDistanceFromCamera);
-        }
         else if (eocvVision != null)
         {
             targets = eocvVision.getDetectedTargetsInfo(null, this::compareDistanceFromCamera);
@@ -313,10 +297,6 @@ public class Vision
         {
             targets = tensorFlowVision.getDetectedTargetsInfo(
                 null, tensorFlowVision::validateFreight, this::compareCameraAngle, false);
-        }
-        else if (gripVision != null)
-        {
-            targets = gripVision.getDetectedTargetsInfo(null, this::compareCameraAngle);
         }
         else if (eocvVision != null)
         {

@@ -227,11 +227,6 @@ public class FtcAuto extends FtcOpMode
                 robot.globalTracer.traceInfo(funcName, "Enabling TensorFlow.");
                 robot.vision.tensorFlowVision.setEnabled(true);
             }
-            else if (robot.vision.gripVision != null)
-            {
-                robot.globalTracer.traceInfo(funcName, "Enabling GripVision.");
-                robot.vision.gripVision.setTaskEnabled(true);
-            }
         }
     }   //initRobot
 

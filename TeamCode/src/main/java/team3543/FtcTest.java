@@ -269,11 +269,6 @@ public class FtcTest extends FtcTeleOp
                         robot.globalTracer.traceInfo(funcName, "Enabling TensorFlow.");
                         robot.vision.tensorFlowVision.setEnabled(true);
                     }
-                    else if (robot.vision.gripVision != null)
-                    {
-                        robot.globalTracer.traceInfo(funcName, "Enabling GripVision.");
-                        robot.vision.gripVision.setTaskEnabled(true);
-                    }
                 }
                 break;
 
@@ -333,12 +328,6 @@ public class FtcTest extends FtcTeleOp
             {
                 robot.globalTracer.traceInfo(funcName, "Shutting down TensorFlow.");
                 robot.vision.tensorFlowShutdown();
-            }
-
-            if (robot.vision.gripVision != null)
-            {
-                robot.globalTracer.traceInfo(funcName, "Shutting down GripVision.");
-                robot.vision.gripVision.setTaskEnabled(false);
             }
         }
 
@@ -870,14 +859,14 @@ public class FtcTest extends FtcTeleOp
     {
         if (robot.vision != null)
         {
-            if (RobotParams.Preferences.useTensorFlow || RobotParams.Preferences.useGripPipeline)
+            if (RobotParams.Preferences.useTensorFlow || RobotParams.Preferences.useEasyOpenCV)
             {
                 final int maxNumLines = 3;
                 int lineIndex = 10;
                 int endLine = lineIndex + maxNumLines;
                 int numTargets;
 
-                if (robot.vision.tensorFlowVision != null || robot.vision.gripVision != null)
+                if (robot.vision.tensorFlowVision != null || robot.vision.eocvVision != null)
                 {
                     TrcVisionTargetInfo<?>[] targetsInfo = robot.vision.getDetectedDucksInfo();
 
@@ -893,20 +882,6 @@ public class FtcTest extends FtcTeleOp
                         }
                     }
                 }
-//                else if (RobotParams.Preferences.useGripPipeline)
-//                {
-//                    Rect[] detectedObjects = robot.vision.gripVision.getDetectedObjects();
-//
-//                    if (detectedObjects != null)
-//                    {
-//                        numTargets = Math.min(detectedObjects.length, maxNumLines);
-//                        for (int i = 0; i < numTargets; i++)
-//                        {
-//                            robot.dashboard.displayPrintf(lineIndex, "[%d] %s", i, detectedObjects[i]);
-//                            lineIndex++;
-//                        }
-//                    }
-//                }
 
                 while (lineIndex < endLine)
                 {
