@@ -30,6 +30,7 @@ import org.opencv.core.Scalar;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
+import TrcCommonLib.trclib.TrcDbgTrace;
 import TrcCommonLib.trclib.TrcHomographyMapper;
 import TrcCommonLib.trclib.TrcOpenCVDetector;
 import TrcFtcLib.ftclib.FtcEocvDetector;
@@ -81,6 +82,14 @@ public class EocvVision extends FtcEocvDetector
     @Override
     public Mat processFrame(Mat input)
     {
+        final String funcName = "processFrame";
+        TrcOpenCVDetector.DetectedObject[] targets = null;
+
+        if (debugEnabled)
+        {
+            dbgTrace.traceEnter(funcName, TrcDbgTrace.TraceLevel.CALLBK);
+        }
+
         gripPipeline.process(input);
         //
         // Process the image to detect the targets we are looking for and put them into targetRects.
@@ -90,7 +99,7 @@ public class EocvVision extends FtcEocvDetector
         if (detectedTargets != null)
         {
             KeyPoint[] targetPoints = detectedTargets.toArray();
-            TrcOpenCVDetector.DetectedObject[] targets = new TrcOpenCVDetector.DetectedObject[targetPoints.length];
+            targets = new TrcOpenCVDetector.DetectedObject[targetPoints.length];
             for (int i = 0; i < targets.length; i++)
             {
                 double radius = targetPoints[i].size/2;
@@ -105,6 +114,11 @@ public class EocvVision extends FtcEocvDetector
             {
                 detectedObjects = targets;
             }
+        }
+
+        if (debugEnabled)
+        {
+            dbgTrace.traceExit(funcName, TrcDbgTrace.TraceLevel.CALLBK, "=%s", targets != null);
         }
 
         return input;
