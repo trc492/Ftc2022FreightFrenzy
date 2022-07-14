@@ -41,6 +41,7 @@ import TrcFtcLib.ftclib.FtcEocvDetector;
  */
 public class EocvVision extends FtcEocvDetector
 {
+    private final OpenCvCamera openCvCam;
     private final GripPipeline gripPipeline;
     private TrcOpenCVDetector.DetectedObject[] detectedObjects = null;
 
@@ -62,9 +63,51 @@ public class EocvVision extends FtcEocvDetector
     {
         super(instanceName, imageWidth, imageHeight, cameraRect, worldRect, openCvCam, cameraRotation, null);
 
+        this.openCvCam = openCvCam;
         gripPipeline = new GripPipeline();
-        openCvCam.setPipeline(this);
+        openCvCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        {
+            @Override
+            public void onOpened()
+            {
+                openCvCam.startStreaming(imageWidth, imageHeight, cameraRotation);
+            }
+
+            @Override
+            public void onError(int errorCode)
+            {
+            }
+        });
     }   //EocvVision
+
+    /**
+     * This method pauses/resumes pipeline processing.
+     *
+     * @param enabled specifies true to start pipeline processing, false to stop.
+     */
+    public void setEnabled(boolean enabled)
+    {
+        if (enabled)
+        {
+            openCvCam.setPipeline(this);
+        }
+        else
+        {
+            openCvCam.setPipeline(null);
+        }
+    }   //setEnabled
+
+    /**
+     * This method returns the currently detect objects in a thread safe manner.
+     *
+     * @return array of detected objects.
+     */
+    public synchronized TrcOpenCVDetector.DetectedObject[] getDetectedObjects()
+    {
+        TrcOpenCVDetector.DetectedObject[] targets = detectedObjects;
+        detectedObjects = null;
+        return targets;
+    }   //getDetectedObjects
 
     //
     // Implements FtcEocvDetector abstract methods.
@@ -122,17 +165,5 @@ public class EocvVision extends FtcEocvDetector
 
         return input;
     }   //processFrame
-
-    /**
-     * This method returns the currently detect objects in a thread safe manner.
-     *
-     * @return array of detected objects.
-     */
-    public synchronized TrcOpenCVDetector.DetectedObject[] getDetectedObjects()
-    {
-        TrcOpenCVDetector.DetectedObject[] targets = detectedObjects;
-        detectedObjects = null;
-        return targets;
-    }   //getDetectedObjects
 
 }   //class EocvVision
