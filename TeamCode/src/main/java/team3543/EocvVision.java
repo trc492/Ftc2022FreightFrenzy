@@ -44,27 +44,26 @@ public class EocvVision extends FtcEocvDetector
     private final GripPipeline gripPipeline;
     private TrcOpenCVDetector.DetectedObject[] detectedObjects = null;
 
+    /**
+     * Constructor: Create an instance of the object.
+     *
+     * @param instanceName specifies the instance name.
+     * @param imageWidth specifies the camera image width.
+     * @param imageHeight specifies the camera image height.
+     * @param cameraRect specifies the homography camera pixel rectangle, can be null if not provided.
+     * @param worldRect specifies the homography world coordinate rectangle, can be null if not provided.
+     * @param openCvCam specifies the OpenCV camera object.
+     * @param cameraRotation specifies the camera orientation.
+     */
     public EocvVision(
         String instanceName, int imageWidth, int imageHeight,
         TrcHomographyMapper.Rectangle cameraRect, TrcHomographyMapper.Rectangle worldRect,
         OpenCvCamera openCvCam, OpenCvCameraRotation cameraRotation)
     {
-        super(instanceName, imageWidth, imageHeight, cameraRect, worldRect, null);
-        openCvCam.openCameraDeviceAsync(
-            new OpenCvCamera.AsyncCameraOpenListener()
-            {
-                @Override
-                public void onOpened()
-                {
-                    openCvCam.startStreaming(imageWidth, imageHeight, cameraRotation);
-                }
+        super(instanceName, imageWidth, imageHeight, cameraRect, worldRect, openCvCam, cameraRotation, null);
 
-                @Override
-                public void onError(int errorCode)
-                {
-                }
-            });
         gripPipeline = new GripPipeline();
+        openCvCam.setPipeline(this);
     }   //EocvVision
 
     //

@@ -269,6 +269,11 @@ public class FtcTest extends FtcTeleOp
                         robot.globalTracer.traceInfo(funcName, "Enabling TensorFlow.");
                         robot.vision.tensorFlowVision.setEnabled(true);
                     }
+                    else if (robot.vision.eocvVision != null)
+                    {
+                        robot.globalTracer.traceInfo(funcName, "Enabling EocvVision.");
+                        robot.vision.eocvVision.setEnabled(true);
+                    }
                 }
                 break;
 
@@ -313,7 +318,8 @@ public class FtcTest extends FtcTeleOp
             testCommand.cancel();
         }
 
-        if (robot.vision != null)
+        if (robot.vision != null &&
+            (testChoices.test == Test.SENSORS_TEST || testChoices.test == Test.SUBSYSTEMS_TEST))
         {
             //
             // Vision generally will impact performance, so we only enable it if it's needed.
@@ -326,8 +332,13 @@ public class FtcTest extends FtcTeleOp
 
             if (robot.vision.tensorFlowVision != null)
             {
-                robot.globalTracer.traceInfo(funcName, "Shutting down TensorFlow.");
-                robot.vision.tensorFlowShutdown();
+                robot.globalTracer.traceInfo(funcName, "Disabling TensorFlow.");
+                robot.vision.tensorFlowVision.setEnabled(false);
+            }
+            else if (robot.vision.eocvVision != null)
+            {
+                robot.globalTracer.traceInfo(funcName, "Disabling EocvVision.");
+                robot.vision.eocvVision.setEnabled(false);
             }
         }
 

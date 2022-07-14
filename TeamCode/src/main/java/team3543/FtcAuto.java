@@ -227,6 +227,11 @@ public class FtcAuto extends FtcOpMode
                 robot.globalTracer.traceInfo(funcName, "Enabling TensorFlow.");
                 robot.vision.tensorFlowVision.setEnabled(true);
             }
+            else if (robot.vision.eocvVision != null)
+            {
+                robot.globalTracer.traceInfo(funcName, "Enabling EocvVision.");
+                robot.vision.eocvVision.setEnabled(true);
+            }
         }
     }   //initRobot
 
@@ -241,7 +246,7 @@ public class FtcAuto extends FtcOpMode
     @Override
     public void initPeriodic()
     {
-        if (robot.vision != null && RobotParams.Preferences.useTensorFlow)
+        if (robot.vision != null && (robot.vision.tensorFlowVision != null || robot.vision.eocvVision != null))
         {
             robot.vision.getDetectedDuckPositions();
         }
@@ -294,12 +299,33 @@ public class FtcAuto extends FtcOpMode
     @Override
     public void stopMode(TrcRobot.RunMode prevMode, TrcRobot.RunMode nextMode)
     {
+        final String funcName = "stopMode";
         //
         // Opmode is about to stop, cancel autonomous command in progress if any.
         //
         if (autoCommand != null)
         {
             autoCommand.cancel();
+        }
+
+        if (robot.vision != null)
+        {
+            if (robot.vision.vuforiaVision != null)
+            {
+                robot.globalTracer.traceInfo(funcName, "Disabling Vuforia.");
+                robot.vision.vuforiaVision.setEnabled(false);
+            }
+
+            if (robot.vision.tensorFlowVision != null)
+            {
+                robot.globalTracer.traceInfo(funcName, "Disabling TensorFlow.");
+                robot.vision.tensorFlowVision.setEnabled(false);
+            }
+            else if (robot.vision.eocvVision != null)
+            {
+                robot.globalTracer.traceInfo(funcName, "Disabling EocvVision.");
+                robot.vision.eocvVision.setEnabled(false);
+            }
         }
         //
         // Tell robot object opmode is about to stop so it can do the necessary cleanup for the mode.

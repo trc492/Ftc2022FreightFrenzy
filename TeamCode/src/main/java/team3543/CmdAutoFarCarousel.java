@@ -126,10 +126,18 @@ class CmdAutoFarCarousel implements TrcRobot.RobotCommand
                     //
                     // Disable TensorFlow if we are not using it to improve PurePursuitDrive performance.
                     //
-                    if (robot.vision != null && robot.vision.tensorFlowVision != null)
+                    if (robot.vision != null)
                     {
-                        robot.globalTracer.traceInfo(moduleName + ".cmdPeriodic", "Disabling TensorFlow.");
-                        robot.vision.tensorFlowVision.setEnabled(false);
+                        if (robot.vision.tensorFlowVision != null)
+                        {
+                            robot.globalTracer.traceInfo(moduleName + ".cmdPeriodic", "Disabling TensorFlow.");
+                            robot.vision.tensorFlowVision.setEnabled(false);
+                        }
+                        else if (robot.vision.eocvVision != null)
+                        {
+                            robot.globalTracer.traceInfo(moduleName + ".cmdPeriodic", "Disabling EocvVision.");
+                            robot.vision.eocvVision.setEnabled(false);
+                        }
                     }
                     //
                     // Set robot starting position in the field.

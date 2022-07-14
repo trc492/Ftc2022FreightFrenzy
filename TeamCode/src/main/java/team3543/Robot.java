@@ -227,6 +227,8 @@ public class Robot
      */
     public void startMode(TrcRobot.RunMode runMode)
     {
+        final String funcName = "startMode";
+
         if (arm != null)
         {
             // Raise the arm a little at start so it will not get caught on the floor tile.
@@ -306,6 +308,11 @@ public class Robot
             {
                 globalTracer.traceInfo(funcName, "Shutting down TensorFlow.");
                 vision.tensorFlowShutdown();
+            }
+            else if (vision.eocvVision != null)
+            {
+                globalTracer.traceInfo(funcName, "Disabling EocvVision.");
+                vision.eocvVision.setEnabled(false);
             }
         }
 
