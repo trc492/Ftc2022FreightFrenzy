@@ -42,6 +42,7 @@ import TrcFtcLib.ftclib.FtcEocvDetector;
 public class EocvVision extends FtcEocvDetector
 {
     private final OpenCvCamera openCvCam;
+    private final boolean showEocvView;
     private final GripPipeline gripPipeline;
     private TrcOpenCVDetector.DetectedObject[] detectedObjects = null;
 
@@ -55,15 +56,19 @@ public class EocvVision extends FtcEocvDetector
      * @param worldRect specifies the homography world coordinate rectangle, can be null if not provided.
      * @param openCvCam specifies the OpenCV camera object.
      * @param cameraRotation specifies the camera orientation.
+     * @param showEocvView specifies true to show the annotated image on robot controller screen, false to hide the
+     *        image.
+     * @param tracer specifies the tracer for trace info, null if none provided.
      */
     public EocvVision(
         String instanceName, int imageWidth, int imageHeight,
         TrcHomographyMapper.Rectangle cameraRect, TrcHomographyMapper.Rectangle worldRect,
-        OpenCvCamera openCvCam, OpenCvCameraRotation cameraRotation)
+        OpenCvCamera openCvCam, OpenCvCameraRotation cameraRotation, boolean showEocvView, TrcDbgTrace tracer)
     {
-        super(instanceName, imageWidth, imageHeight, cameraRect, worldRect, openCvCam, cameraRotation, null);
+        super(instanceName, imageWidth, imageHeight, cameraRect, worldRect, openCvCam, cameraRotation, tracer);
 
         this.openCvCam = openCvCam;
+        this.showEocvView = showEocvView;
         gripPipeline = new GripPipeline();
         openCvCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
@@ -78,6 +83,7 @@ public class EocvVision extends FtcEocvDetector
             {
             }
         });
+        openCvCam.pauseViewport();
     }   //EocvVision
 
     /**
@@ -90,9 +96,14 @@ public class EocvVision extends FtcEocvDetector
         if (enabled)
         {
             openCvCam.setPipeline(this);
+            if (showEocvView)
+            {
+                openCvCam.resumeViewport();
+            }
         }
         else
         {
+            openCvCam.pauseViewport();
             openCvCam.setPipeline(null);
         }
     }   //setEnabled

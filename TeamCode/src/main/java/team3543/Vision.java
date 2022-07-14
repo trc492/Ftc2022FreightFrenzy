@@ -26,6 +26,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import TrcCommonLib.trclib.TrcDbgTrace;
 import TrcCommonLib.trclib.TrcOpenCVDetector;
@@ -98,7 +99,8 @@ public class Vision
                     opMode.hardwareMap.get(WebcamName.class, RobotParams.HWNAME_WEBCAM), cameraViewId);
             eocvVision = new EocvVision(
                 "EocvVision", RobotParams.IMAGE_WIDTH, RobotParams.IMAGE_HEIGHT,
-                RobotParams.cameraRect, RobotParams.worldRect, webcam, null);
+                RobotParams.cameraRect, RobotParams.worldRect, webcam, OpenCvCameraRotation.UPRIGHT,
+                RobotParams.Preferences.showEocvView, null);
         }
         else
         {
