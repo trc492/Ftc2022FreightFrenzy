@@ -124,6 +124,11 @@ public class EocvVision extends FtcEocvDetector
         return input;
     }   //processFrame
 
+    /**
+     * This method returns the currently detect objects in a thread safe manner.
+     *
+     * @return array of detected objects.
+     */
     public synchronized TrcOpenCVDetector.DetectedObject[] getDetectedObjects()
     {
         TrcOpenCVDetector.DetectedObject[] targets = detectedObjects;

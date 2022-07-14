@@ -105,7 +105,7 @@ public class Robot
             vision = new Vision(this);
         }
         //
-        // If visionOnly is true, the robot controller is disconnected from the robot for testing vision.
+        // If noRobot is true, the robot controller is disconnected from the robot for testing vision.
         // In this case, we should not instantiate any robot hardware.
         //
         if (!RobotParams.Preferences.noRobot)
@@ -113,7 +113,7 @@ public class Robot
             //
             // Create and initialize sensors and indicators.
             //
-            if (RobotParams.Preferences.useBlinkin )
+            if (RobotParams.Preferences.useBlinkin)
             {
                 blinkin = new FtcRevBlinkin(RobotParams.HWNAME_BLINKIN);
                 //

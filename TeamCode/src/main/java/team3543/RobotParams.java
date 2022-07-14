@@ -214,7 +214,6 @@ public class RobotParams
         RobotParams.HOMOGRAPHY_WORLD_TOPRIGHT_X, RobotParams.HOMOGRAPHY_WORLD_TOPRIGHT_Y,
         RobotParams.HOMOGRAPHY_WORLD_BOTTOMLEFT_X, RobotParams.HOMOGRAPHY_WORLD_BOTTOMLEFT_Y,
         RobotParams.HOMOGRAPHY_WORLD_BOTTOMRIGHT_X, RobotParams.HOMOGRAPHY_WORLD_BOTTOMRIGHT_Y);
-
     //
     // Vision subsystem.
     //
@@ -222,8 +221,8 @@ public class RobotParams
     static final double CAMERA_FRONT_OFFSET                     = 7.5;  //Camera offset from front of robot in inches
     static final double CAMERA_HEIGHT_OFFSET                    = 16.0; //Camera offset from floor in inches
     static final double CAMERA_LEFT_OFFSET                      = 6.0;  //Camera offset from left of robot in inches
-    static final int IMAGE_WIDTH                                = 0;
-    static final int IMAGE_HEIGHT                               = 0;
+    static final int IMAGE_WIDTH                                = 320;
+    static final int IMAGE_HEIGHT                               = 240;
     //
     // Arm subsystem.
     //

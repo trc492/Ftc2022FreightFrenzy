@@ -198,7 +198,7 @@ public class FtcTeleOp extends FtcOpMode
      * This method is called when driver gamepad button event is detected.
      *
      * @param gamepad specifies the game controller object that generated the event.
-     * @param button specifies the button ID that generates the event
+     * @param button specifies the button ID that generates the event.
      * @param pressed specifies true if the button is pressed, false otherwise.
      */
     public void driverButtonEvent(TrcGameController gamepad, int button, boolean pressed)
@@ -253,7 +253,7 @@ public class FtcTeleOp extends FtcOpMode
      * This method is called when operator gamepad button event is detected.
      *
      * @param gamepad specifies the game controller object that generated the event.
-     * @param button specifies the button ID that generates the event
+     * @param button specifies the button ID that generates the event.
      * @param pressed specifies true if the button is pressed, false otherwise.
      */
     public void operatorButtonEvent(TrcGameController gamepad, int button, boolean pressed)
