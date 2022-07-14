@@ -135,4 +135,4 @@ public class EocvVision extends FtcEocvDetector
         return targets;
     }   //getDetectedObjects
 
-}   //class GripVision
+}   //class EocvVision
