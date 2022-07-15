@@ -24,6 +24,7 @@ package team3543;
 
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+import org.opencv.core.Core;
 import org.opencv.core.Point;
 
 import java.util.Comparator;
@@ -58,7 +59,7 @@ public class TensorFlowVision
      */
     public TensorFlowVision(FtcVuforia vuforia, TrcDbgTrace tracer)
     {
-        System.loadLibrary(Vision.OPENCV_NATIVE_LIBRARY_NAME);
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);//Vision.OPENCV_NATIVE_LIBRARY_NAME);
         FtcOpMode opMode = FtcOpMode.getInstance();
         int tfodMonitorViewId = !RobotParams.Preferences.showTensorFlowView ? -1 :
             opMode.hardwareMap.appContext.getResources().getIdentifier(
