@@ -33,6 +33,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import TrcCommonLib.trclib.TrcDbgTrace;
 import TrcCommonLib.trclib.TrcHomographyMapper;
 import TrcCommonLib.trclib.TrcOpenCVDetector;
+import TrcCommonLib.trclib.TrcUtil;
 import TrcFtcLib.ftclib.FtcEocvDetector;
 
 /**
@@ -43,8 +44,14 @@ public class EocvVision extends FtcEocvDetector
 {
     private final OpenCvCamera openCvCam;
     private final boolean showEocvView;
+    private final TrcDbgTrace tracer;
     private final GripPipeline gripPipeline;
+    private boolean eocvEnabled = false;
     private TrcOpenCVDetector.DetectedObject[] detectedObjects = null;
+
+    private double totalTime = 0.0;
+    private long totalFrames = 0;
+    private double taskStartTime = 0.0;
 
     /**
      * Constructor: Create an instance of the object.
@@ -69,6 +76,7 @@ public class EocvVision extends FtcEocvDetector
 
         this.openCvCam = openCvCam;
         this.showEocvView = showEocvView;
+        this.tracer = tracer;
         gripPipeline = new GripPipeline();
         openCvCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
@@ -93,20 +101,38 @@ public class EocvVision extends FtcEocvDetector
      */
     public void setEnabled(boolean enabled)
     {
-        if (enabled)
+        if (enabled && !eocvEnabled)
         {
+            detectedObjects = null;
+            totalTime = 0.0;
+            totalFrames = 0;
+            taskStartTime = TrcUtil.getCurrentTime();
+
             openCvCam.setPipeline(this);
             if (showEocvView)
             {
                 openCvCam.resumeViewport();
             }
         }
-        else
+        else if (!enabled && eocvEnabled)
         {
             openCvCam.pauseViewport();
             openCvCam.setPipeline(null);
+            detectedObjects = null;
         }
+
+        eocvEnabled = enabled;
     }   //setEnabled
+
+    /**
+     * This method returns the state of EocvVision.
+     *
+     * @return true if the EocvVision is enabled, false otherwise.
+     */
+    public boolean isEnabled()
+    {
+        return eocvEnabled;
+    }   //isTaskEnabled
 
     /**
      * This method returns the currently detect objects in a thread safe manner.
@@ -143,11 +169,19 @@ public class EocvVision extends FtcEocvDetector
             dbgTrace.traceEnter(funcName, TrcDbgTrace.TraceLevel.CALLBK);
         }
 
+        double startTime = TrcUtil.getCurrentTime();
         gripPipeline.process(input);
-        //
-        // Process the image to detect the targets we are looking for and put them into targetRects.
-        //
         MatOfKeyPoint detectedTargets = gripPipeline.findBlobsOutput();
+        double elapsedTime = TrcUtil.getCurrentTime() - startTime;
+
+        totalTime += elapsedTime;
+        totalFrames++;
+        if (tracer != null)
+        {
+            tracer.traceInfo(
+                funcName, "AvgProcessTime=%.3f sec, FrameRate=%.1f",
+                totalTime/totalFrames, totalFrames/(TrcUtil.getCurrentTime() - taskStartTime));
+        }
 
         if (detectedTargets != null)
         {
