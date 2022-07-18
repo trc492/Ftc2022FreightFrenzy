@@ -42,11 +42,8 @@ import TrcFtcLib.ftclib.FtcEocvDetector;
  */
 public class EocvVision extends FtcEocvDetector
 {
-    private final OpenCvCamera openCvCam;
-    private final boolean showEocvView;
     private final TrcDbgTrace tracer;
     private final GripPipeline gripPipeline;
-    private boolean eocvEnabled = false;
     private TrcOpenCVDetector.DetectedObject[] detectedObjects = null;
 
     private double totalTime = 0.0;
@@ -72,26 +69,11 @@ public class EocvVision extends FtcEocvDetector
         TrcHomographyMapper.Rectangle cameraRect, TrcHomographyMapper.Rectangle worldRect,
         OpenCvCamera openCvCam, OpenCvCameraRotation cameraRotation, boolean showEocvView, TrcDbgTrace tracer)
     {
-        super(instanceName, imageWidth, imageHeight, cameraRect, worldRect, openCvCam, cameraRotation, tracer);
+        super(instanceName, imageWidth, imageHeight, cameraRect, worldRect, openCvCam, cameraRotation,
+              showEocvView, tracer);
 
-        this.openCvCam = openCvCam;
-        this.showEocvView = showEocvView;
         this.tracer = tracer;
         gripPipeline = new GripPipeline();
-        openCvCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
-        {
-            @Override
-            public void onOpened()
-            {
-                openCvCam.startStreaming(imageWidth, imageHeight, cameraRotation);
-            }
-
-            @Override
-            public void onError(int errorCode)
-            {
-            }
-        });
-        openCvCam.pauseViewport();
     }   //EocvVision
 
     /**
@@ -99,40 +81,23 @@ public class EocvVision extends FtcEocvDetector
      *
      * @param enabled specifies true to start pipeline processing, false to stop.
      */
+    @Override
     public void setEnabled(boolean enabled)
     {
-        if (enabled && !eocvEnabled)
+        if (enabled && !isEnabled())
         {
             detectedObjects = null;
             totalTime = 0.0;
             totalFrames = 0;
             taskStartTime = TrcUtil.getCurrentTime();
-
-            openCvCam.setPipeline(this);
-            if (showEocvView)
-            {
-                openCvCam.resumeViewport();
-            }
+            super.setEnabled(true);
         }
-        else if (!enabled && eocvEnabled)
+        else if (!enabled && isEnabled())
         {
-            openCvCam.pauseViewport();
-            openCvCam.setPipeline(null);
+            super.setEnabled(false);
             detectedObjects = null;
         }
-
-        eocvEnabled = enabled;
     }   //setEnabled
-
-    /**
-     * This method returns the state of EocvVision.
-     *
-     * @return true if the EocvVision is enabled, false otherwise.
-     */
-    public boolean isEnabled()
-    {
-        return eocvEnabled;
-    }   //isTaskEnabled
 
     /**
      * This method returns the currently detect objects in a thread safe manner.
