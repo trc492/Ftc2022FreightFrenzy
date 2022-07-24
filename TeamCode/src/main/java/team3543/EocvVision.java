@@ -42,6 +42,7 @@ import TrcFtcLib.ftclib.FtcEocvDetector;
  */
 public class EocvVision extends FtcEocvDetector
 {
+    private static final Scalar ANNOTATE_RECT_COLOR = new Scalar(0, 255, 0);
     private final TrcDbgTrace tracer;
     private final GripPipeline gripPipeline;
     private TrcOpenCVDetector.DetectedObject[] detectedObjects = null;
@@ -161,7 +162,7 @@ public class EocvVision extends FtcEocvDetector
                     targetPoints[i].angle, targetPoints[i].response, targetPoints[i].octave, targetPoints[i].class_id);
             }
             detectedTargets.release();
-            TrcOpenCVDetector.drawRectangles(input, targets, new Scalar(0, 255, 0), 0);
+            TrcOpenCVDetector.drawRectangles(input, targets, ANNOTATE_RECT_COLOR, 0);
             synchronized (this)
             {
                 detectedObjects = targets;
