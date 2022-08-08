@@ -42,7 +42,7 @@ import TrcFtcLib.ftclib.FtcVuforia;
  */
 public class Vision
 {
-    public static final String OPENCV_NATIVE_LIBRARY_NAME = "opencv_java3";
+    public static final String OPENCV_NATIVE_LIBRARY_NAME = "EasyOpenCV";
     public static final String BLUE_STORAGE_NAME = "Blue Storage";
     public static final String BLUE_ALLIANCE_WALL_NAME = "Blue Alliance Wall";
     public static final String RED_STORAGE_NAME = "Red Storage";
