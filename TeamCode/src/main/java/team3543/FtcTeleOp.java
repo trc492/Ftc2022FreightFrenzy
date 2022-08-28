@@ -41,6 +41,7 @@ public class FtcTeleOp extends FtcOpMode
     private boolean invertedDrive = false;
     private double drivePowerScale = 1.0;
     private double armPowerScale = 1.0;
+    private boolean armManualOverride = false;
 
     //
     // Implements FtcOpMode abstract method.
@@ -163,9 +164,16 @@ public class FtcTeleOp extends FtcOpMode
         //
         if (robot.arm != null)
         {
-            double armPower = operatorGamepad.getRightStickY(true);
+            double armPower = operatorGamepad.getRightStickY(true)*armPowerScale;
 
-            robot.arm.setPower(armPower*armPowerScale);
+            if (armManualOverride)
+            {
+                robot.arm.setPower(armPower);
+            }
+            else
+            {
+                robot.arm.setPidPower(armPower);
+            }
             robot.dashboard.displayPrintf(
                 3, "Arm: Pow=%.1f,Pos=%.1f,Lim=(%b,%b)",
                 armPower, robot.arm.getPosition(), robot.arm.isLowerLimitSwitchActive(),
@@ -294,10 +302,7 @@ public class FtcTeleOp extends FtcOpMode
                 break;
 
             case FtcGamepad.GAMEPAD_LBUMPER:
-                if (robot.arm != null)
-                {
-                    robot.arm.setManualOverride(pressed);
-                }
+                armManualOverride = pressed;
                 break;
 
             case FtcGamepad.GAMEPAD_RBUMPER:
@@ -310,14 +315,14 @@ public class FtcTeleOp extends FtcOpMode
             case FtcGamepad.GAMEPAD_DPAD_UP:
                 if (robot.arm != null && pressed)
                 {
-                    robot.arm.levelUp();
+                    robot.arm.presetPositionUp();
                 }
                 break;
 
             case FtcGamepad.GAMEPAD_DPAD_DOWN:
                 if (robot.arm != null && pressed)
                 {
-                    robot.arm.levelDown();
+                    robot.arm.presetPositionDown();
                 }
                 break;
 

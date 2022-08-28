@@ -170,7 +170,7 @@ class CmdAutoShuttleBackAndForth implements TrcRobot.RobotCommand
                         robot.globalTracer.traceInfo(moduleName, msg);
                         robot.speak(msg);
                     }
-                    robot.arm.setLevel(duckPosition);
+                    robot.arm.setPresetPosition(duckPosition);
                     //
                     // Do start delay if any.
                     //
@@ -232,7 +232,7 @@ class CmdAutoShuttleBackAndForth implements TrcRobot.RobotCommand
                                 robot.robotDrive.pathPoint(hubX, hubY, hubHeading));
                     }
                     // Raise arm to the detected duck level at the same time.
-                    robot.arm.setLevel(duckPosition);
+                    robot.arm.setPresetPosition(duckPosition);
                     // After we dump the freight to the right level for the bonus, any subsequent dumps will be to
                     // the top.
                     duckPosition = 3;
@@ -246,7 +246,7 @@ class CmdAutoShuttleBackAndForth implements TrcRobot.RobotCommand
                     break;
 
                 case PREP_FOR_DRIVE_INTO_WAREHOUSE:
-                    robot.arm.setLevel(0.5, 0);
+                    robot.arm.setPresetPosition(0.5, 0);
                     if (autoChoices.alliance == FtcAuto.Alliance.RED_ALLIANCE)
                     {
                         robot.robotDrive.purePursuitDrive.start(
@@ -451,7 +451,7 @@ class CmdAutoShuttleBackAndForth implements TrcRobot.RobotCommand
 
                 case DRIVE_OUT_OF_WAREHOUSE_TO_SHIPPING_HUB:
                     distanceToHub = 1.8;
-                    robot.arm.setLevel(3);
+                    robot.arm.setPresetPosition(3);
                     if (autoChoices.alliance==FtcAuto.Alliance.RED_ALLIANCE)
                     {
                         robot.robotDrive.purePursuitDrive.start(

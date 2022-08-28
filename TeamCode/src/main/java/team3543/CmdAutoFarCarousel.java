@@ -164,7 +164,7 @@ class CmdAutoFarCarousel implements TrcRobot.RobotCommand
                         robot.globalTracer.traceInfo(moduleName, msg);
                         robot.speak(msg);
                     }
-                    robot.arm.setLevel(1);
+                    robot.arm.setPresetPosition(1);
                     //
                     // Do start delay if any.
                     //
@@ -216,7 +216,7 @@ class CmdAutoFarCarousel implements TrcRobot.RobotCommand
                                 robot.robotDrive.pathPoint(-0.5, distanceToHub, 180.0));
                         }
                         // Raise arm to the detected duck level at the same time.
-                        robot.arm.setLevel(duckPosition);
+                        robot.arm.setPresetPosition(duckPosition);
                         sm.waitForSingleEvent(event, State.DUMP_FREIGHT);
                     }
                     break;
@@ -229,7 +229,7 @@ class CmdAutoFarCarousel implements TrcRobot.RobotCommand
 
                 case DRIVE_TO_CAROUSEL:
                     // Delay half a second before lower the arm to avoid hitting the alliance shipping hub.
-                    robot.arm.setLevel(0.5, 1);
+                    robot.arm.setPresetPosition(0.5, 1);
                     if (!autoChoices.doCarousel)
                     {
                         // We are not doing carousel, skip to next state.
@@ -351,7 +351,7 @@ class CmdAutoFarCarousel implements TrcRobot.RobotCommand
                 case RETRACT_ODOMETRY_WHEELS:
                     // We are going over barriers, so retract everything to their proper heights and wait 2 seconds
                     // for them to be done.
-                    robot.arm.setLevel(1);
+                    robot.arm.setPresetPosition(1);
                     robot.odwDeployer.retract();
                     timer.set(2.0, event);
                     sm.waitForSingleEvent(event, State.GET_INTO_WAREHOUSE);

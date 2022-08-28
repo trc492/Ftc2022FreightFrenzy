@@ -162,7 +162,7 @@ class CmdAutoNearCarousel implements TrcRobot.RobotCommand
                         robot.globalTracer.traceInfo(moduleName, msg);
                         robot.speak(msg);
                     }
-                    robot.arm.setLevel(1);
+                    robot.arm.setPresetPosition(1);
                     //
                     // Do start delay if any.
                     //
@@ -282,7 +282,7 @@ class CmdAutoNearCarousel implements TrcRobot.RobotCommand
                                 robot.robotDrive.pathPoint(-distanceToHub, 1.0, 90.0));
                         }
                         // Raise arm to the detected duck level at the same time.
-                        robot.arm.setLevel(duckPosition);
+                        robot.arm.setPresetPosition(duckPosition);
                         // After we dump the freight to the right level for the bonus, any subsequent dumps will be to
                         // the top.
                         duckPosition = 3;
@@ -298,7 +298,7 @@ class CmdAutoNearCarousel implements TrcRobot.RobotCommand
                     break;
 
                 case POSITION_TO_FIND_THE_DUCK:
-                    robot.arm.setLevel(0.25, 0);
+                    robot.arm.setPresetPosition(0.25, 0);
                     // If we did not do Carousel, there is no duck on the floor, so skip it.
                     if (!autoChoices.duckDelivery || !autoChoices.doCarousel)
                     {
@@ -470,7 +470,7 @@ class CmdAutoNearCarousel implements TrcRobot.RobotCommand
                     // for them to be done.
                     // After retracting od wheels, check the time before running into warehouse in case our alliance
                     // partner is still cycling.
-                    robot.arm.setLevel(1);
+                    robot.arm.setPresetPosition(1);
                     robot.odwDeployer.retract();
                     timer.set(30.0 - elapsedTime - 3.0, event);
                     sm.waitForSingleEvent(event, State.GET_INTO_WAREHOUSE);

@@ -171,7 +171,7 @@ class CmdAutoNearCarouselWithDuck implements TrcRobot.RobotCommand
                         robot.speak(msg);
                     }
 
-                    robot.arm.setLevel(duckPosition);
+                    robot.arm.setPresetPosition(duckPosition);
                     //
                     // Do start delay if any.
                     //
@@ -258,13 +258,13 @@ class CmdAutoNearCarouselWithDuck implements TrcRobot.RobotCommand
                     // Raise arm to the detected duck level at the same time.
                     if (!deliveringDuck)
                     {
-                        robot.arm.setLevel(duckPosition);
+                        robot.arm.setPresetPosition(duckPosition);
                     }
                     else
                     {
                         // Just picked up a duck possibly by the wall, delay some time waiting the robot to leave
                         // the wall before raising the arm to prevent the arm hitting the wall.
-                        robot.arm.setLevel(0.5, duckPosition);
+                        robot.arm.setPresetPosition(0.5, duckPosition);
                     }
                     // After we dump the freight to the right level for the bonus, any subsequent dumps will be to
                     // the top.
@@ -281,7 +281,7 @@ class CmdAutoNearCarouselWithDuck implements TrcRobot.RobotCommand
 
                 case DRIVE_TO_CAROUSEL:
                     // delay lowering the arm until the robot leaves the alliance hub to avoid hitting it.
-                    robot.arm.setLevel(0.5, 1);
+                    robot.arm.setPresetPosition(0.5, 1);
                     // Drive to the carousel from the alliance shipping hub.
                     if (autoChoices.alliance == FtcAuto.Alliance.RED_ALLIANCE)
                     {
@@ -354,7 +354,7 @@ class CmdAutoNearCarouselWithDuck implements TrcRobot.RobotCommand
                     targetInfo = robot.vision.getClosestDuckInfo();
 
                     // Make sure the arm is at the lowest preparing to scoop up the duck.
-                    robot.arm.setLevel(0);
+                    robot.arm.setPresetPosition(0);
                     //backupfix if We dont find the bug tomorrow: add this to if statement: targetInfo.rect.x > 20 && targetInfo.rect.x < targetInfo.imageWidth - 20;
                     if (targetInfo != null)
                     {
@@ -543,7 +543,7 @@ class CmdAutoNearCarouselWithDuck implements TrcRobot.RobotCommand
                     // for them to be done.
                     // After retracting od wheels, check the time before running into warehouse in case our alliance
                     // partner is still cycling.
-                    robot.arm.setLevel(1);
+                    robot.arm.setPresetPosition(1);
                     robot.odwDeployer.retract();
                     timer.set(30.0 - elapsedTime - 2.0, event);
                     sm.waitForSingleEvent(event, State.GET_INTO_WAREHOUSE);
