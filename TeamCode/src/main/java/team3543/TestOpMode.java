@@ -49,7 +49,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="Test OpMode", group="Test")
 //@Disabled
-public class TestOpmode extends LinearOpMode {
+public class TestOpMode extends LinearOpMode {
 
    // Declare OpMode members.
    private ElapsedTime runtime = new ElapsedTime();
@@ -79,7 +79,7 @@ public class TestOpmode extends LinearOpMode {
       int lbEnc = lbDrive.getCurrentPosition();
       int rbEnc = rbDrive.getCurrentPosition();
 
-      telemetry.addData("Start Encoders", "[%.3f]: lfEnc=%.0f, rfEnc=%.0f, lbEnc=%.0f, rbEnc=%.0f",
+      telemetry.addData("Start Encoders", "[%.3f]: lfEnc=%d, rfEnc=%d, lbEnc=%d, rbEnc=%d",
                         runtime.seconds(), lfEnc, rfEnc, lbEnc, rbEnc);
       telemetry.update();
 
@@ -118,8 +118,8 @@ public class TestOpmode extends LinearOpMode {
          }
 
          telemetry.addData("Current Time", "time=%.3f", currTime);
-         telemetry.addData("Front Encoders", "lfEnc[%.3f]=%.0f, rfEnc[%.3f]=%.0f", lfEnc, lfEncTime, rfEnc, rfEncTime);
-         telemetry.addData(" Back Encoders", "lbEnc[%.3f]=%.0f, rbEnc[%.3f]=%.0f", lbEnc, lbEncTime, rbEnc, rbEncTime);
+         telemetry.addData("Front Encoders", "lfEnc[%.3f]=%d, rfEnc[%.3f]=%d", lfEncTime, lfEnc, rfEncTime, rfEnc);
+         telemetry.addData(" Back Encoders", "lbEnc[%.3f]=%d, rbEnc[%.3f]=%d", lbEncTime, lbEnc, rbEncTime, rbEnc);
          telemetry.update();
       }
    }
