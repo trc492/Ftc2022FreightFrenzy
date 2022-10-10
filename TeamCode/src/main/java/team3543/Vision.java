@@ -29,7 +29,7 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import TrcCommonLib.trclib.TrcDbgTrace;
-import TrcCommonLib.trclib.TrcOpenCVDetector;
+import TrcCommonLib.trclib.TrcOpenCvDetector;
 import TrcCommonLib.trclib.TrcRevBlinkin;
 import TrcCommonLib.trclib.TrcVisionTargetInfo;
 import TrcFtcLib.ftclib.FtcOpMode;
@@ -213,7 +213,8 @@ public class Vision
         }
         else if (eocvVision != null)
         {
-            targetInfo = eocvVision.getDetectedTargetsInfo(null, this::compareObjectSize);
+            targetInfo = eocvVision.getDetectedTargetsInfo(
+                null, this::compareObjectSize, 0.0, RobotParams.CAMERA_HEIGHT_OFFSET);
         }
 
         return targetInfo;
@@ -280,7 +281,8 @@ public class Vision
         }
         else if (eocvVision != null)
         {
-            targets = eocvVision.getDetectedTargetsInfo(null, this::compareDistanceFromCamera);
+            targets = eocvVision.getDetectedTargetsInfo(
+                null, this::compareDistanceFromCamera, 0.0, RobotParams.CAMERA_HEIGHT_OFFSET);
         }
 
         return targets != null? targets[0]: null;
@@ -302,7 +304,8 @@ public class Vision
         }
         else if (eocvVision != null)
         {
-            targets = eocvVision.getDetectedTargetsInfo(null, this::compareCameraAngle);
+            targets = eocvVision.getDetectedTargetsInfo(
+                null, this::compareCameraAngle, 0.0, RobotParams.CAMERA_HEIGHT_OFFSET);
         }
 
         return targets != null? targets[0]: null;
@@ -353,11 +356,10 @@ public class Vision
      *         larger area than b.
      */
     private int compareObjectSize(
-        TrcVisionTargetInfo<TrcOpenCVDetector.DetectedObject> a,
-        TrcVisionTargetInfo<TrcOpenCVDetector.DetectedObject> b)
+        TrcVisionTargetInfo<TrcOpenCvDetector.DetectedObject<?>> a,
+        TrcVisionTargetInfo<TrcOpenCvDetector.DetectedObject<?>> b)
     {
-        return a.detectedObj.rect.width * a.detectedObj.rect.height -
-               b.detectedObj.rect.width * b.detectedObj.rect.height;
+        return (int) ((a.detectedObj.getArea() - b.detectedObj.getArea())*1000.0);
     }   //compareObjectSize
 
 }   //class Vision

@@ -128,7 +128,7 @@ public class TensorFlowVision
     {
         final String funcName = "getDetectedTargetsInfo";
         TrcVisionTargetInfo<FtcTensorFlow.DetectedObject>[] targets =
-            tensorFlow.getDetectedTargetsInfo(label, filter, comparator);
+            tensorFlow.getDetectedTargetsInfo(label, filter, comparator, 0.0, RobotParams.CAMERA_HEIGHT_OFFSET);
 
         if (targets != null && traceTargets)
         {
@@ -200,7 +200,8 @@ public class TensorFlowVision
      */
     public boolean validateDuck(Recognition target)
     {
-        TrcVisionTargetInfo<FtcTensorFlow.DetectedObject> targetInfo = tensorFlow.getTargetInfo(target);
+        TrcVisionTargetInfo<FtcTensorFlow.DetectedObject> targetInfo = tensorFlow.getDetectedTargetInfo(
+            target, 0.0, RobotParams.CAMERA_HEIGHT_OFFSET);
 //            double aspectRatio = (double)targetInfo.rect.width/(double)targetInfo.rect.height;
 //            double area = targetInfo.rect.width*targetInfo.rect.height;
 //            double distanceYTolerance = targetInfo.imageHeight/6.0;
@@ -231,7 +232,8 @@ public class TensorFlowVision
      */
     public boolean validateFreight(Recognition target)
     {
-        TrcVisionTargetInfo<FtcTensorFlow.DetectedObject> targetInfo = tensorFlow.getTargetInfo(target);
+        TrcVisionTargetInfo<FtcTensorFlow.DetectedObject> targetInfo = tensorFlow.getDetectedTargetInfo(
+            target, 0.0, RobotParams.CAMERA_HEIGHT_OFFSET);
 
         return targetInfo.detectedObj.label.equals(Vision.LABEL_CUBE) ||
                targetInfo.detectedObj.label.equals(Vision.LABEL_BALL);
